@@ -1,0 +1,75 @@
+.progress {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* The slider itself */
+.slider {
+  appearance: none;
+  width: 100px; /* Full-width */
+  height: 4px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none;
+  border-radius: 9999px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 8px; /* Set a specific slider handle width */
+  height: 8px; /* Slider handle height */
+  background: var(--color-3); /* Green background */
+  border-radius: 9999px;
+}
+
+.slider::-moz-range-thumb {
+  width: 4px; /* Set a specific slider handle width */
+  height: 4px; /* Slider handle height */
+  background: var(--color-3); /* Green background */
+  border-radius: 9999px;
+}
+
+.tooltip {
+  color: #d3d3d3;
+  font-size: 0.8rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  height: 3px ;
+  background:var(--color-4);
+  border-radius: 5px;
+  background-image: linear-gradient(var( --color-3), var( --color-3));
+  background-repeat: no-repeat;
+}
+input[type=range]:hover{
+  transition:  0.3s ease-in-out;
+  height: 5px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  opacity: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var( --color-3);
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 #555;
+}
+  input[type=range]::-webkit-slider-thumb:hover {
+    -webkit-appearance: none;
+    opacity: 1;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var( --color-3);
+    cursor: pointer;
+    box-shadow: 0 0 2px 0 #555;
+
+  }

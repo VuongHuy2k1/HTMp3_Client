@@ -1,0 +1,116 @@
+.song-item {
+  color: var(--color-text);
+  width: 98%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 20% 80%;
+ 
+  transition: all 0.1s ease-in-out;
+  
+  min-height: 50px;
+
+  .right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    .name{
+      color: var(--color-text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      font-weight: var(--weight-text-2);
+      font-size:var(--size-text-2)
+
+    }
+    .singer{
+      color: var(--color-text-3);
+      font-weight: var(--weight-text-3);
+      font-size:var(--size-text-3)
+    }
+  }
+  
+}
+
+.song-item:hover {
+  background-color: var(--color-hover-1);
+  border-radius: 3px;
+  color: var(--color-text);
+  cursor: default;
+}
+
+.index {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.song-item > * {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+}
+
+.song-item > .name {
+  justify-content: flex-start !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: fit-content;
+  padding-left: 16px;
+}
+
+.item-control > svg,
+a {
+  color: inherit;
+}
+a > svg {
+  color: inherit;
+  transition: all 0.1s ease-in-out;
+}
+a > svg:hover {
+  color: #eee;
+}
+
+.selector > svg:hover {
+  color: #38bdf8;
+}
+
+.small-icon {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  margin: 0px;
+}
+
+.song-item.header > * > * {
+  color: inherit;
+}
+#active {
+  background-color: var(--color-3);
+  border-radius: 6px;
+ 
+  .name{
+    color: var(--color-text-2);
+  }
+  .singer{
+    color: var(--color-text-4);
+  }
+}
+.icon-img {
+  width: 40px;
+  height: 40px;
+  position: inherit;
+  cursor: pointer;
+  border-radius: 6px;
+}
+#focused{
+  zoom: 0.8;
+}

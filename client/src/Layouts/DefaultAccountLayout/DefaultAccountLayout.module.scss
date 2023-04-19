@@ -1,0 +1,35 @@
+.wrapper {
+  background-image: linear-gradient(
+    rgb(33, 44, 57),
+    rgb(18, 30, 61) 50%,
+    rgb(0, 0, 0)
+  );
+}
+.container {
+  display: grid;
+  grid-template-areas: "right left  ";
+  grid-template-columns: 25% 75%;
+  height: 100vh;
+  min-height: 100%;
+  padding: 0px 25%;
+}
+.header {
+  background-color: black;
+  height: 80px;
+}
+.slider {
+  grid-area: right;
+  background-image: linear-gradient(
+    to right,
+    rgb(28, 28, 28) 0%,
+    rgb(23, 23, 23) 100%
+  );
+}
+.content {
+  grid-area: left;
+  background-color: white;
+}
+.footer {
+  background-color: black;
+  height: 120px;
+}

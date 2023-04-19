@@ -1,0 +1,8 @@
+.wrapper {
+  max-height: min((70vh - 96px) - 60px, 734px);
+  overflow: auto;
+  margin-top: 14px;
+  border-radius: 12px;
+  background: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+}

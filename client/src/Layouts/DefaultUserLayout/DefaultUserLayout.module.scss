@@ -1,0 +1,39 @@
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "top-bar  "
+    " main-view  ";
+
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+}
+.content {
+  grid-area: top-bar;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+}
+.main-view {
+  grid-area: main-view;
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+}
+.logo {
+  display: flex;
+  padding-bottom: 24px;
+  padding-top: 16px;
+  flex-direction: row;
+  flex-shrink: 0;
+  justify-content: space-between;
+}
+
+.muzic-logo {
+  height: 40px;
+  max-width: 131px;
+  width: 100%;
+  color: black;
+}

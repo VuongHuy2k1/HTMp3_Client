@@ -1,0 +1,12 @@
+.wrapper {
+  display: grid;
+  grid-template-areas: "left   right ";
+
+  grid-template-columns: 50% 50%;
+}
+.list-left {
+  grid-area: left;
+}
+.list-right {
+  grid-area: right;
+}

@@ -1,0 +1,65 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  padding-left: 8px;
+
+  &:hover {
+    background: rgba(24, 18, 21, 0.19);
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.check {
+  margin-left: 6px;
+  color: rgb(32, 213, 236);
+}
+
+.username {
+  font-size: 12px;
+  color: rgba(22, 24, 35, 0.5);
+}
+.name-search {
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  width: 100%;
+  svg {
+    font-size: 16px;
+  }
+  span {
+
+    padding-left: 12px;
+    color: var(--color-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    font-weight: var(--weight-text-2);
+    font-size: var(--size-text-2);
+  }
+}
+.text-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

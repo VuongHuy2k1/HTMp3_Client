@@ -1,0 +1,62 @@
+.header-bar {
+  background-color: var(--color-2);
+  height: 64px;
+  color: var(--color-text);
+  text-align: center;
+  font-weight: 500;
+  position: fixed;
+  width: -webkit-fill-available;
+}
+.titel {
+  font-size: 1.5rem;
+
+  padding: 18px;
+}
+.backgroud {
+  background-color: var(--color-2);
+}
+.list-bar {
+  padding-top: 80px;
+  padding-left: 16px;
+}
+.warrper {
+  overflow-y: scroll;
+  padding-left: 2px;
+  height: 100vh;
+}
+
+.warrper::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+.warrper::-webkit-scrollbar-track {
+  background: rgb(15, 23, 42);
+}
+
+/* Handle */
+.warrper::-webkit-scrollbar-thumb {
+  background: rgb(148, 163, 184);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.warrper::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+@media (max-width: 760px) {
+  .warrper {
+    grid-column: 1/13;
+  }
+}
+
+.warrper.header:hover {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: initial;
+}
+
+.song-item.header > * {
+  color: #eee !important;
+}

@@ -1,0 +1,27 @@
+.header {
+  grid-column: 5/13;
+  // grid-row: 1/12;
+  border-bottom: 1px solid #94a3b8;
+  color: rgb(148, 163, 184);
+  width: 98%;
+  height: -moz-fit-content;
+  height: fit-content;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 10% 50% 30% 10%;
+  padding: 10px 5px;
+  transition: all 0.1s ease-in-out;
+}
+.name {
+  display: flex;
+  justify-content: flex-start;
+}
+.song-item.header > * {
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .song-item.header {
+    grid-column: 1/13;
+  }
+}

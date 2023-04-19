@@ -1,0 +1,222 @@
+.wrapper {
+  width: 540px;
+  height: fit-content;
+  background-color: #ffffff;
+}
+.loading-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  span {
+    height: 40px !important;
+    width: 80px !important;
+  }
+}
+.title {
+  text-align: center;
+  h1 {
+    font-weight: 800;
+  }
+}
+
+.post-form {
+  padding: 24px;
+}
+.main-form {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #141414;
+}
+.group-main {
+  box-sizing: border-box;
+  padding-block-end: 24px;
+}
+.title-group {
+  box-sizing: border-box;
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  inline-size: 100%;
+  padding-block-end: 8px;
+}
+.input-value {
+  appearance: none;
+  background-image: none;
+  border: 0px;
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  transition: box-shadow 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
+  inline-size: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 14px;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 1px #878787;
+  color: #000000;
+}
+.select-sex {
+  position: relative;
+  inline-size: 100%;
+  display: flex;
+  align-items: center;
+  svg {
+    pointer-events: none;
+    position: absolute;
+    right: 14px;
+  }
+}
+.select-opiton {
+  background-image: none;
+  border: 0px;
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  transition: box-shadow 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
+  inline-size: 100%;
+  box-sizing: border-box;
+  margin-block: 0px;
+  appearance: none;
+  text-indent: 0.01px;
+  border-radius: 4px;
+  padding-block: 14px;
+  padding-inline: 14px 44px;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 1px #878787;
+  color: #000000;
+}
+.labels-inputs {
+  display: flex;
+}
+.lable-1 {
+  display: none;
+}
+.input-birthday {
+  appearance: none;
+  background-image: none;
+  border: 0px;
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  transition: box-shadow 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
+  inline-size: 100%;
+  box-sizing: border-box;
+
+  margin-block: 0px;
+  border-radius: 4px;
+  padding: 14px;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 1px #878787;
+  color: #000000;
+}
+.select-morth {
+  position: relative;
+  inline-size: 100%;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  svg {
+    color: #878787;
+    pointer-events: none;
+    position: absolute;
+    right: 14px;
+  }
+}
+.pad {
+  padding: 0px 6px;
+}
+.pad-rig {
+  padding-right: 6px;
+  width: 240px;
+  text-align: center;
+  input {
+    text-align: center;
+  }
+}
+.btn-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btn-remove {
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  background-color: transparent;
+  border: 0px;
+  border-radius: 500px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  transition-duration: 33ms;
+  transition-property: background-color, border-color, color, box-shadow, filter,
+    transform;
+  user-select: none;
+  vertical-align: middle;
+  transform: translate3d(0px, 0px, 0px);
+  color: #6a6a6a;
+  min-inline-size: 0px;
+  padding-block: 14px;
+  padding-inline: 32px;
+  position: relative;
+  a {
+    :hover {
+      color: black;
+      transform: scale(1.04);
+    }
+  }
+  :hover {
+    color: black;
+    transform: scale(1.04);
+  }
+}
+.btn-submit {
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  background-color: transparent;
+  border: 0px;
+  border-radius: 500px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  transition-duration: 33ms;
+  transition-property: background-color, border-color, color, box-shadow, filter,
+    transform;
+  user-select: none;
+  vertical-align: middle;
+  transform: translate3d(0px, 0px, 0px);
+  padding: 0px;
+  min-inline-size: 0px;
+  align-self: center;
+  :hover {
+    transform: scale(1.04);
+  }
+}
+.btn-submit-title {
+  position: relative;
+  background-color: #1ed760;
+  color: #000000;
+  border-radius: 500px;
+  font-size: inherit;
+  padding-block: 14px;
+  padding-inline: 32px;
+}

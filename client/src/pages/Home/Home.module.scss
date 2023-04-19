@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/bootstrap";
+
+.main-view-container {
+  padding: var(--padding-main-view);
+  padding-bottom: 240px;
+  overflow-x: auto;
+}
+.top-padding {
+  height: var(--height-header);
+  flex: 1;
+  position: relative;
+}
+.content {
+}

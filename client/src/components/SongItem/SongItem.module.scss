@@ -1,0 +1,105 @@
+.song-item {
+  color: rgb(242 255 236);
+  width: 98%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 10% 50% 30% 10%;
+  padding: 10px 5px;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+}
+
+.song-item:hover {
+  background-color: #1e293b;
+  border-radius: 3px;
+  color: #cbd5e1;
+  cursor: default;
+}
+
+.index {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.song-item > * {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.song-item > .name {
+  justify-content: flex-start !important;
+}
+
+.item-control > svg,
+a {
+  color: inherit;
+}
+a > svg {
+  color: inherit;
+  transition: all 0.1s ease-in-out;
+}
+a > svg:hover {
+  color: #eee;
+}
+
+.selector > svg:hover {
+  color: #38bdf8;
+}
+.icon-dow {
+  float: right;
+  right: 0;
+}
+.small-icon {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+  margin: 0px;
+}
+
+.song-item.header > * > * {
+  color: inherit;
+}
+#actie {
+  background-color: var(--background-active);
+}
+.icon-img {
+  width: 40px;
+  height: 40px;
+  position: inherit;
+  cursor: pointer;
+}
+.hover-like {
+  margin-bottom: 0;
+  bottom: 15px;
+  visibility: hidden;
+  padding: 5px;
+  opacity: 0;
+  padding-right: 18px;
+}
+.song-item:hover .selector form.hover-like {
+  visibility: visible;
+  opacity: 1;
+}
+.song-item:hover .selector form.hover-like {
+  visibility: visible;
+  opacity: 1;
+}
+.mess-song {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* top: 0; */
+  right: 0;
+  left: 0;
+  bottom: 100px;
+}

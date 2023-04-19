@@ -1,0 +1,43 @@
+.warrper {
+  grid-column: 5/13;
+  // grid-row: 2/12;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 2px;
+}
+
+.warrper::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+.warrper::-webkit-scrollbar-track {
+  background: rgb(15, 23, 42);
+}
+
+/* Handle */
+.warrper::-webkit-scrollbar-thumb {
+  background: rgb(148, 163, 184);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.warrper::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+@media (max-width: 760px) {
+  .warrper {
+    grid-column: 1/13;
+  }
+}
+
+.warrper.header:hover {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: initial;
+}
+
+.song-item.header > * {
+  color: #eee !important;
+}

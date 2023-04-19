@@ -1,0 +1,35 @@
+.wrapper {
+  padding-bottom: 240px;
+  overflow-x: auto;
+}
+.container {
+  padding: var(--padding-main-view);
+}
+.title {
+  box-sizing: border-box;
+  margin-block: 0px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(
+    --font-family,
+    CircularSpTitle,
+    CircularSpTitle-Tall,
+    CircularSp-Arab,
+    CircularSp-Hebr,
+    CircularSp-Cyrl,
+    CircularSp-Grek,
+    CircularSp-Deva,
+    var(--fallback-fonts, sans-serif)
+  );
+  color: var(--white, #000000);
+  padding: 16px 16px 16px 0px;
+}
+.list-item {
+  padding: 24px 32px;
+}
+.no {
+  font-size: 1.75rem;
+  text-align: center;
+  color: white;
+  padding: 60px;
+}

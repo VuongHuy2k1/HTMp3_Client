@@ -1,0 +1,151 @@
+:root {
+  --padding: 0 24px;
+  --padding-li: 0 8px;
+}
+
+.warrper {
+  cursor: default;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding-top: 24px;
+  user-select: none;
+  width: fit-content;
+  position: fixed;
+  width: inherit;
+}
+
+.logo {
+  display: flex;
+  padding-bottom: 24px;
+  padding-top: 16px;
+  flex-direction: row;
+  flex-shrink: 0;
+  justify-content: space-between;
+  color: white;
+  padding: var(--padding);
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+.link-logo {
+  /* border: 0; */
+  -ms-flex: 1;
+  flex: 1;
+  margin-bottom: 18px;
+  padding: 0 24px;
+}
+.muzic-logo {
+  height: 40px;
+  max-width: 131px;
+  width: 100%;
+}
+
+//list
+.content-list {
+  list-style: none;
+  width: inherit;
+}
+.content {
+  padding: var(--padding-li);
+  // opacity: 0.6;
+  width: 190px;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+.content-link {
+  box-align: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  gap: 16px;
+  height: 40px;
+  padding: 0 16px;
+}
+.icon-li {
+  flex-shrink: 0;
+  height: 24px;
+  width: 24px;
+  color: var(--color-text);
+}
+.titel {
+  color: var(--color-text);
+  font-weight: var(--weight-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 6px 0px;
+}
+//Album
+.album {
+  padding-left: 8px;
+  width: inherit;
+  border-bottom: 1px solid;
+}
+.album-btn {
+  display: flex;
+  gap: 16px;
+  padding: 8px 0px;
+  padding-left: 20px;
+  width: 100%;
+  color: var(--color-text);
+  font-weight: var(--weight-text);
+  background-color: transparent;
+  justify-content: flex-start;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.icon-albu {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  height: 18px;
+  width: 18px;
+
+  background-color: var(--color-text);
+  color: var(--color-1);
+}
+.blu {
+  background-color: rgb(49, 70, 139);
+  color: rgb(175, 169, 169);
+}
+.album-list-titel {
+  // color: var(--color-text);
+  // font-weight: var(--weight-text);
+ 
+
+
+}
+//active
+#active {
+  opacity: 1.2 !important;
+  ::before {
+    content: "";
+    height: 30px;
+    left: 0px;
+    position: absolute;
+    width: 5px;
+    background-color: var(--color-active);
+  }
+}
+.album-list {
+  padding-top: 16px;
+  list-style: none;
+  width: inherit;
+  padding-left: 20px;
+}
+.list-name {
+  display: flex;
+  align-items: center;
+}
+.icon-delete {
+  visibility: hidden;
+  opacity: 0;
+  cursor: pointer;
+}
+.list-name:hover form.icon-delete {
+  visibility: visible;
+  opacity: 1;
+}

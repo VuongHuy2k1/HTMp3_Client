@@ -1,0 +1,41 @@
+:root {
+  --column-width: 181px;
+  --column-count: 5;
+  --grid-gap: 24px;
+}
+.main-view-container {
+  padding: var(--padding-main-view);
+  padding-bottom: 240px;
+  overflow-x: auto;
+}
+.top-padding {
+  height: var(--height-header);
+  flex: 1;
+  position: relative;
+}
+.content {
+}
+.list-item {
+}
+.scroll {
+  overflow-y: scroll;
+}
+.scroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+  background: rgb(15, 23, 42);
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: rgb(148, 163, 184);
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
