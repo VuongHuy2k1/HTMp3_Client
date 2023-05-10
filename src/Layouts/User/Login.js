@@ -8,8 +8,6 @@ import classNames from 'classnames/bind'
 import styles from './User.module.scss'
 import Message from '../../components/Message'
 
-import GoogleLogin from 'react-google-login'
-
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
 import ScaleLoader from 'react-spinners/ScaleLoader'
@@ -75,19 +73,19 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
       }
     })
   }
-  //lOGIN GOOGLE
+  // //lOGIN GOOGLE
 
-  const clientId =
-    '440209034208-85452ve5cm4hvmj27ph3seo736h9ngqg.apps.googleusercontent.com'
-  const responseGoogle = (response) => {
-    console.log(response)
-  }
-  const onSuccess = (res) => {
-    console.log('[Login Success] currentUser:', res.profileObj)
-  }
-  const onFail = (res) => {
-    console.log('[Login failed] res:', res)
-  }
+  // const clientId =
+  //   '440209034208-85452ve5cm4hvmj27ph3seo736h9ngqg.apps.googleusercontent.com'
+  // const responseGoogle = (response) => {
+  //   console.log(response)
+  // }
+  // const onSuccess = (res) => {
+  //   console.log('[Login Success] currentUser:', res.profileObj)
+  // }
+  // const onFail = (res) => {
+  //   console.log('[Login failed] res:', res)
+  // }
 
   return (
     <div class={cx('div')}>
@@ -158,14 +156,7 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
         </div>
       )}
 
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Login"
-        onSuccess={onSuccess}
-        onFailure={onFail}
-        cookiePolicy={'single_host_origin'}
-        isSignedIn={true}
-      />
+   
     </div>
   )
 }

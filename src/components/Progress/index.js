@@ -5,7 +5,7 @@ import { setVolume } from '../../actions'
 
 import styles from './ProgressBar.module.scss'
 import classNames from 'classnames/bind'
-import { color } from '@mui/system'
+
 const cx = classNames.bind(styles)
 
 class ProgressBar extends React.Component {
