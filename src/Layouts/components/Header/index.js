@@ -88,7 +88,7 @@ function Header() {
             href="/user/register"
             className={cx('top-bar-register-btn', 'accout-btn-rg')}
           >
-            Đăng kí
+            <span className={cx('accout-btn-lg-titel')}>Đăng ký</span>
           </a>
           <Link
             to="/user/login"
