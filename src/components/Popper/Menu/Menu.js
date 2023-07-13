@@ -21,7 +21,7 @@ function Menu({
   const navigate = useNavigate()
   const onLogout = () => {
     selectSong(0)
-    selectSongByAlbum(0)
+    // selectSongByAlbum(0)
     Cookies.remove('access_token')
     Cookies.remove('userId')
     setLoading(true)

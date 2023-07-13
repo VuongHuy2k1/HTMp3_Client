@@ -46,9 +46,6 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
         Cookies.set('access_token', data.access_token, {
           path: '/',
         })
-        const timerData = setTimeout(() => {
-          clearTimeout(timerData)
-        }, 1000)
 
         const timerId = setTimeout(() => {
           clearTimeout(timerId)
@@ -155,8 +152,6 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
           </>
         </div>
       )}
-
-   
     </div>
   )
 }

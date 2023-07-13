@@ -13,6 +13,8 @@ import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 const cx = classNames.bind(styles)
@@ -49,7 +51,11 @@ const Item = ({
         <div className={cx('card')}>
           <div className={cx('card-top')}>
             <div className={cx('img-card')}>
-              <img className={cx('img', 'img-type-1')} src={album.img}></img>
+              <img
+                className={cx('img', 'img-type-1')}
+                src={album.img}
+                alt=""
+              ></img>
               <form class={cx('hover-player')} id={cx(id)}>
                 <div class={cx('hover-player-a')}>
                   <div

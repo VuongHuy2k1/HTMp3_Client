@@ -79,9 +79,9 @@ a > svg:hover {
   color: #eee;
 }
 
-.selector > svg:hover {
-  color: #38bdf8;
-}
+// .selector > svg:hover {
+//   color: #38bdf8;
+// }
 
 .small-icon {
   width: 16px;
@@ -107,10 +107,16 @@ a > svg:hover {
 .icon-img {
   width: 40px;
   height: 40px;
-  position: inherit;
+  position: absolute;
   cursor: pointer;
   border-radius: 6px;
 }
 #focused{
-  zoom: 0.8;
+  zoom: 0.6;
+}
+#block {
+  pointer-events: none;
+}
+.flex-img{
+  position: absolute;
 }

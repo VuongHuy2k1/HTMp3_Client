@@ -1,6 +1,7 @@
 import config from '../config'
 
 import Home from '../pages/Home'
+import Chart from '../pages/Chart'
 
 import Album from '../pages/Album'
 import AllAlbum from '../pages/AllAlbum'
@@ -22,7 +23,10 @@ import Register from '../pages/Register'
 import DefaultUserLayout from '../Layouts/DefaultUserLayout'
 import DefaultAccountLayout from '../Layouts/DefaultAccountLayout'
 
-const PublicRoutes = [{ path: config.home, component: Home }]
+const PublicRoutes = [
+  { path: config.home, component: Home },
+  { path: config.chart, component: Chart },
+]
 
 const PrivateRoutes = [
   { path: config.album, component: Album },

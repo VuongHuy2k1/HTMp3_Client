@@ -8,21 +8,65 @@ import * as PlayListService from '../../../service/playListService'
 import * as UserServices from '../../../service/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import More from '../../../components/Popper/More'
-import { faHouse, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faChartLine, faHouse, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Message from '../../../components/Message'
 import { connect } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom'
 const cx = classNames.bind(styles)
-function Sidebar({ setFocus, changePlaylist, userPlaylist, getPlayListId }) {
+function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
+  const [num, setNum] = useState(1)
+
+  const listMenu = [
+    { id: 1, to: '/', icon: faHouse, title: 'Khám phá' },
+    {
+      id: 2,
+      to: '/chart',
+      icon: faChartLine,
+      title: 'BXH',
+    },
+  ]
+
   const isAuthenticated = UserServices.isLog()
 
   const fepi = async () => {
     const response = await PlayListService.getPlayList()
     changePlaylist(response)
   }
+
+  const ListMenu = listMenu.map((item, index) => {
+    if (item.id === num) {
+      console.log(num)
+      console.log(item.id)
+      return (
+        <li className={cx('content', 'active')} key={index}>
+          <NavLink
+            className={cx('content-link')}
+            to={item.to}
+            onClick={() => setNum(item.id)}
+          >
+            <FontAwesomeIcon className={cx('icon-li')} icon={item.icon} />
+            <span className={cx('titel')}>{item.title}</span>
+          </NavLink>
+        </li>
+      )
+    } else
+      return (
+        <li className={cx('content')} id="" key={index}>
+          <NavLink
+            className={cx('content-link')}
+            to={item.to}
+            onClick={() => setNum(item.id)}
+          >
+            <FontAwesomeIcon className={cx('icon-li')} icon={item.icon} />
+            <span className={cx('titel')}>{item.title}</span>
+          </NavLink>
+        </li>
+      )
+  })
+
   const ListTag = userPlaylist.map((playList) => {
     if (isAuthenticated === true || userPlaylist.leght > 0) {
       return (
@@ -59,18 +103,7 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist, getPlayListId }) {
         </NavLink>
       </div>
 
-      <div className={cx('content-list')}>
-        <li className={cx('content', 'active')}>
-          <NavLink
-            className={cx('content-link', 'active')}
-            to={'/'}
-            activeClassName={cx('active')}
-          >
-            <FontAwesomeIcon className={cx('icon-li')} icon={faHouse} />
-            <span className={cx('titel')}>Trang chủ</span>
-          </NavLink>
-        </li>
-      </div>
+      <div className={cx('content-list')}>{ListMenu}</div>
 
       <div className={cx('album')}>
         <div className={cx('album-list-content')}>

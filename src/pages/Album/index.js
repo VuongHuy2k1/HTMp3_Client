@@ -7,16 +7,19 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './Album.module.scss'
+import Skeleton from 'react-loading-skeleton'
+import SkeletonSong from '../../components/Skeleton/skeletonSong'
 const cx = classNames.bind(styles)
 
 function AlbumLayout() {
   const [songsList, setSongsList] = useState([])
   const [typeList, setTypeList] = useState([])
-  const [idSave, setIdSave] = useState([])
+  const [loading, setLoading] = useState(false)
   const { id } = useParams()
 
   useEffect(() => {
     const fetchApi = async () => {
+      setLoading(true)
       const songsFromAlbum = await songsService.getSongsFromAlbum(id)
       const songsFromSinger = await songsService.getSongsFromSinger(id)
 
@@ -27,6 +30,7 @@ function AlbumLayout() {
         setSongsList(songsFromAlbum)
         setTypeList('album')
       }
+      setLoading(false)
     }
     fetchApi()
   }, [])
@@ -37,11 +41,19 @@ function AlbumLayout() {
         <div className={cx('pad-top')}></div>
         <div className={cx('main-view-top')}>
           <div className={cx('view-left')}>
-            <SongDetail />
+            <SongDetail loading={loading} />
           </div>
           <div className={cx('view-right', 'scroll')}>
             <SongListHeader />
-            <SongList songs={songsList} typeSave={typeList} />
+            {loading ? (
+              <SkeletonSong num={16} />
+            ) : (
+              <SongList
+                songs={songsList}
+                typeSave={typeList}
+                loading={loading}
+              />
+            )}
           </div>
         </div>
         <div className={cx('main-view-bottom')}>

@@ -9,27 +9,30 @@ import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
 import * as UserServices from '../../../service/userService'
 import { Link, useNavigate } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
 const cx = classNames.bind(styles)
 
 function Header() {
   const value = UserServices.isLog()
-
+  const [loading, setLoading] = useState(false)
+  const [img, setImg] = useState()
   const [user, setUser] = useState({
     username: '',
   })
 
-  const url = 'http://localhost:8989/img/'
-  const [img, setImg] = useState()
+  const url = 'https://music-x8ce.onrender.com/img/'
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchApi = async () => {
+      setLoading(true)
       const res = await UserServices.isAuthen()
 
       setUser({
         username: res.user.username,
       })
       setImg(res.user.img)
+      setLoading(false)
     }
     fetchApi()
   }, [])
@@ -61,26 +64,34 @@ function Header() {
 
       {value ? (
         <>
-          <div className={cx('accout')}>
-            <center>
-              {img !== undefined ? (
-                <>
-                  <img class={cx('user-avatar')} src={url + img} alt="image" />
-                </>
-              ) : (
-                <>
-                  <img
-                    class={cx('user-avatar')}
-                    src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
-                    alt="image"
-                  />
-                </>
-              )}
-            </center>
-            <Menu>
-              <span>{user.username}</span>
-            </Menu>
-          </div>
+          {loading ? (
+            <Skeleton width={140} />
+          ) : (
+            <div className={cx('accout')}>
+              <center>
+                {img !== undefined ? (
+                  <>
+                    <img
+                      class={cx('user-avatar')}
+                      src={url + img}
+                      alt={'image'}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <img
+                      class={cx('user-avatar')}
+                      src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
+                      alt="image"
+                    />
+                  </>
+                )}
+              </center>
+              <Menu>
+                <span>{user.username}</span>
+              </Menu>
+            </div>
+          )}
         </>
       ) : (
         <>

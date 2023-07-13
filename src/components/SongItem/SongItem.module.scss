@@ -1,5 +1,7 @@
 .song-item {
-  color: rgb(242 255 236);
+  color: var( --color-text-5);
+  font-weight: var(--weight-text-2);
+  font-size:var(size-text-1) ;
   width: 98%;
   height: fit-content;
   display: grid;
@@ -10,9 +12,9 @@
 }
 
 .song-item:hover {
-  background-color: #1e293b;
+  background-color: var(--color-hover-1);
   border-radius: 3px;
-  color: #cbd5e1;
+  color: var( --color-text-3);
   cursor: default;
 }
 
@@ -57,6 +59,12 @@ a > svg:hover {
 .icon-dow {
   float: right;
   right: 0;
+  
+}
+
+.icon-dow:hover {
+  color: var(--color-3) !important;
+
 }
 .small-icon {
   width: 16px;
@@ -70,12 +78,14 @@ a > svg:hover {
 }
 #actie {
   background-color: var(--background-active);
+  border-radius: 6px;
 }
 .icon-img {
   width: 40px;
   height: 40px;
   position: inherit;
   cursor: pointer;
+  border-radius: 6px;
 }
 .hover-like {
   margin-bottom: 0;
@@ -102,4 +112,10 @@ a > svg:hover {
   right: 0;
   left: 0;
   bottom: 100px;
+}
+#focused{
+  zoom: 0.6;
+}
+.flex-img{
+  position: absolute;
 }

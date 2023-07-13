@@ -24,15 +24,10 @@ const SongItem = ({
   song,
   type,
   typeSave,
-
-  selectedTypeSave,
   selectedSongPlay,
-
   playerState,
-
   selectSong,
   selectSongByAlbum,
-
   addSong,
   selectedUserList,
   playlistId,
@@ -124,15 +119,16 @@ const SongItem = ({
     if (selectedSongPlay._id === song._id && playerState) {
       return (
         <div>
-          <img alt="" src="/playing.gif" id={cx('focused')} />
-        </div>
-      )
-    } else {
-      return (
-        <div>
           {song.links === undefined ? (
             <>
               <img src={song.img} alt={song.name} className={cx('icon-img')} />
+              <div className={cx('flex-img')}>
+                <img
+                  alt=""
+                  src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
+                  id={cx('focused')}
+                />
+              </div>
             </>
           ) : (
             <>
@@ -141,6 +137,37 @@ const SongItem = ({
                 alt={song.name}
                 className={cx('icon-img')}
               />
+              <div className={cx('flex-img')}>
+                <img
+                  alt=""
+                  src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
+                  id={cx('focused')}
+                />
+              </div>
+            </>
+          )}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          {song.links === undefined ? (
+            <>
+              <img src={song.img} alt={song.name} className={cx('icon-img')} />
+              <div className={cx('flex-img')}>
+                <FontAwesomeIcon icon={playerState}></FontAwesomeIcon>
+              </div>
+            </>
+          ) : (
+            <>
+              <img
+                src={song.links.images[1].url}
+                alt={song.name}
+                className={cx('icon-img')}
+              />
+              <div className={cx('flex-img')}>
+                <FontAwesomeIcon icon={playerState}></FontAwesomeIcon>
+              </div>
             </>
           )}
         </div>
@@ -150,11 +177,13 @@ const SongItem = ({
 
   return (
     <>
-      <div id={cx(now_selected)} className={cx('song-item')}>
+      <div
+        id={cx(now_selected)}
+        className={cx('song-item')}
+        onClick={handleClick}
+      >
         {phaser()}
-        <div className={cx('name')} onClick={handleClick}>
-          {song.name}
-        </div>
+        <div className={cx('name')}>{song.name}</div>
         <div className={cx('author')}>{song.singer}</div>
 
         <div className={cx('selector')}>

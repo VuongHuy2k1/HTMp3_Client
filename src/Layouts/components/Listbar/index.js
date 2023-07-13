@@ -5,16 +5,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { selectSongByAlbum } from '../../../actions'
 const cx = classNames.bind(styles)
-const Listbar = ({ selectedSongList, selectedType }) => {
-  console.log(selectedType)
+const Listbar = ({ selectedSongList }) => {
   const songTags = selectedSongList.map((song, index) => {
-    if (selectedSongList === 0) {
-      ;<></>
-    } else {
-      return <Item song={song} key={index} index={index} />
-    }
+    return <Item song={song} key={index} index={index} />
   })
-
+  console.log(selectedSongList)
   return (
     <div className={cx('warrper')}>
       <div className={cx('header-bar')}>

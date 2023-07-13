@@ -19,17 +19,7 @@ import classNames from 'classnames/bind'
 import FlexComponent from '../../components/FlexComponent'
 const cx = classNames.bind(styles)
 
-const DefaultLayout = ({
-  children,
-  selectedSongList,
-  setStatus,
-  status,
-  focus,
-  setFocus,
-  changePlaylist,
-  userPlaylist,
-  playlistId,
-}) => {
+const DefaultLayout = ({ children, selectedSongList }) => {
   const value = UserService.isLog()
   return (
     <React.Fragment>
@@ -43,10 +33,11 @@ const DefaultLayout = ({
           <Sidebar />
         </nav>
         <nav className={cx('nav-list')}>
-          {value === false || selectedSongList === 0 ? (
+          {selectedSongList === 0 ? (
             <>
               <div className={cx('apict')}>
                 <img
+                  alt={''}
                   class={cx('img')}
                   src="https://cdn1.vectorstock.com/i/thumb-large/67/85/music-party-black-poster-template-with-boombox-vector-24236785.jpg"
                 ></img>
