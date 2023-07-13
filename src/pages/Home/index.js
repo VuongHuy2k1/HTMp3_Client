@@ -79,13 +79,13 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
             <List albums={albumsList} type={typeAlbum} />
           )}
         </section>
-        <section className={cx('list-item')}>
+        {/* <section className={cx('list-item')}>
           {loading ? (
             <SkeletonCard num={6} />
           ) : (
             <ListSinger singers={singerList} content="Nghệ sĩ nổi bật" />
           )}
-        </section>
+        </section> */}
       </div>
     </div>
   )
