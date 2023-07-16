@@ -1,5 +1,7 @@
 .menu-type {
-  background-color: var(--color-header);
+  background-color: var(  --background-header);
+
+  backdrop-filter: blur(50px);
   box-shadow: 0 3px 5px var(--header-box-shadow);
   backdrop-filter: blur(50px);
 }
@@ -7,10 +9,10 @@
 .menu {
   align-items: center;
   display: flex;
-  height: 64px;
+  height: 70px;
   justify-content: space-between;
-  padding: 16px;
-  padding-inline-end: 16px;
+  padding: 16px 46px;
+  
 
   z-index: 3;
   right: 0;
@@ -37,7 +39,7 @@
   padding-left: 2px;
   height: 38px;
   display: flex;
-  background-color: #959391;
+
   border-radius: 30px;
   text-align: center;
   padding-right: 10px;
@@ -217,8 +219,8 @@
 }
 //accout
 .user-avatar {
-  height: 34px;
-  width: 34px;
+  height: 40px;
+  width: 40px;
   border-radius: 90px;
   margin-right: 4px;
   float: left;
@@ -230,5 +232,20 @@
 }
 .search-titel-bottom{
   margin: 0 0.8rem;
-  
+}
+//edit
+.edit-btn{
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-8);
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  position: relative;
+  width: 40px;
+  margin: 0 8px;
+  svg{
+    font-size: var(--size-text-3);
+  }
 }

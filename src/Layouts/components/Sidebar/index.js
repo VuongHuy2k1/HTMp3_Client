@@ -8,7 +8,12 @@ import * as PlayListService from '../../../service/playListService'
 import * as UserServices from '../../../service/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import More from '../../../components/Popper/More'
-import { faChartLine, faHouse, faPlus } from '@fortawesome/free-solid-svg-icons'
+import {
+  faChartLine,
+  faHouse,
+  faPlus,
+  faCompass,
+} from '@fortawesome/free-solid-svg-icons'
 import Message from '../../../components/Message'
 import { connect } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom'
@@ -20,7 +25,7 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
   const [num, setNum] = useState(1)
 
   const listMenu = [
-    { id: 1, to: '/', icon: faHouse, title: 'Khám phá' },
+    { id: 1, to: '/', icon: faCompass, title: 'Khám phá' },
     {
       id: 2,
       to: '/chart',
@@ -74,7 +79,8 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
           <div className={cx('list-name')}>
             <NavLink
               to={`/playlist/${playList._id}/${playList.name}`}
-              activeClassName={cx('active')}
+              onClick={() => setNum(0)}
+              className={cx('co')}
             >
               <li className={cx('content')}>
                 <h6 className={cx('titel')}>{playList.name}</h6>
@@ -94,7 +100,7 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
   return (
     <nav className={cx('warrper')}>
       <div className={cx('logo')}>
-        <NavLink to="/" id={cx()}>
+        <NavLink to="/" onClick={() => setNum(1)}>
           <img
             className={cx('muzic-logo')}
             src={images.logoBlack}
@@ -103,7 +109,12 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
         </NavLink>
       </div>
 
-      <div className={cx('content-list')}>{ListMenu}</div>
+      <div className={cx('content-list')}>
+        {ListMenu}
+        <div className={cx('line')}></div>
+      </div>
+
+      <div className={cx('album-list')}>{ListTag}</div>
 
       <div className={cx('album')}>
         <div className={cx('album-list-content')}>
@@ -116,13 +127,12 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
                   setFocus(1)
                 }}
               />
-              <span className={cx('album-list-titel')}>Tạo playlist</span>
+              <span className={cx('album-list-titel')}>Tạo playlist mới</span>
             </button>
           </div>
         </div>
       </div>
 
-      <div className={cx('album-list')}>{ListTag}</div>
       {loading ? (
         <>
           <div className={cx('mess')}>

@@ -6,7 +6,15 @@ import { changePlaylist, setFocus, getPlayListId } from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './More.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
+import {
+  faBars,
+  faBinoculars,
+  faEllipsis,
+  faMarsStroke,
+  faPen,
+  faPlus,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -37,11 +45,15 @@ function More({ playList, changePlaylist, getPlayListId, setFocus }) {
   }
 
   const renderResult = (attrs) => (
-    <div className={cx('menu-list', 'scroll')} tabIndex="-1" {...attrs}>
-      <Wrapper className={cx('menu-popper')}>
+    <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+      <Wrapper>
         <ul className={cx('menu-body')}>
           <li className={cx('menu-item')} onClick={removeClick}>
-            Xóa
+            <FontAwesomeIcon
+              className={cx('icon')}
+              icon={faTrash}
+            ></FontAwesomeIcon>
+            Xóa playlist
           </li>
           <li
             className={cx('menu-item')}
@@ -51,15 +63,24 @@ function More({ playList, changePlaylist, getPlayListId, setFocus }) {
               getPlayListId(playList)
             }}
           >
-            Sửa đổi
+            <FontAwesomeIcon
+              className={cx('icon')}
+              icon={faPen}
+            ></FontAwesomeIcon>
+            Chỉnh sửa playlist
           </li>
         </ul>
       </Wrapper>
     </div>
   )
 
-  // Reset to first page
-
+  const oneClick = () => {
+    if (showList === false) {
+      return setShowList(true)
+    } else {
+      return setShowList(false)
+    }
+  }
   return (
     <Tippy
       interactive
@@ -70,13 +91,8 @@ function More({ playList, changePlaylist, getPlayListId, setFocus }) {
       <div class={cx('hover-like-icon')}>
         <FontAwesomeIcon
           className={cx('icon-li')}
-          icon={faBars}
-          onClick={() => {
-            setShowList(true)
-          }}
-          onDoubleClick={() => {
-            setShowList(false)
-          }}
+          icon={faEllipsis}
+          onClick={oneClick}
         />
       </div>
     </Tippy>

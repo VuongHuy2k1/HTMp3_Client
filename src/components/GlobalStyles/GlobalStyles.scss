@@ -7,6 +7,10 @@
  --color-2:#FFFFFF;
  --color-3:#8D22C3;
  --color-4:#E5E5E5;
+ --color-5:#C6C6C6;
+ --color-6: rgba(0,0,0,0.1);
+ --color-7:#231B2E;
+ --color-8:#F2F2F2;
  --color-hover-1:#E6E6E6;
  --color-text:#32323d;
  --color-text-2:#FCFAFE; 
@@ -16,13 +20,16 @@
  --color-line-1:rgba(0,0,0,0.05);
  --color-line-2:rgba(0,0,0,0.1);
  --color-header:#FFFFFF;
- --color-7:#231B2E;
+
  --weight-text:700;
  --weight-text-2:500;
  --weight-text-3:400;
+
  --size-text-1:13px;
  --size-text-2:14px;
- --size-text-3:14px;
+ --size-text-3:18px;
+ --size-text-4:16px;
+
  --header-box-shadow:rgba(0,0,0,0.08);
  --padding-list:0px 27px ;
  --card-image-border-radius: clamp( 4px, (var(--column-width, 0px) - 32px) * 0.025, 8px );
@@ -38,6 +45,8 @@
   --default-layout-horizontal-spacer: 24px;
   --nav-bar-width: 232px;
   --text-subdued: #a7a7a7;
+
+  --background-header: hsla(0,0%,100%,0.8);;
   --background-base: #fff;
   --background-btn:#c5c0c05                                                                                                              ;
   --background-highlight: #f6f6f6;
@@ -51,6 +60,7 @@
   --background-unsafe-for-small-text-base: #fff;
   --background-unsafe-for-small-text-highlight: #fff;
   --background-unsafe-for-small-text-press: #fff;
+
   --text-base: #000;
   --text-subdued: #5e5e5e;
   --text-bright-accent: #12833a;

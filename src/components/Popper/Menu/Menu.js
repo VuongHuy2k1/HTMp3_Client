@@ -4,21 +4,41 @@ import { connect } from 'react-redux'
 import { selectSong, selectSongByAlbum } from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './Menu.module.scss'
-
+import * as UserServices from '../../../service/userService'
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faPencilSquare,
+  faRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 
-function Menu({
-  children,
-  selectSong,
-  selectSongByAlbum,
-  hideOnClick = false,
-}) {
+function Menu({ children, selectSong, selectSongByAlbum }) {
   const [loading, setLoading] = useState(false)
+  const [showList, setShowList] = useState(false)
   const navigate = useNavigate()
+  const [img, setImg] = useState()
+  const [user, setUser] = useState({
+    username: '',
+  })
+  const url = 'https://music-x8ce.onrender.com/img/'
+  useEffect(() => {
+    const fetchApi = async () => {
+      setLoading(true)
+      const res = await UserServices.isAuthen()
+
+      setUser({
+        username: res.user.username,
+      })
+      setImg(res.user.img)
+      setLoading(false)
+    }
+    fetchApi()
+  }, [])
+
   const onLogout = () => {
     selectSong(0)
     // selectSongByAlbum(0)
@@ -42,28 +62,82 @@ function Menu({
   const renderResult = (attrs) => (
     <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
       <Wrapper className={cx('menu-popper')}>
-        <ul className={cx('menu-body')}>
-          <Link to="/account/infor">
-            <li className={cx('menu-item', 'black')}>Hồ sơ</li>
-          </Link>
-          <div className={cx('menu-item', 'black')} onClick={onLogout}>
-            <span>Đăng xuất</span>
+        <div className={cx('menu-warpper')}>
+          <div className={cx('infor')}>
+            <div className={cx('avatar')}>
+              {img !== undefined ? (
+                <>
+                  <img class={cx('user-avatar')} src={url + img} alt="" />
+                </>
+              ) : (
+                <>
+                  <img
+                    class={cx('user-avatar')}
+                    src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
+                    alt=""
+                  />
+                </>
+              )}
+            </div>
+            <div className={cx('name')}>
+              <p>{user.username}</p>
+            </div>
           </div>
-        </ul>
+          <line></line>
+          <div className={cx('edit')}>
+            <h3 className={cx('content')}>Cá nhân</h3>
+
+            <Link to="/account/infor" className={cx('btn')}>
+              <FontAwesomeIcon
+                className={cx('icon')}
+                icon={faPencilSquare}
+              ></FontAwesomeIcon>
+              <p className={cx('title')}>Thay đổi thông tin</p>
+            </Link>
+          </div>
+          <line></line>
+          <div className={cx('btn')} onClick={onLogout}>
+            <FontAwesomeIcon
+              className={cx('icon')}
+              icon={faRightFromBracket}
+            ></FontAwesomeIcon>
+            <p className={cx('title')}>Đăng Xuất</p>
+          </div>
+        </div>
       </Wrapper>
     </div>
   )
-  console.log(renderResult)
-  // Reset to first page
+
+  const oneClick = () => {
+    if (showList === false) {
+      return setShowList(true)
+    } else {
+      return setShowList(false)
+    }
+  }
 
   return (
     <Tippy
       interactive
-      hideOnClick={hideOnClick}
+      visible={showList}
       placement="bottom-end"
       render={renderResult}
     >
-      {children}
+      <center onClick={oneClick}>
+        {img !== undefined ? (
+          <>
+            <img class={cx('img-avatar')} src={url + img} alt="" />
+          </>
+        ) : (
+          <>
+            <img
+              class={cx('img-avatar')}
+              src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
+              alt=""
+            />
+          </>
+        )}
+      </center>
     </Tippy>
   )
 }

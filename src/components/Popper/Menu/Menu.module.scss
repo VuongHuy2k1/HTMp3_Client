@@ -1,45 +1,79 @@
 // Menu wrapper
 .menu-list {
-  width: 160px;
+  max-width: 350px;
+ width: fit-content;
+ min-width: 200px;
+  height: 345px;
   list-style: none;
+  
 }
 
-.menu-popper {
-  padding-bottom: 8px;
-}
+.menu-warpper {
+display: flex;
+flex-direction: column;
+padding: 20px;
 
-.menu-body {
-  width: 100%;
-  list-style: none;
-  padding-left: 0px;
 }
-
-// Menu items
-.menu-item {
-  justify-content: space-evenly;
-  border-radius: 0;
-  padding: 11px 16px;
+.infor{
   display: flex;
-  line-height: 1.4rem;
-  font-weight: 600;
+  flex-direction: row;
+  
+}
+.name{
+  font-size: var(--size-text-4);
+  margin:10px 0px 0px 16px;
+  font-weight: var(--weight-text);
+}
 
-  font-size: 600;
-  margin: 0 !important;
-  align-items: center;
-  align-content: center;
-  color: #fff;
+line{
+  border-top: 1px solid var(--color-6);
+ width: 100%;
+ margin: 12px 0;
+
+}
+.user-avatar{
+  border-radius: 100%;
+  width: 64px;
+  height: 64px;
+}
+.img-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 90px;
+  margin-right: 4px;
+  float: left;
   cursor: pointer;
-  &.separate {
-    border-top: 1px solid rgba(22, 24, 35, 0.12);
+}
+.edit{
+ display: flex; 
+ flex-direction: column;
+ align-items: flex-start;
+}
+.content{
+  font-size: var(--size-text-4);
+}
+.btn{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  padding: 4px;
+  align-items: center;
+  width: 100%;
+}
+.btn:hover{
+  background-color: var(--color-hover-1);
+  border-radius: 6px;
+  svg{
+    color:var(--color-3);
   }
-
-  &:hover {
-    background-color: rgba(14, 15, 19, 0.3) !important;
-  }
-  span {
-    color: black;
+  .title{
+    color:var(--color-3);
   }
 }
-.black {
-  color: black !important;
+.title{
+  font-size: var(--size-text-2);
+  margin: 0px 0px 0px 12px;
+}
+.icon{
+  font-size: var(--size-text-3);
 }

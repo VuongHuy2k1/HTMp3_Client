@@ -60,8 +60,13 @@
 }
 .img {
   object-fit: cover;
-
   object-position: center center;
+  transform: 0.7s;
+  cursor: pointer;
+  overflow: hidden;
+}
+.img:hover{
+  transform: scale(1.1) translateZ(0);
 }
 .card-bottom {
   min-height: 62px;
@@ -273,11 +278,13 @@
   grid-gap: var(--grid-gap);
   display: grid;
   grid-template-columns: repeat(var(--column-count), minmax(0, 1fr));
+  overflow: hidden;
 }
 .img:hover .img-card form.hover-player {
   right: 10px;
   visibility: visible;
   opacity: 1;
+
 }
 #block {
   pointer-events: none;

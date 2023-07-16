@@ -70,7 +70,7 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
       <div className={cx('top-padding')}></div>
 
       <div className={cx('content')}>
-        {/* <Slides /> */}
+        <Slides />
         <div className={cx('top-padding')}></div>
         <section className={cx('list-item')}>
           {loading ? (

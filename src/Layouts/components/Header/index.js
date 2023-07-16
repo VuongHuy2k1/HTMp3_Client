@@ -1,5 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import {
+  faAngleLeft,
+  faAngleRight,
+  faGear,
+} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Search from './search'
@@ -64,32 +68,17 @@ function Header() {
 
       {value ? (
         <>
+          <button className={cx('edit-btn')}>
+            <FontAwesomeIcon className={cx('icon-li')} icon={faGear} />
+          </button>
           {loading ? (
-            <Skeleton width={140} />
+            <Skeleton width={40} />
           ) : (
             <div className={cx('accout')}>
-              <center>
-                {img !== undefined ? (
-                  <>
-                    <img
-                      class={cx('user-avatar')}
-                      src={url + img}
-                      alt={'image'}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <img
-                      class={cx('user-avatar')}
-                      src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
-                      alt="image"
-                    />
-                  </>
-                )}
-              </center>
-              <Menu>
+              <Menu></Menu>
+              {/* <Menu>
                 <span>{user.username}</span>
-              </Menu>
+              </Menu> */}
             </div>
           )}
         </>

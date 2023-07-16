@@ -51,11 +51,20 @@ const Item = ({
         <div className={cx('card')}>
           <div className={cx('card-top')}>
             <div className={cx('img-card')}>
-              <img
-                className={cx('img', 'img-type-1')}
-                src={album.img}
-                alt=""
-              ></img>
+              <Link
+                id={cx(id)}
+                className={cx('card-name')}
+                to={`/album/${album.name}`}
+                onClick={() => {
+                  selectAlbum(album)
+                }}
+              >
+                <img
+                  className={cx('img', 'img-type-1')}
+                  src={album.img}
+                  alt=""
+                ></img>
+              </Link>
               <form class={cx('hover-player')} id={cx(id)}>
                 <div class={cx('hover-player-a')}>
                   <div
