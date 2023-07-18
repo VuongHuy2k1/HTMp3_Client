@@ -11,7 +11,11 @@
  --color-6: rgba(0,0,0,0.1);
  --color-7:#231B2E;
  --color-8:#F2F2F2;
+ --color-9: rgba(0,0,0,0.4);
+
  --color-hover-1:#E6E6E6;
+ 
+ --color-hover-2:#d4d4d4;
  --color-text:#32323d;
  --color-text-2:#FCFAFE; 
  --color-text-3:#00000099;
@@ -126,21 +130,29 @@ svg {
   margin: 0;
 }
 .scroll {
-  overflow-y: scroll;
+
+  // opacity: 0;
+  // right: 2px;
+  // top: 2px;
+  // bottom: 2px;
+
 }
 .scroll::-webkit-scrollbar {
-  width: 0px;
+  width: 4px;
+  height: 6px;
+  
 }
 
 /* Track */
 .scroll::-webkit-scrollbar-track {
-  background: rgb(15, 23, 42);
+  box-shadow: inset #fff;
+  border-radius: 4px;
 }
 
 /* Handle */
 .scroll::-webkit-scrollbar-thumb {
-  background: rgb(148, 163, 184);
   border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.5);
 }
 
 /* Handle on hover */

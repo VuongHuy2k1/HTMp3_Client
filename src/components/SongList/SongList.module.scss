@@ -1,9 +1,10 @@
 .warrper {
   grid-column: 5/13;
   // grid-row: 2/12;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   padding-left: 2px;
+  min-height: 50vh;
+  max-height: 120%;
 }
 
 .warrper::-webkit-scrollbar {

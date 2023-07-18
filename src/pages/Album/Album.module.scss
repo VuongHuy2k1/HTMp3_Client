@@ -10,7 +10,7 @@
   background-size: 100%;
   display: grid;
 
-  overflow-x: auto;
+
 }
 .pad-top {
   padding-top: var(--height-header);
@@ -38,7 +38,7 @@
 .view-right {
   grid-area: right;
 
-  height: 100vh;
+  height: 76vh;
 }
 .list-item {
   grid-area: list;

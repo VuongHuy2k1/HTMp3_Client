@@ -61,11 +61,14 @@ function PlayListLayout({
           <div className={cx('left-top')}>
             {playList.img === undefined ? (
               <>
-                <img src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"></img>
+                <img
+                  alt=""
+                  src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"
+                ></img>
               </>
             ) : (
               <>
-                <img src={url + playList.img}></img>
+                <img src={url + playList.img} alt=""></img>
               </>
             )}
           </div>
@@ -75,7 +78,7 @@ function PlayListLayout({
             <span> </span>
           </div>
         </div>
-        <div className={cx('container', 'scroll')}>
+        <div className={cx('container')}>
           {songsList === undefined ? (
             <>
               <span>Danh sách trống</span>

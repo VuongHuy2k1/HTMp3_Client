@@ -91,7 +91,7 @@ svg:hover {
   padding-bottom: 16px;
   align-items: center;
   input[type=range] {
-    -webkit-appearance: none;
+
     height: 3px ;
     background:var(--color-4);
     border-radius: 5px;
@@ -185,4 +185,7 @@ svg:hover {
   p {
     margin-bottom: 0 !important;
   }
+}
+svg:hover{
+  cursor: pointer;
 }

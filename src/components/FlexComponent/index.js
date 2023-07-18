@@ -27,7 +27,7 @@ const FlexComponet = ({
   const id_block = status === true ? 'block-actie' : ''
   const id_focus = focus === 1 ? 'block-actie' : ''
   const id_focus_change = focus === 2 ? 'block-actie' : ''
-  const [showResult, setShowResult] = useState(true)
+
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
   const [playList, setPlayList] = useState({
@@ -41,7 +41,7 @@ const FlexComponet = ({
       changePlaylist(response)
     }
     fetchApi()
-  }, [])
+  }, [userPlaylist])
   const fepi = async () => {
     const response = await PlayListService.getPlayList()
     changePlaylist(response)

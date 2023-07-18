@@ -268,15 +268,6 @@ const Player = ({
             </svg>
           </div>
           <Progress />
-          {/* <input
-            className={cx('')}
-            min="0"
-            max="100"
-            value={volume}
-            onChange={(e) => setVolume(e.target.value)}
-            type="range"
-            style={getBackgroundVolum()}
-          /> */}
           <audio
             id="main-track"
             src={songUrl()}

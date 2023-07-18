@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { setFocus, changePlaylist, getPlayListId } from '../../../actions'
 
 import classNames from 'classnames/bind'
@@ -19,9 +19,10 @@ import { connect } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom'
 const cx = classNames.bind(styles)
 function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
-  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
+  const [a, setA] = useState([])
+
   const [num, setNum] = useState(1)
 
   const listMenu = [
@@ -36,15 +37,8 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
 
   const isAuthenticated = UserServices.isLog()
 
-  const fepi = async () => {
-    const response = await PlayListService.getPlayList()
-    changePlaylist(response)
-  }
-
   const ListMenu = listMenu.map((item, index) => {
     if (item.id === num) {
-      console.log(num)
-      console.log(item.id)
       return (
         <li className={cx('content', 'active')} key={index}>
           <NavLink

@@ -37,7 +37,7 @@ function AlbumLayout() {
 
   return (
     <React.Fragment>
-      <div className={cx('main-view-container', 'scroll')}>
+      <div className={cx('main-view-container')}>
         <div className={cx('pad-top')}></div>
         <div className={cx('main-view-top')}>
           <div className={cx('view-left')}>

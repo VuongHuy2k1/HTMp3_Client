@@ -27,7 +27,7 @@
   overflow-y: clip;
 }
 .card-top {
-
+overflow: hidden;
   position: relative;
 
 }
@@ -64,6 +64,7 @@
   transform: 0.7s;
   cursor: pointer;
   overflow: hidden;
+  transition: transform .7s;
 }
 .img:hover{
   transform: scale(1.1) translateZ(0);

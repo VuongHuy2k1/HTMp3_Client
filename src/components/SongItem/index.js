@@ -17,7 +17,7 @@ import styles from './SongItem.module.scss'
 import List from '../Popper/List'
 import * as PlayService from '../../service/playService'
 
-import { faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faMinus, faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
 const cx = classNames.bind(styles)
 
 const SongItem = ({
@@ -100,18 +100,6 @@ const SongItem = ({
   }
 
   const dispatch = useDispatch()
-  const selector = () => {
-    return (
-      <a draggable="false" href={song.url} class={cx('icon-dow')}>
-        <svg role="img" height="24" width="24" viewBox="0 0 24 24">
-          <path
-            d="M11.5 0C5.149 0 0 5.148 0 11.5 0 17.851 5.149 23 11.5 23S23 17.851 23 11.5C23 5.148 17.851 0 11.5 0zm0 22C5.71 22 1 17.29 1 11.5S5.71 1 11.5 1 22 5.71 22 11.5 17.29 22 11.5 22zm.499-6.842V5h-1v10.149l-3.418-3.975-.758.652 4.678 5.44 4.694-5.439-.757-.653-3.439 3.984z"
-            fill="currentColor"
-          ></path>
-        </svg>
-      </a>
-    )
-  }
 
   const now_selected = selectedSongPlay._id === song._id ? 'actie' : ''
 
@@ -123,11 +111,13 @@ const SongItem = ({
             <>
               <img src={song.img} alt={song.name} className={cx('icon-img')} />
               <div className={cx('flex-img')}>
-                <img
-                  alt=""
-                  src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
-                  id={cx('focused')}
-                />
+                <div class={cx('img-play')}>
+                  <img
+                    alt=""
+                    src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
+                    id={cx('focused')}
+                  />
+                </div>
               </div>
             </>
           ) : (
@@ -138,11 +128,13 @@ const SongItem = ({
                 className={cx('icon-img')}
               />
               <div className={cx('flex-img')}>
-                <img
-                  alt=""
-                  src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
-                  id={cx('focused')}
-                />
+                <div class={cx('img-play')}>
+                  <img
+                    alt=""
+                    src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
+                    id={cx('focused')}
+                  />
+                </div>
               </div>
             </>
           )}
@@ -155,7 +147,12 @@ const SongItem = ({
             <>
               <img src={song.img} alt={song.name} className={cx('icon-img')} />
               <div className={cx('flex-img')}>
-                <FontAwesomeIcon icon={playerState}></FontAwesomeIcon>
+                <form class={cx('hover-play')} onClick={handleClick}>
+                  <FontAwesomeIcon
+                    icon={faPlay}
+                    className={cx('icon-play')}
+                  ></FontAwesomeIcon>
+                </form>
               </div>
             </>
           ) : (
@@ -166,7 +163,12 @@ const SongItem = ({
                 className={cx('icon-img')}
               />
               <div className={cx('flex-img')}>
-                <FontAwesomeIcon icon={playerState}></FontAwesomeIcon>
+                <form class={cx('hover-play')} onClick={handleClick}>
+                  <FontAwesomeIcon
+                    icon={faPlay}
+                    className={cx('icon-play')}
+                  ></FontAwesomeIcon>
+                </form>
               </div>
             </>
           )}
@@ -177,36 +179,17 @@ const SongItem = ({
 
   return (
     <>
-      <div
-        id={cx(now_selected)}
-        className={cx('song-item')}
-        onClick={handleClick}
-      >
+      <div id={cx(now_selected)} className={cx('song-item')}>
+        <div className={cx('music-icon')}>
+          <FontAwesomeIcon icon={faMusic}></FontAwesomeIcon>
+        </div>
+
         {phaser()}
         <div className={cx('name')}>{song.name}</div>
         <div className={cx('author')}>{song.singer}</div>
 
-        <div className={cx('selector')}>
-          {type === true ? (
-            <>
-              <form class={cx('hover-like')} onClick={removeClick}>
-                <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
-              </form>
-            </>
-          ) : (
-            <>
-              <form
-                class={cx('hover-like')}
-                onClick={() => {
-                  addSong(song)
-                }}
-              >
-                <List />
-              </form>
-            </>
-          )}
-
-          {selector()}
+        <div class={cx('icon-dow')}>
+          <List song={song} type={type} playlistId={playlistId} />
         </div>
       </div>
     </>

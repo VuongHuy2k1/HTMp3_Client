@@ -1,14 +1,16 @@
 .song-item {
   color: var( --color-text-5);
   font-weight: var(--weight-text-2);
-  font-size:var(size-text-1) ;
+  font-size:var(--size-text-2) ;
   width: 98%;
-  height: fit-content;
+  height: 60px;
   display: grid;
-  grid-template-columns: 10% 50% 30% 10%;
+  grid-template-columns: 2% 10% 50% 30% 8%;
   padding: 10px 5px;
   transition: all 0.1s ease-in-out;
   position: relative;
+  border-bottom: 1px solid var(--color-6);
+
 }
 
 .song-item:hover {
@@ -16,6 +18,9 @@
   border-radius: 3px;
   color: var( --color-text-3);
   cursor: default;
+  svg{
+    opacity: 1;
+  }
 }
 
 .index {
@@ -59,13 +64,11 @@ a > svg:hover {
 .icon-dow {
   float: right;
   right: 0;
+  cursor: pointer;
   
 }
 
-.icon-dow:hover {
-  color: var(--color-3) !important;
 
-}
 .small-icon {
   width: 16px;
   height: 16px;
@@ -77,8 +80,11 @@ a > svg:hover {
   color: inherit;
 }
 #actie {
-  background-color: var(--background-active);
+  background-color: var(--color-hover-2);
   border-radius: 6px;
+  svg{
+    color: var(--color-text-3);
+  }
 }
 .icon-img {
   width: 40px;
@@ -99,10 +105,7 @@ a > svg:hover {
   visibility: visible;
   opacity: 1;
 }
-.song-item:hover .selector form.hover-like {
-  visibility: visible;
-  opacity: 1;
-}
+
 .mess-song {
   position: fixed;
   display: flex;
@@ -115,7 +118,48 @@ a > svg:hover {
 }
 #focused{
   zoom: 0.6;
+  
 }
 .flex-img{
   position: absolute;
+}
+.icon-play{
+  color: var(--color-1);
+ font-size: var(--size-text-4);
+  
+}
+.img-play{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-9);
+  border-radius: 6px;
+}
+.hover-play{
+  color: var(--color-1);
+  visibility: hidden;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-9);
+  border-radius: 6px;
+}
+.song-item:hover  .flex-img form.hover-play {
+  visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+}
+.music-icon{
+  display: flex;
+  padding-left: 16px;
+  svg{
+    color: var(--color-5);
+    font-size: var(--size-text-4);
+  }
+ 
 }
