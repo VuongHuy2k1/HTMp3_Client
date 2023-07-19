@@ -19,8 +19,11 @@ import { connect } from 'react-redux'
 import { useNavigate, NavLink } from 'react-router-dom'
 const cx = classNames.bind(styles)
 function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [message, setMessage] = useState({
+    msgBody: 'Tạo danh sách phát thành công',
+    msgError: false,
+  })
   const [a, setA] = useState([])
 
   const [num, setNum] = useState(1)
@@ -127,15 +130,7 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
         </div>
       </div>
 
-      {loading ? (
-        <>
-          <div className={cx('mess')}>
-            <Message message={message} />
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
+      {loading ? <>{/* <Message message={message} /> */}</> : <></>}
     </nav>
   )
 }

@@ -7,7 +7,7 @@ import TimeSlider from 'react-input-slider'
 import {
   setPlayerState,
   selectSongById,
-  setTime,
+  selectedTurn,
   setVolume,
 } from '../../actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,6 +17,7 @@ import {
   faPlayCircle,
   faRepeat,
   faPauseCircle,
+  faList,
 } from '@fortawesome/free-solid-svg-icons'
 import styles from './Player.module.scss'
 import classNames from 'classnames/bind'
@@ -30,11 +31,14 @@ const Player = ({
   duration,
   currentLocation,
   selectList = [],
+  selectedTurn,
 }) => {
   const dispatch = useDispatch()
   const [shuffled, setShuffled] = useState(false)
   const [repeat, setRepeat] = useState(false)
   const [x, setX] = useState(0)
+  const [turn, setTurn] = useState(false)
+
   const getBackgroundSize = () => {
     return {
       backgroundSize: `${(currentLocation * 100) / duration}% 100%`,
@@ -183,6 +187,16 @@ const Player = ({
       return <div>00:00</div>
     }
   }
+  const classTurn = turn === false ? 'btn-turn' : 'btn-turn-active'
+  const pressTurn = () => {
+    if (turn === false) {
+      setTurn(true)
+      selectedTurn(true)
+    } else {
+      setTurn(false)
+      selectedTurn(false)
+    }
+  }
 
   return (
     <div id={cx('player')}>
@@ -193,7 +207,7 @@ const Player = ({
           <MiniSong selectedSongPlay={selectList[songplay]} />
         )}
       </div>
-      <div className={cx('player-right')}>
+      <div className={cx('player-center')}>
         <div className={cx('right-top')}>
           <div
             className={cx('control')}
@@ -309,6 +323,14 @@ const Player = ({
           <div className={cx('current-time')}>{showTime()}</div>
         </div>
       </div>
+      <div className={cx('player-right')}>
+        <button className={cx(classTurn)} onClick={pressTurn}>
+          <FontAwesomeIcon
+            className={cx('icon-turn')}
+            icon={faList}
+          ></FontAwesomeIcon>
+        </button>
+      </div>
     </div>
   )
 }
@@ -329,4 +351,5 @@ export default connect(mapStateToProps, {
   setPlayerState,
   selectSongById,
   setVolume,
+  selectedTurn,
 })(Player)

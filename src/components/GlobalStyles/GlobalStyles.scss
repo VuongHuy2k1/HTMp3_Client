@@ -104,6 +104,7 @@ body {
   font-size: 1.2rem;
   line-height: 1.5;
   text-rendering: optimizespeed;
+  overflow-y: hidden;
 }
 button,
 input,
@@ -131,10 +132,6 @@ svg {
 }
 .scroll {
 
-  // opacity: 0;
-  // right: 2px;
-  // top: 2px;
-  // bottom: 2px;
 
 }
 .scroll::-webkit-scrollbar {
@@ -159,7 +156,7 @@ svg {
 .scroll::-webkit-scrollbar-thumb:hover {
   background: #ccc;
 }
-.mess {
+.mess{
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -168,4 +165,20 @@ svg {
   left: 0;
   position: inherit;
   bottom: 100px;
+
+}
+
+.off{
+  transition: 0.7s;
+  width: 0 ;
+  font-size: 0;
+  white-space: nowrap;
+  text-wrap: nowrap;
+  img{
+width: 30px;
+transition: 0.7s;
+  }
+}
+.none{
+  // display: none;
 }

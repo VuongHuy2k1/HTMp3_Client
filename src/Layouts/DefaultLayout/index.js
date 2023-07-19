@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   selectSongByAlbum,
   setStatus,
@@ -11,7 +11,7 @@ import styles from './DefaultLayout.module.scss'
 import Sidebar from '../components/Sidebar'
 import Listbar from '../components/Listbar'
 import Player from '../../components/Player'
-
+import Message from '../../components/Message'
 import * as UserService from '../../service/userService'
 
 import classNames from 'classnames/bind'
@@ -19,8 +19,21 @@ import classNames from 'classnames/bind'
 import FlexComponent from '../../components/FlexComponent'
 const cx = classNames.bind(styles)
 
-const DefaultLayout = ({ children, selectedSongList }) => {
+const DefaultLayout = ({
+  children,
+  selectedSongList,
+  selectedMess,
+  loading,
+  turn,
+}) => {
   const value = UserService.isLog()
+  const [off, setOff] = useState(false)
+  useEffect(() => {
+    setOff(turn)
+  }, [turn])
+
+  const ID = off === true ? 'off' : ''
+  const IDD = off === true ? 'none' : ''
   return (
     <React.Fragment>
       <div className={cx('warrper')}>
@@ -32,27 +45,21 @@ const DefaultLayout = ({ children, selectedSongList }) => {
         <nav className={cx('nav-bar')}>
           <Sidebar />
         </nav>
-        <nav className={cx('nav-list')}>
+        <nav className={cx('nav-list', ID)}>
           {selectedSongList === 0 ? (
-            <>
-              <div className={cx('apict')}>
-                <img
-                  alt={''}
-                  class={cx('img')}
-                  src="https://cdn1.vectorstock.com/i/thumb-large/67/85/music-party-black-poster-template-with-boombox-vector-24236785.jpg"
-                ></img>
-                <span></span>
-              </div>
-            </>
+            <></>
           ) : (
             <>
-              <Listbar />
+              <Listbar turn={IDD} />
             </>
           )}
         </nav>
         <div className={cx('main-view')}>{children}</div>
 
         <div className={cx('playing-bar')}>
+          <div className={cx('messi')}>
+            {loading ? <Message message={selectedMess} /> : <></>}
+          </div>
           <div className={cx('playlist')}>
             {value === false || selectedSongList === 0 ? (
               <></>
@@ -78,6 +85,9 @@ const mapStateToProps = (state) => {
     status: state.status,
     userPlaylist: state.userPlaylist,
     playlistId: state.playlistId,
+    selectedMess: state.selectedMess,
+    loading: state.selectedLoad,
+    turn: state.selectedTurn,
   }
 }
 

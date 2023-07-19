@@ -16,8 +16,7 @@ import {
 
 const cx = classNames.bind(styles)
 
-function Menu({ children, selectSong, selectSongByAlbum }) {
-  const [loading, setLoading] = useState(false)
+function Menu({ selectSong }) {
   const [showList, setShowList] = useState(false)
   const navigate = useNavigate()
   const [img, setImg] = useState()
@@ -27,24 +26,22 @@ function Menu({ children, selectSong, selectSongByAlbum }) {
   const url = 'https://music-x8ce.onrender.com/img/'
   useEffect(() => {
     const fetchApi = async () => {
-      setLoading(true)
       const res = await UserServices.isAuthen()
 
       setUser({
         username: res.user.username,
       })
       setImg(res.user.img)
-      setLoading(false)
     }
     fetchApi()
   }, [])
 
   const onLogout = () => {
     selectSong(0)
-    // selectSongByAlbum(0)
+
     Cookies.remove('access_token')
     Cookies.remove('userId')
-    setLoading(true)
+
     const timerId = setTimeout(() => {
       clearTimeout(timerId)
       navigate('/')
@@ -55,8 +52,6 @@ function Menu({ children, selectSong, selectSongByAlbum }) {
     }, 1001)
     const timerLoading = setTimeout(() => {
       clearTimeout(timerLoading)
-
-      setLoading(false)
     }, 3000)
   }
   const renderResult = (attrs) => (

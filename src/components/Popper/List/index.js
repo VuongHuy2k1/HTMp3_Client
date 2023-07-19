@@ -5,6 +5,8 @@ import {
   changePlaylist,
   setFocus,
   selectedUserPlayList,
+  selectedMess,
+  selectedLoad,
 } from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './List.module.scss'
@@ -32,11 +34,11 @@ function List({
   setFocus,
   playlistId,
   selectedUserPlayList,
+  selectedMess,
+  selectedLoad,
 }) {
   const [showList, setShowList] = useState(false)
   const [showPlaylist, setShowPlaylist] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState(false)
 
   const isAuthenticated = UserServices.isLog()
 
@@ -48,22 +50,28 @@ function List({
     const response = await PlayListService.getSongPlayList(e)
     selectedUserPlayList(response)
   }
+
   const removeSong = async (a, b) => {
     const response = await PlayListService.removeSong(a, b)
   }
   const removeClick = () => {
     removeSong(playlistId, song._id)
+
     const timerId = setTimeout(() => {
       clearTimeout(timerId)
-      setLoading(true)
-      setMessage({
-        msgBody: 'Xóa danh sách phát thành công',
+      selectedLoad(true)
+      selectedMess({
+        msgBody: 'Xóa khỏi danh sách phát thành công',
         msgError: false,
       })
-      setShowList(false)
-      setLoading(false)
       fepi(playlistId)
-    }, 300)
+      setShowList(false)
+    }, 700)
+    const timerOff = setTimeout(() => {
+      clearTimeout(timerOff)
+
+      selectedLoad(false)
+    }, 2000)
   }
 
   const onShow = () => {
@@ -77,10 +85,17 @@ function List({
   const ListTag = userPlaylist.map((playList) => {
     const addClick = () => {
       addSong(playList._id, song._id)
+
+      selectedLoad(true)
+      selectedMess({
+        msgBody: 'Thêm vào danh sách phát thành công',
+        msgError: false,
+      })
       const timerId = setTimeout(() => {
         clearTimeout(timerId)
         setShowList(false)
-      }, 100)
+        selectedLoad(false)
+      }, 2500)
     }
 
     if (isAuthenticated === true) {
@@ -152,15 +167,6 @@ function List({
           </div>
         </Wrapper>
       </div>
-      {loading ? (
-        <>
-          <div className={cx('mess')}>
-            <Message message={message} />
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
     </div>
   )
 
@@ -209,4 +215,6 @@ export default connect(mapStateToProps, {
   changePlaylist,
   setFocus,
   selectedUserPlayList,
+  selectedMess,
+  selectedLoad,
 })(List)

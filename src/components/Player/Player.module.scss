@@ -58,7 +58,7 @@ svg:hover {
   width: 15%;
 
 }
-.player-right {
+.player-center{
   flex: 1 1;
   display: flex;
   justify-content: flex-start;
@@ -188,4 +188,37 @@ svg:hover {
 }
 svg:hover{
   cursor: pointer;
+}
+.player-right{
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-turn{
+  background-color: var(--color-3);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+svg {
+  color: var(--color-text-2);
+  font-size: var(--size-text-4);
+  margin: 0;
+  padding: 0;
+}
+}
+
+.btn-turn-active{
+  background-color: var(--color-2) ;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+    svg {
+    color: var(--color-text-5);
+    font-size: var(--size-text-4);
+    margin: 0;
+    padding: 0;
+    }
 }

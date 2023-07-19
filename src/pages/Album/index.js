@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './Album.module.scss'
-import Skeleton from 'react-loading-skeleton'
+
 import SkeletonSong from '../../components/Skeleton/skeletonSong'
 const cx = classNames.bind(styles)
 

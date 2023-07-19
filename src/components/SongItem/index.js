@@ -17,7 +17,7 @@ import styles from './SongItem.module.scss'
 import List from '../Popper/List'
 import * as PlayService from '../../service/playService'
 
-import { faMinus, faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
 const cx = classNames.bind(styles)
 
 const SongItem = ({

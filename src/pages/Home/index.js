@@ -50,7 +50,6 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
           selectSongByAlbum(response.songLists)
           selectSong(response.song[0])
         }
-        console.log(response.songLists)
       }
       Apii()
     }

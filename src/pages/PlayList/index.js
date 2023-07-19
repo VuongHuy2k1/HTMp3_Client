@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './PlayList.module.scss'
 import { selectedUserPlayList, getPlayListId } from '../../actions'
+import SkeletonSong from '../../components/Skeleton/skeletonSong'
+import Skeleton from 'react-loading-skeleton'
 const cx = classNames.bind(styles)
 
 function PlayListLayout({
@@ -20,19 +22,22 @@ function PlayListLayout({
   const [songsList, setSongsList] = useState([])
   const [playList, setPlayList] = useState([])
   const { playlist_id } = useParams()
-  // const { playlist_name } = useParams();
+  const [loading, setLoading] = useState(false)
   const debouncedValue = useDebounce(playlist_id, 30)
 
   useEffect(() => {
+    setLoading(true)
     if (!debouncedValue.trim()) {
       setSongsList([])
       return
     }
     const fetchApi = async () => {
       const response = await PlayListService.getSongPlayList(debouncedValue)
+
       getPlayListId(debouncedValue)
 
       selectedUserPlayList(response)
+      setLoading(false)
     }
     fetchApi()
   }, [debouncedValue])
@@ -74,7 +79,8 @@ function PlayListLayout({
           </div>
           <div className={cx('right-top')}>
             <h4>PLAYLIST</h4>
-            <span>{playList.name} </span>
+            {loading ? <Skeleton width={420} /> : <span>{playList.name} </span>}
+
             <span> </span>
           </div>
         </div>
@@ -86,12 +92,16 @@ function PlayListLayout({
           ) : (
             <>
               <SongListHeader />
-              <SongList
-                songs={selectedUserList}
-                typee={true}
-                typeSave="playlist"
-                playlistId={debouncedValue}
-              />
+              {loading ? (
+                <SkeletonSong num={10} />
+              ) : (
+                <SongList
+                  songs={selectedUserList}
+                  typee={true}
+                  typeSave="playlist"
+                  playlistId={debouncedValue}
+                />
+              )}
             </>
           )}
         </div>

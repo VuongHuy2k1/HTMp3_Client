@@ -1,28 +1,30 @@
 import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
-import { connect, useDispatch } from 'react-redux'
-import { changePlaylist, setFocus, getPlayListId } from '../../../actions'
+import { connect } from 'react-redux'
+import {
+  changePlaylist,
+  setFocus,
+  getPlayListId,
+  selectedMess,
+  selectedLoad,
+} from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './More.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faBars,
-  faBinoculars,
-  faEllipsis,
-  faMarsStroke,
-  faPen,
-  faPlus,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-
+import { faEllipsis, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 import * as PlayListService from '../../../service/playListService'
-import * as UserServices from '../../../service/userService'
 const cx = classNames.bind(styles)
 
-function More({ playList, changePlaylist, getPlayListId, setFocus }) {
+function More({
+  playList,
+  changePlaylist,
+  getPlayListId,
+  setFocus,
+  selectedMess,
+  selectedLoad,
+}) {
   const [showList, setShowList] = useState(false)
 
   const removePlayList = async (e) => {
@@ -35,13 +37,17 @@ function More({ playList, changePlaylist, getPlayListId, setFocus }) {
   }
   const removeClick = () => {
     removePlayList(playList._id)
-
+    selectedLoad(true)
+    selectedMess({
+      msgBody: 'Xóa danh sách phát thành công',
+      msgError: false,
+    })
+    setShowList(false)
     const timerLoading = setTimeout(() => {
       clearTimeout(timerLoading)
-
-      setShowList(false)
       fepi()
-    }, 100)
+      selectedLoad(false)
+    }, 1000)
   }
 
   const renderResult = (attrs) => (
@@ -102,8 +108,6 @@ function More({ playList, changePlaylist, getPlayListId, setFocus }) {
 const mapStateToProps = (state) => {
   return {
     userPlaylist: state.userPlaylist,
-
-    userPlaylist: state.userPlaylist,
   }
 }
 
@@ -111,4 +115,6 @@ export default connect(mapStateToProps, {
   changePlaylist,
   setFocus,
   getPlayListId,
+  selectedMess,
+  selectedLoad,
 })(More)

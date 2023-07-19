@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 
 const ListItem = ({ albums = [], typee, selectType, sort }) => {
   const { type } = useParams()
-  console.log('typee', typee)
+
   const albumTags = albums.map((album, index) => {
     if (album.type === typee) {
       return <Item album={album} key={index} index={index} />
