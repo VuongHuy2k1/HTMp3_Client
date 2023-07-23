@@ -6,11 +6,10 @@ import classNames from 'classnames/bind'
 import styles from './Style.module.scss'
 import { useParams } from 'react-router-dom'
 import { useDebounce } from '../../../hooks'
-import HeaderBar from '../component/HeaderBar'
 
 const cx = classNames.bind(styles)
 
-function SearchSongLayout() {
+function SearchSongsLayout() {
   const { name } = useParams()
 
   const [searchResult, setSearchResult] = useState([])
@@ -22,7 +21,7 @@ function SearchSongLayout() {
     }
 
     const fetchApi = async () => {
-      const result = await searchApi.search(debouncedValue, 0)
+      const result = await searchApi.search(debouncedValue)
 
       setSearchResult(result.song)
     }
@@ -32,7 +31,6 @@ function SearchSongLayout() {
 
   return (
     <div className={cx('wrapper', 'scroll')}>
-      <HeaderBar />
       <div className={cx('container')}>
         <h3 className={cx('title')}>Bài hát</h3>
 
@@ -45,4 +43,4 @@ function SearchSongLayout() {
   )
 }
 
-export default SearchSongLayout
+export default SearchSongsLayout

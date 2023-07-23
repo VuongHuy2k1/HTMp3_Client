@@ -39,7 +39,7 @@ const DefaultLayout = ({
       <div className={cx('warrper')}>
         <FlexComponent />
 
-        <div className={cx('header', 'backgroung-color')}>
+        <div className={cx('header')}>
           <Header />
         </div>
         <nav className={cx('nav-bar')}>

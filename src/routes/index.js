@@ -7,10 +7,8 @@ import Album from '../pages/Album'
 import AllAlbum from '../pages/AllAlbum'
 import AllSinger from '../pages/AllSinger'
 
-import SearchAll from '../pages/SearchAll'
-import SearchSong from '../pages/SearchSong'
-import SearchAlbum from '../pages/SearchAlbum'
-import SearchSinger from '../pages/SearchSinger'
+import SearchFull from '../pages/SearchFull'
+
 import PlayList from '../pages/PlayList'
 
 import Infor from '../pages/Infor'
@@ -34,10 +32,7 @@ const PrivateRoutes = [
   { path: config.allSinger, component: AllSinger },
   { path: config.playList, component: PlayList },
 
-  { path: config.searchAll, component: SearchAll },
-  { path: config.searchSong, component: SearchSong },
-  { path: config.searchAlbum, component: SearchAlbum },
-  { path: config.searchSinger, component: SearchSinger },
+  { path: config.search, component: SearchFull },
 
   { path: config.accoutInfor, component: Infor, layout: DefaultAccountLayout },
   { path: config.accoutEdit, component: Edit, layout: DefaultAccountLayout },
@@ -47,6 +42,7 @@ const PrivateRoutes = [
     layout: DefaultAccountLayout,
   },
 ]
+
 const AuthRoutes = [
   { path: config.userLogin, component: Login, layout: DefaultUserLayout },
   { path: config.userRegister, component: Register, layout: DefaultUserLayout },

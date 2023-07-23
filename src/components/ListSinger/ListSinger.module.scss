@@ -229,7 +229,7 @@
     CircularSp-Deva,
     var(--fallback-fonts, sans-serif)
   );
-  color: var(--white, #000000);
+  color: var(--color-text-5);
   &:hover {
     text-decoration: underline;
     color: var(--white, #000000);

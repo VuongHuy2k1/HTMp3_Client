@@ -50,15 +50,16 @@
   padding: var(--padding-li);
   // opacity: 0.6;
   width: 100%;
-  border-left: solid 3px var(--color-1);
+  border-left: solid 3px var(--theme-1);
 
 }
 .content:hover{
+
   svg{
-    color: var(--color-3);
+    color: var(--color-text-6);
   }
  .titel{
-    color: var(--color-3);
+    color: var(--color-text-6);
  }
 
 }
@@ -76,11 +77,11 @@
   flex-shrink: 0;
   height: 20px;
   width: 20px;
-  color: var(--color-text);
+  color: var(--color-text-side);
   font-weight: 400;
 }
 .titel {
-  color: var(--color-text);
+  color: var(--color-text-side);
   font-weight: var(--weight-text-2);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -91,7 +92,7 @@
 .album {
   padding-left: 8px;
   width: inherit;
-  border-top: 1px solid var(--color-6);
+  border-top: 1px solid var(--color-line-2);
   position: fixed;
     bottom: 100px;
 }
@@ -101,7 +102,7 @@
   padding: 12px 0px 0px 20px;
  
   width: 100%;
-  color: var(--color-text);
+  color: var(--color-text-side);
   font-weight: var(--weight-text-2);
   font-size: var(--size-text-2);
   background-color: transparent;
@@ -112,7 +113,7 @@
 .album-btn:hover{
 
   .album-list-titel{
-    color: var(--color-3);
+    color: var(--color-text-6);
   }
 }
 .icon-albu {
@@ -120,7 +121,7 @@
   font-size: 0.4rem;
   height: 22px;
   width: 22px;
-  background-color: var(--color-5);
+  background-color: var(--theme-3);
   color: var(--color-1);
   border-radius: 8px;
 }
@@ -138,10 +139,10 @@
   background-color: var(--color-hover-1);
 border-left: solid 3px var(--color-3);
 svg{
-  color: var(--color-3);
+  color: var(--color-text-6);
 }
 .titel{
-  color: var(--color-3);
+  color: var(--color-text-6);
 }
 }
 .album-list {
@@ -169,8 +170,7 @@ svg{
   color: var(--color-3)
 }
 .line{
-
-  border-top: 2px solid var(--color-6);
+  border-top: 2px solid var(--color-line-2);
  width: 80%;
  margin: 10%;
 

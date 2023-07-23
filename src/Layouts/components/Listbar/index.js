@@ -10,7 +10,7 @@ const Listbar = ({ selectedSongList, turn }) => {
   useEffect(() => {
     setListSong(selectedSongList)
   }, [selectedSongList])
-  console.log(selectedSongList)
+
   const songTags = listSong.map((song, index) => {
     return <Item song={song} key={index} index={index} />
   })

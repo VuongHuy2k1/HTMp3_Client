@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background-color: var(--color-2);
+  background-color: var(--background-playbar);
   flex-wrap: wrap;
   height: 90px;
   border-top: 1px solid var(--color-line-1);
@@ -211,7 +211,7 @@ svg {
 }
 
 .btn-turn-active{
-  background-color: var(--color-2) ;
+  background-color: var(--background-icon) ;
   width: 30px;
   height: 30px;
   border-radius: 6px;

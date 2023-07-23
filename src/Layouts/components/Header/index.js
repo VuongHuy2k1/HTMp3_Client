@@ -14,6 +14,7 @@ import styles from './Header.module.scss'
 import * as UserServices from '../../../service/userService'
 import { Link, useNavigate } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
+import Adjust from '../../../components/Popper/Adjust'
 const cx = classNames.bind(styles)
 
 function Header() {
@@ -69,16 +70,14 @@ function Header() {
       {value ? (
         <>
           <button className={cx('edit-btn')}>
-            <FontAwesomeIcon className={cx('icon-li')} icon={faGear} />
+            <Adjust />
           </button>
+
           {loading ? (
             <Skeleton width={40} />
           ) : (
             <div className={cx('accout')}>
               <Menu></Menu>
-              {/* <Menu>
-                <span>{user.username}</span>
-              </Menu> */}
             </div>
           )}
         </>

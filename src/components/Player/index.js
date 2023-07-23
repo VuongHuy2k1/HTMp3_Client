@@ -65,6 +65,17 @@ const Player = ({
       clicked = false
     }
   }
+  useEffect(() => {
+    dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
+    audioRef.current.play()
+
+    document.getElementById('focus-link').click()
+    window.history.pushState({}, '', '')
+  }, [songplay, dispatch])
+  useEffect(() => {
+    dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
+    audioRef.current.pause()
+  }, [dispatch])
 
   useEffect(() => {
     document.addEventListener('keydown', spaceDownFunc)
@@ -119,17 +130,6 @@ const Player = ({
       return <FontAwesomeIcon icon={faPauseCircle} size={16} />
     }
   }
-  useEffect(() => {
-    dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
-    audioRef.current.play()
-
-    document.getElementById('focus-link').click()
-    window.history.pushState({}, '', '')
-  }, [songplay, dispatch])
-  useEffect(() => {
-    dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
-    audioRef.current.pause()
-  }, [dispatch])
 
   const songUrl = () => {
     if (selectList.length <= 0) {

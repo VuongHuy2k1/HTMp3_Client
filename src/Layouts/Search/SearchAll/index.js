@@ -10,7 +10,6 @@ import styles from './Style.module.scss'
 import { useParams } from 'react-router-dom'
 
 import { useDebounce } from '../../../hooks'
-import HeaderBar from '../component/HeaderBar'
 
 const cx = classNames.bind(styles)
 
@@ -41,13 +40,18 @@ function SearchAllLayout() {
 
   return (
     <div className={cx('wrapper', 'scroll')}>
-      <HeaderBar />
-      <div className={cx('container')}>
-        <h3 className={cx('title')}>Bài hát</h3>
-        <div className={cx('content')}>
-          <SongList songs={searchResultSong} typeSave="album" />
-        </div>
-      </div>
+      {searchResultSong.length <= 0 ? (
+        <></>
+      ) : (
+        <>
+          <div className={cx('container-song')}>
+            <h3 className={cx('title')}>Bài hát</h3>
+            <div className={cx('content')}>
+              <SongList songs={searchResultSong} typeSave="album" />
+            </div>
+          </div>
+        </>
+      )}
 
       {searchResultAlbum.length <= 0 ? (
         <></>
@@ -58,7 +62,6 @@ function SearchAllLayout() {
           </section>
         </>
       )}
-
       {searchResultSinger.length <= 0 ? (
         <></>
       ) : (

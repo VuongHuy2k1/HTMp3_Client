@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { setFocus, changePlaylist, getPlayListId } from '../../../actions'
 
 import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
 import images from '../../../assect/images'
-import * as PlayListService from '../../../service/playListService'
+
 import * as UserServices from '../../../service/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import More from '../../../components/Popper/More'
 import {
   faChartLine,
-  faHouse,
   faPlus,
   faCompass,
 } from '@fortawesome/free-solid-svg-icons'
-import Message from '../../../components/Message'
-import { connect } from 'react-redux'
-import { useNavigate, NavLink } from 'react-router-dom'
-const cx = classNames.bind(styles)
-function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
-  const [loading, setLoading] = useState(true)
-  const [message, setMessage] = useState({
-    msgBody: 'Tạo danh sách phát thành công',
-    msgError: false,
-  })
-  const [a, setA] = useState([])
 
+import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+const cx = classNames.bind(styles)
+function Sidebar({ setFocus, userPlaylist }) {
   const [num, setNum] = useState(1)
 
   const listMenu = [
@@ -129,8 +121,6 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
           </div>
         </div>
       </div>
-
-      {loading ? <>{/* <Message message={message} /> */}</> : <></>}
     </nav>
   )
 }
