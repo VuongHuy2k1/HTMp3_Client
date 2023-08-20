@@ -12,6 +12,7 @@
  --color-7:#231B2E;
  --color-8:#F2F2F2;
  --color-9: rgba(0,0,0,0.4);
+
  --color-10: rgba(74,144,226,0);
  --color-11: #c9aeff;
  --color-12: #9457ff;
@@ -20,6 +21,7 @@
 --color-top2:#50e3c2;
 --color-top3:#e35050;
 --color-out:#fff;
+
 //color-hover
  --color-impo-1: #8D22C3;
  --color-hover-1:#E6E6E6;
@@ -30,15 +32,21 @@
 
  --color-text-4:#FFFFFF99;
  --color-text-5:#000000;
+
  --color-text-6: #4e2a8c;
  --color-text-7: rgba(254,255,255,.4);
  --color-text-8:rgba(254,255,255,.8);
+
+
+
  --color-header:#FFFFFF;
 //weight-text
  --weight-text:700;
  --weight-text-2:500;
  --weight-text-3:400;
+
  --weight-text-4:600;
+
 //fort-size
  --size-text-1:13px;
  --size-text-2:14px;
@@ -130,9 +138,11 @@
 --background-icon:#D4D4D4; 
 
 
+
 --color-type-bg :#A1A1A1;
 --chart-bg-img-alpha: hsla(0,0%,100%,0.9);
 --chart-box-bg-alpha: hsla(0,0%,100%,0.5);
+
 
 --color-line-1:rgba(0,0,0,0.05);
 --color-line-2:rgba(0,0,0,0.1);
@@ -162,6 +172,7 @@
 
 --Dark-chart-bg-img-alpha: hsla(0,0%,100%,0.9);
 --Darkchart-box-bg-alpha: hsla(0,0%,100%,0.5);
+
 
 --Dark-color-line-1:rgba(0,0,0,0.05);
 --Dark-color-line-2: hsla(0,0%,100%,0.1);
@@ -213,6 +224,7 @@ svg {
   margin: 0;
 }
 .scroll {
+
 
 }
 .scroll::-webkit-scrollbar {

@@ -35,6 +35,8 @@ function PlayListLayout({
       const response = await PlayListService.getSongPlayList(debouncedValue)
 
       getPlayListId(debouncedValue)
+
+      getPlayListId(debouncedValue)
       console.log(1)
       selectedUserPlayList(response)
       setLoading(false)

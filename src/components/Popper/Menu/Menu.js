@@ -31,6 +31,7 @@ function Menu({ selectSong }) {
       setUser({
         username: res.username,
       })
+
       setImg(res.img)
     }
     fetchApi()

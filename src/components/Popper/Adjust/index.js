@@ -19,7 +19,9 @@ import {
   faPen,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons'
+
 import { useRef, useState, useEffect } from 'react'
+
 import { title } from 'faker/lib/locales/az'
 
 const cx = classNames.bind(styles)
@@ -63,6 +65,7 @@ function Adjust({}) {
         '#181818',
       )
       document.documentElement.style.setProperty('--background-icon', '#353535')
+
       document.documentElement.style.setProperty(
         '--chart-bg-img-alpha',
         'rgba(30,30,30,0.9)',
@@ -71,6 +74,7 @@ function Adjust({}) {
         '--chart-box-bg-alpha',
         'hsla(0,0%,100%,0.05)',
       )
+
       document.documentElement.style.setProperty(
         '--color-line-1',
         ' hsla(0,0%,100%,0.1)',
@@ -104,6 +108,7 @@ function Adjust({}) {
         '#FFFFFF',
       )
       document.documentElement.style.setProperty('--background-icon', '#D4D4D4')
+
       document.documentElement.style.setProperty(
         '--chart-bg-img-alpha',
         'hsla(0,0%,100%,0.9)',
@@ -180,7 +185,6 @@ function Adjust({}) {
       return setShowList(false)
     }
   }
-
   return (
     <Tippy
       interactive

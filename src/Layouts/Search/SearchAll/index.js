@@ -49,11 +49,13 @@ function SearchAllLayout() {
           <div className={cx('container-song')}>
             <h3 className={cx('title')}>Bài hát</h3>
             <div className={cx('content')}>
+
               <SongList
                 songs={searchResultSong}
                 typeSave="album"
                 loading={loading}
               />
+
             </div>
           </div>
         </>
