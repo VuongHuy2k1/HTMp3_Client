@@ -37,8 +37,8 @@ function Search() {
     const fetchApi = async () => {
       const result = await searchApi.search(debouncedValue)
 
-      setSearchResultSong(result.song)
-      setSearchResultAlbum(result.album)
+      setSearchResultSong(result.songs)
+      setSearchResultAlbum(result.albums)
     }
 
     fetchApi()
@@ -53,6 +53,7 @@ function Search() {
   const handleOut = () => {
     setShowResult(false)
   }
+
   return (
     <HeadlessTippy
       interactive
@@ -64,18 +65,20 @@ function Search() {
       render={(attrs) => (
         <div className={cx('search-result')} {...attrs}>
           <PopperWrapper>
-            <div className={cx('search-titel-top')}>
-              <h4 className={cx('search-titel')}> Từ khóa liên quan </h4>
-              {searchResultSong.map((resultt) => (
-                <SearchSong songs={resultt} />
-              ))}
-            </div>
-            <div className={cx('search-titel-bottom')}>
-              <h4 className={cx('search-titel')}> Gợi ý kết quả </h4>
+            <div className={cx('search-wapper', 'scroll')}>
+              <div className={cx('search-titel-top')}>
+                <h4 className={cx('search-titel')}> Từ khóa liên quan </h4>
+                {searchResultSong.map((resultt) => (
+                  <SearchSong songs={resultt} />
+                ))}
+              </div>
+              <div className={cx('search-titel-bottom')}>
+                <h4 className={cx('search-titel')}> Gợi ý kết quả </h4>
 
-              {searchResultAlbum.map((result) => (
-                <SearchAlbum albums={result} />
-              ))}
+                {searchResultAlbum.map((result) => (
+                  <SearchAlbum albums={result} />
+                ))}
+              </div>
             </div>
           </PopperWrapper>
         </div>
@@ -99,7 +102,7 @@ function Search() {
         )}
 
         <button className={cx('search-btn')} onClick={handleOut}>
-          <Link to={`/search/${searchValue}/all`}>
+          <Link to={`/search/${searchValue}`}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </Link>
         </button>

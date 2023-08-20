@@ -1,6 +1,7 @@
 .wrapper {
-  padding-bottom: 240px;
+  
   overflow-x: auto;
+  margin-top: 4rem;
 }
 .container {
   padding: var(--padding-main-view);
@@ -21,7 +22,7 @@
     CircularSp-Deva,
     var(--fallback-fonts, sans-serif)
   );
-  color: var(--white, #000000);
+  color: var(--color-text-5);
   padding: 16px 16px 16px 0px;
 }
 .list-item {

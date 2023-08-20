@@ -1,149 +1,163 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux'
 
 //songsReducer
 
 const selectedSongPlayReducer = (selectedSongPlay = 0, action) => {
-  if (action.type === "SONG_SELECTED") {
-    return action.payload;
-
+  if (action.type === 'SONG_SELECTED') {
+    return action.payload
   }
-  if (action.type === "SONG_SELECTED_BY_ID") {
-    return action.payload;
-
+  if (action.type === 'SONG_SELECTED_BY_ID') {
+    return action.payload
   }
-  return selectedSongPlay;
-
-};
-
+  return selectedSongPlay
+}
 
 const playerStateReducer = (playerState = 0, action) => {
-  if (action.type === "PLAYER_STATE_SELECTED" && !action.payload) {
-    return (playerState + 1) % 2;
-  } else if (action.type === "PLAYER_STATE_SELECTED" && action.payload) {
-    return action.payload;
+  if (action.type === 'PLAYER_STATE_SELECTED' && !action.payload) {
+    return (playerState + 1) % 2
+  } else if (action.type === 'PLAYER_STATE_SELECTED' && action.payload) {
+    return action.payload
   }
-  return playerState;
-};
+  return playerState
+}
 
 const volumeReducer = (volume = 100, action) => {
-  if (action.type === "SET_VOLUME") {
-    return action.payload;
+  if (action.type === 'SET_VOLUME') {
+    return action.payload
   }
-  return volume;
-};
+  return volume
+}
 
 const durationReducer = (duration = 0, action) => {
-  if (action.type === "SET_DURATION") {
-    return action.payload;
+  if (action.type === 'SET_DURATION') {
+    return action.payload
   }
-  return duration;
-};
+  return duration
+}
 
 const currentLocationReducer = (loc = 0, action) => {
-  if (action.type === "SET_CURRENT_LOCATION") {
-    return action.payload;
+  if (action.type === 'SET_CURRENT_LOCATION') {
+    return action.payload
   }
-  return loc;
-};
+  return loc
+}
 const timeReducer = (time = 0, action) => {
-  if (action.type === "SET_TIME") {
-    return action.payload;
+  if (action.type === 'SET_TIME') {
+    return action.payload
   }
-  return time;
-};
+  return time
+}
 //songlistReducer
 const selectedSongListReducer = (selectedSongList = [], action) => {
-  if (action.type === "SONG_SELECTED_BY_ALBUM") {
-    return action.payload;
+  if (action.type === 'SONG_SELECTED_BY_ALBUM') {
+    return action.payload
   }
 
-  return selectedSongList;
-};
+  return selectedSongList
+}
 
 const typeAlbumReducer = (type = [], action) => {
-  if (action.type === "TYPE_SELECTED") {
-    return action.payload;
+  if (action.type === 'TYPE_SELECTED') {
+    return action.payload
   }
 
-  return type;
-};
+  return type
+}
 
 //albumReducer
 
 const selectedAlbumIdReducer = (selectedAlbumId = [], action) => {
-  if (action.type === "ALBUM_SELECTED") {
-    return action.payload;
+  if (action.type === 'ALBUM_SELECTED') {
+    return action.payload
   }
-  return selectedAlbumId;
-};
+  return selectedAlbumId
+}
 
 //logOutReducer
 const logOutReducer = (val = 0, action) => {
-  if (action.type === "ALBUM_SELECTED") {
-    return action.payload;
+  if (action.type === 'ALBUM_SELECTED') {
+    return action.payload
   }
-  return val;
-};
+  return val
+}
 
 //getStatus
 const getStatusReducer = (status = 0, action) => {
-  if (action.type === "SET_STATUS") {
-    return action.payload;
+  if (action.type === 'SET_STATUS') {
+    return action.payload
   }
-  return status;
-};
+  return status
+}
 
 //getFocus
 const getFocus = (focus = 0, action) => {
-  if (action.type === "ON_FOCUS") {
-    return action.payload;
+  if (action.type === 'ON_FOCUS') {
+    return action.payload
   }
-  return focus;
-};
+  return focus
+}
 const setToken = (token = 0, action) => {
-  if (action.type === "SET_TOKEN") {
-    return action.payload;
+  if (action.type === 'SET_TOKEN') {
+    return action.payload
   }
-  return token;
-};
+  return token
+}
 
 //userPlayList
 
 const getUserPlaylist = (userPlaylist = [], action) => {
-  if (action.type === "ADD_PLAYLIST") {
-    return action.payload;
+  if (action.type === 'ADD_PLAYLIST') {
+    return action.payload
   }
-  return userPlaylist;
-};
+  return userPlaylist
+}
 const addSong = (songAdd = [], action) => {
-  if (action.type === "ADD_SONG") {
-    return action.payload;
+  if (action.type === 'ADD_SONG') {
+    return action.payload
   }
-  return songAdd;
-};
+  return songAdd
+}
 const getPlaylistId = (playlistId = 0, action) => {
-  if (action.type === "GET_PLAYLIST_ID") {
-    return action.payload;
+  if (action.type === 'GET_PLAYLIST_ID') {
+    return action.payload
   }
-  return playlistId;
-};
+  return playlistId
+}
 const selectedUserPlayListReduct = (selectedUserList = [], action) => {
-  if (action.type === "SELECTED_USER_PLAY_LIST") {
-    return action.payload;
+  if (action.type === 'SELECTED_USER_PLAY_LIST') {
+    return action.payload
   }
-  return selectedUserList;
-};
-
+  return selectedUserList
+}
 
 //saveSong
 const selectedTypeSaveReducer = (selectedType = 0, action) => {
-  if (action.type === "SELECTED_TYPE_SAVE") {
-    return action.payload;
+  if (action.type === 'SELECTED_TYPE_SAVE') {
+    return action.payload
   }
-  return selectedType;
-};
+  return selectedType
+}
 
-
+//message
+const selectedMesseReducer = (selectedType = '', action) => {
+  if (action.type === 'SELECTED_MESS') {
+    return action.payload
+  }
+  return selectedType
+}
+const selectedLoadReducer = (selectedType = false, action) => {
+  if (action.type === 'SELECTED_LOAD') {
+    return action.payload
+  }
+  return selectedType
+}
+//turn off nav-list
+const selectedTurnReducer = (selectedType = false, action) => {
+  if (action.type === 'SELECTED_TURN') {
+    return action.payload
+  }
+  return selectedType
+}
 
 export default combineReducers({
   selectedSongList: selectedSongListReducer,
@@ -164,4 +178,7 @@ export default combineReducers({
   playlistId: getPlaylistId,
   selectedUserList: selectedUserPlayListReduct,
   selectedType: selectedTypeSaveReducer,
-});
+  selectedMess: selectedMesseReducer,
+  selectedLoad: selectedLoadReducer,
+  selectedTurn: selectedTurnReducer,
+})

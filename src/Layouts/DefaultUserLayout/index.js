@@ -15,7 +15,7 @@ function DefaultUserLayout({ children }) {
           />
         </div>
       </div>
-      <div className={cx('main-view')}>{children}</div>
+      <div className={cx('main-view', 'scroll')}>{children}</div>
     </div>
   )
 }

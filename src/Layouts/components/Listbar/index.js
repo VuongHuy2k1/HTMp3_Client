@@ -1,17 +1,22 @@
 import classNames from 'classnames/bind'
 import Item from '../Item'
 import styles from './Listbar.module.scss'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { selectSongByAlbum } from '../../../actions'
 const cx = classNames.bind(styles)
-const Listbar = ({ selectedSongList }) => {
-  const songTags = selectedSongList.map((song, index) => {
+const Listbar = ({ selectedSongList, turn }) => {
+  const [listSong, setListSong] = useState([])
+  useEffect(() => {
+    setListSong(selectedSongList)
+  }, [selectedSongList])
+
+  const songTags = listSong.map((song, index) => {
     return <Item song={song} key={index} index={index} />
   })
-  console.log(selectedSongList)
+
   return (
-    <div className={cx('warrper')}>
+    <div className={cx('warrper', turn)}>
       <div className={cx('header-bar')}>
         <h1 className={cx('titel', 'backgroud')}>Danh sách phát</h1>
       </div>

@@ -38,10 +38,12 @@ const FlexComponet = ({
   useEffect(() => {
     const fetchApi = async () => {
       const response = await PlayListService.getPlayList()
+
       changePlaylist(response)
     }
     fetchApi()
-  }, [userPlaylist])
+  }, [])
+
   const fepi = async () => {
     const response = await PlayListService.getPlayList()
     changePlaylist(response)

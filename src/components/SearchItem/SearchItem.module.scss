@@ -4,10 +4,9 @@
   padding: 6px 0;
   cursor: pointer;
   border-radius: 4px;
-  padding-left: 8px;
 
   &:hover {
-    background: rgba(24, 18, 21, 0.19);
+    background: var(--color-hover-2);
   }
 }
 
@@ -27,6 +26,7 @@
   font-size: 14px;
   font-weight: 600;
   margin: 0;
+  color: var(--color-text-5);
 }
 
 .check {
@@ -36,7 +36,7 @@
 
 .username {
   font-size: 12px;
-  color: rgba(22, 24, 35, 0.5);
+  color: var(--color-text-3);
 }
 .name-search {
   display: flex;
@@ -44,14 +44,15 @@
   padding-left: 6px;
   width: 100%;
   svg {
-    font-size: 16px;
+    font-size: var(--size-text-4);
+    color: var(--color-text-5);
   }
   span {
 
     padding-left: 12px;
-    color: var(--color-text);
+    color: var(--color-text-5);
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis ;
     white-space: nowrap;
     width: 100%;
     font-weight: var(--weight-text-2);
@@ -62,4 +63,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--color-text-5);
 }

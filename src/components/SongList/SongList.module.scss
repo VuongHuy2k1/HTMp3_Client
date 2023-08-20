@@ -1,9 +1,10 @@
 .warrper {
   grid-column: 5/13;
   // grid-row: 2/12;
-  overflow-x: auto;
+  // overflow-x: auto;
   padding-left: 2px;
-  min-height: 50vh;
+  min-height: 40vh;
+  height: fit-content;
   max-height: 120%;
 }
 

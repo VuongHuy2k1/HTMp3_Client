@@ -37,7 +37,7 @@ function Slides() {
   })
 
   return (
-    <Slide slidesToScroll={2} slidesToShow={3} indicators={false}>
+    <Slide slidesToScroll={3} slidesToShow={3} indicators={false}>
       <div className="slide">
         <img
           src="https://photo-zmp3.zmdcdn.me/banner/7/c/c/f/7ccfa5ff84350e976f2f23d39b5d288d.jpg"
@@ -45,7 +45,13 @@ function Slides() {
           className={cx('img')}
         ></img>
       </div>
-
+      <div className="slide">
+        <img
+          src="https://photo-zmp3.zmdcdn.me/banner/7/c/c/f/7ccfa5ff84350e976f2f23d39b5d288d.jpg"
+          alt=""
+          className={cx('img')}
+        ></img>
+      </div>
       <div className="slide">
         <img
           src="https://photo-zmp3.zmdcdn.me/banner/d/3/5/5/d3551295f6c2423d5e914dff056b5267.jpg"

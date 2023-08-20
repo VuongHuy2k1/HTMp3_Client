@@ -6,7 +6,15 @@ import styles from './SongList.module.scss'
 
 const cx = classNames.bind(styles)
 
-const SongList = ({ songs = [], typee, typeSave, playlistId, loading }) => {
+const SongList = ({
+  songs = [],
+  typee,
+  typeSave,
+  playlistId,
+  loading,
+  charts,
+  mini,
+}) => {
   const songTags = songs.map((song, index) => {
     return (
       <SongItem
@@ -17,6 +25,9 @@ const SongList = ({ songs = [], typee, typeSave, playlistId, loading }) => {
         typeSave={typeSave}
         playlistId={playlistId}
         loading={loading}
+        charts={charts}
+        top={index}
+        mini={mini}
       />
     )
   })

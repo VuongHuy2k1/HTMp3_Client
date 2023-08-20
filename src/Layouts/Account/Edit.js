@@ -21,12 +21,12 @@ function EditLayout() {
       const res = await UserService.isAuthen()
 
       setUser({
-        name: res.user.name,
-        email: res.user.email,
+        name: res.name,
+        email: res.email,
 
-        gender: res.user.gender,
-        dateOfBirth: res.user.dateOfBirth,
-        nation: res.user.nation,
+        gender: res.gender,
+        dateOfBirth: res.dateOfBirth,
+        nation: res.nation,
       })
     }
     fetchApi()

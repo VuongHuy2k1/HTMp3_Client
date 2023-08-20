@@ -25,7 +25,7 @@
   align-items: center;
   border: none;
   border-radius: 50%;
-  color: var(--color-text-2);
+ background-color: var(--background-icon);
   display: inline-flex;
   height: 32px;
   justify-content: center;
@@ -158,10 +158,10 @@
 
 .warrper {
   display: flex;
-  width: 316px;
+  width: 28rem;
   height: 40px;
   padding-left: 16px;
-  background-color: var(--color-1);
+  background-color: var(--theme-1);
   border-radius: 92px;
   border-radius: 92px;
 
@@ -208,8 +208,17 @@
 }
 //search-result
 .search-result {
-  width: 316px;
+  width: 26rem;
+ 
   border-radius: 8px;
+
+}
+.search-wapper{
+  overflow-y: scroll;
+  max-height:450px;
+margin-top: 16px;
+  margin-bottom: 16px;
+ 
 }
 .search-titel {
   padding: 5px 12px;
@@ -239,6 +248,7 @@
   border: none;
   border-radius: 50%;
   color: var(--color-8);
+  background-color: var(--background-icon);
   display: inline-flex;
   height: 40px;
   justify-content: center;

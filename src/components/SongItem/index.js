@@ -17,7 +17,7 @@ import styles from './SongItem.module.scss'
 import List from '../Popper/List'
 import * as PlayService from '../../service/playService'
 
-import { faMinus, faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
 const cx = classNames.bind(styles)
 
 const SongItem = ({
@@ -28,10 +28,12 @@ const SongItem = ({
   playerState,
   selectSong,
   selectSongByAlbum,
-  addSong,
   selectedUserList,
   playlistId,
   selectedUserPlayList,
+  charts,
+  top,
+  mini,
 }) => {
   const [songsList, setSongsList] = useState([])
 
@@ -103,90 +105,79 @@ const SongItem = ({
 
   const now_selected = selectedSongPlay._id === song._id ? 'actie' : ''
 
-  const phaser = () => {
-    if (selectedSongPlay._id === song._id && playerState) {
-      return (
-        <div>
-          {song.links === undefined ? (
-            <>
-              <img src={song.img} alt={song.name} className={cx('icon-img')} />
-              <div className={cx('flex-img')}>
-                <div class={cx('img-play')}>
-                  <img
-                    alt=""
-                    src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
-                    id={cx('focused')}
-                  />
-                </div>
+  const animation = () => {
+    return (
+      <div>
+        <>
+          <img
+            src={song.links === undefined ? song.img : song.links.images[1].url}
+            alt={song.name}
+            className={cx('icon-img')}
+          />
+          <div className={cx('flex-img')}>
+            {selectedSongPlay._id === song._id && playerState ? (
+              <div class={cx('img-play')}>
+                <img
+                  alt=""
+                  src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
+                  id={cx('focused')}
+                />
               </div>
-            </>
-          ) : (
-            <>
-              <img
-                src={song.links.images[1].url}
-                alt={song.name}
-                className={cx('icon-img')}
-              />
-              <div className={cx('flex-img')}>
-                <div class={cx('img-play')}>
-                  <img
-                    alt=""
-                    src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
-                    id={cx('focused')}
-                  />
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      )
+            ) : (
+              <form class={cx('hover-play')} onClick={handleClick}>
+                <FontAwesomeIcon
+                  icon={faPlay}
+                  className={cx('icon-play')}
+                ></FontAwesomeIcon>
+              </form>
+            )}
+          </div>
+        </>
+      </div>
+    )
+  }
+
+  const color = () => {
+    if (top + 1 === 1) {
+      return 'top-1'
+    }
+    if (top + 1 === 2) {
+      return 'top-2'
+    }
+    if (top + 1 === 3) {
+      return 'top-3'
     } else {
-      return (
-        <div>
-          {song.links === undefined ? (
-            <>
-              <img src={song.img} alt={song.name} className={cx('icon-img')} />
-              <div className={cx('flex-img')}>
-                <form class={cx('hover-play')} onClick={handleClick}>
-                  <FontAwesomeIcon
-                    icon={faPlay}
-                    className={cx('icon-play')}
-                  ></FontAwesomeIcon>
-                </form>
-              </div>
-            </>
-          ) : (
-            <>
-              <img
-                src={song.links.images[1].url}
-                alt={song.name}
-                className={cx('icon-img')}
-              />
-              <div className={cx('flex-img')}>
-                <form class={cx('hover-play')} onClick={handleClick}>
-                  <FontAwesomeIcon
-                    icon={faPlay}
-                    className={cx('icon-play')}
-                  ></FontAwesomeIcon>
-                </form>
-              </div>
-            </>
-          )}
-        </div>
-      )
+      return 'top-out'
     }
   }
 
+  const iconStart = () => {
+    return (
+      <>
+        {charts ? (
+          <div className={cx('chart-content')}>
+            <div className={cx('chart-top', color())}>
+              <span>{top + 1}</span>
+            </div>
+            <div className={cx('growth')}></div>
+          </div>
+        ) : (
+          <FontAwesomeIcon icon={faMusic}></FontAwesomeIcon>
+        )}
+      </>
+    )
+  }
   return (
     <>
-      <div id={cx(now_selected)} className={cx('song-item')}>
-        <div className={cx('music-icon')}>
-          <FontAwesomeIcon icon={faMusic}></FontAwesomeIcon>
-        </div>
+      <div
+        id={cx(now_selected)}
+        className={mini ? cx('song-item-mini') : cx('song-item')}
+      >
+        <div className={cx('music-icon')}>{iconStart()}</div>
 
-        {phaser()}
+        {animation()}
         <div className={cx('name')}>{song.name}</div>
-        <div className={cx('author')}>{song.singer}</div>
+        {mini ? <></> : <div className={cx('author')}>{song.singer}</div>}
 
         <div class={cx('icon-dow')}>
           <List song={song} type={type} playlistId={playlistId} />

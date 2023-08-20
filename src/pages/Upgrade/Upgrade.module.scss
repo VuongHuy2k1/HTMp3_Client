@@ -1,0 +1,189 @@
+ul{
+    list-style: none;
+    padding: 0 0.2rem !important;
+    
+}
+p{
+    margin: 0 0.2rem !important ;
+    padding: 0;
+}
+.bg{
+    background-color: var(--primary-bg);
+    border-radius: 12px;
+    padding: 1.6rem;
+    margin: 0.6rem 0.8rem;
+}
+.content{
+    font-size: var(--size-text-6);
+    color: var(--color-out);
+    font-weight:var(--weight-text-4) ;
+    line-height: 29px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.container-left{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.detail-method{
+    margin-top: 0.8rem;
+    border: 1px solid rgba(254,255,255,.1);
+    border-radius: 12px;
+    padding:  1rem 1.6rem;
+    display: flex;
+   flex-direction: row-reverse;
+    align-items: center;
+ 
+    justify-content: space-between;
+    cursor: pointer;
+}
+.moth{
+    font-size: var(--size-text-4);
+    color:var(--color-text-4) ;
+    font-weight:var(--weight-text-4) ;
+}
+.price{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.now-price{
+    color:  var(--color-out);
+    font-weight:var(--weight-text-4) ;
+    font-size: var(--size-text-7);
+}
+.discount{
+    color: var(--color-text-6);
+    background-color: var(--color-11);
+    font-size: var(--size-text-1);
+    font-weight: var(--weight-text-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem 0.6rem;
+    border-radius: 20px;
+    margin-left: 0.8rem;
+}
+.old-price{
+    color: var(--color-text-7);
+    font-size: var(--size-text-2);
+    font-style: normal;
+    font-weight: var(--weight-text-2);
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-decoration: line-through;
+    margin-top: 0.01rem;
+}
+.radio{
+    zoom: 1.8;
+   
+    accent-color: var(--color-12) ;
+}
+.container-right{
+    width: 40%;
+}
+
+.list-benefit{
+    margin: 1rem 0;
+    color:var(--color-text-8) ;
+    svg{
+        color:var(--color-12) ;
+        margin-right:0.4rem
+    }
+    li{
+        margin: 1rem 0;
+    }
+   
+}
+.active{
+    background: radial-gradient(139.39% 100% at 0 0,#4e2a8c 0,rgba(78,42,140,.26) 100%);
+    border-color: #8647eb;
+}
+
+.bill{
+    display: flex;
+    flex-direction: column;
+}
+.infor{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.8rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--Dark-color-line-2);
+    align-items: center;
+    img{
+         width: 2.8rem;
+         height: 2.8rem;
+         border-radius: 100%;
+         margin-right: 0.6rem;
+    }
+    p{
+        color: var(--color-out);
+        font-weight: var(--weight-text-4);
+      
+        font-size: var(--size-text-4);
+        line-height: 19px;
+    }
+}
+.time-bill{
+    margin-top: 0.6rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--Dark-color-line-2);
+}
+.time{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.6rem 0;
+}
+.left{
+    color: var(--color-text-7);
+    font-size: var(--size-text-4);
+    line-height: 22px;
+    font-weight: var(--weight-text-2);
+}
+.right{
+    color: var(--color-out);
+    font-size: var(--size-text-3);
+    line-height: 22px;
+    font-weight: var(--weight-text-2);
+}
+.pay-bill{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.price-bill{
+    display: flex;
+    flex-direction: column;
+}
+.top{
+    color: var(--color-out);
+    font-size: var(--size-text-1);
+    line-height: 22px;
+    font-weight: var(--weight-text-2);
+}
+.bottom{
+    color: var(--color-12);
+    font-size: var(--size-text-9);
+    line-height: 34px;
+    font-weight: var(--weight-text-4);
+}
+.btn{
+    background-color:var(--color-12) ;
+    color: var(--color-out);
+    padding: 0 1.6rem;
+    height: 2.8rem;
+    border-radius: 2rem;
+    font-size: var(--size-text-2);
+    line-height: 22px;
+    font-weight: var(--weight-text-4);
+    border-radius: 100px;
+    border: currentColor;
+}

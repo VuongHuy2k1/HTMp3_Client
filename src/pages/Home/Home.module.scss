@@ -10,5 +10,17 @@
   flex: 1;
   position: relative;
 }
-.content {
+.slide {
+ button{
+  position: inherit !important;
+  z-index: 1 !important;
+  opacity: 0;
+ }
+}
+.slide:hover{
+  button{
+    position: inherit !important;
+    z-index: 1 !important;
+    opacity: 1;
+   }
 }

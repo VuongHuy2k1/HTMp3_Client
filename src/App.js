@@ -59,6 +59,7 @@ function App() {
           })}
 
           {PrivateRoutes.map((route, index) => {
+            const Chil = route.chil
             const Page = route.component
             let Layout = DefaultLayout
             const isAuthenticated = UserServices.isLog()
@@ -76,7 +77,9 @@ function App() {
                 element={
                   isAuthenticated === true ? (
                     <Layout>
-                      <Page />
+                      <Page>
+                        <Chil />
+                      </Page>
                     </Layout>
                   ) : (
                     <Navigate to={config.userLogin} replace={true} />

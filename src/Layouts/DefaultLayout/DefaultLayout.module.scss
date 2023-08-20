@@ -12,10 +12,11 @@
   min-height: 100%;
   position: relative;
   width: 100%;
+  overflow-y: hidden;
 }
 
 .nav-bar {
-  background-color: var(--color-1);
+  background-color: var(--theme-1);
   display: flex;
   flex-direction: column;
   grid-area: nav-bar;
@@ -25,7 +26,7 @@
   z-index: 3;
 }
 .nav-list {
-  background-color: var(--color-2);
+  background-color: var(--theme-2);
   // background-image: url(https://images.viblo.asia/9c2a1fb7-5b2b-4fa5-870d-c32262ab77ab.gif);
   display: flex;
   flex-direction: column;
@@ -35,6 +36,9 @@
   width: calc(var(--nav-bar-width) + 120px);
   z-index: 3;
   border-left: 1px solid var(--color-line-2);
+  transition: width 0.8s;
+  height: 100vh;
+
 }
 .header {
   grid-area: main-view;
@@ -43,9 +47,7 @@
   // pointer-events: none;
   z-index: 2;
 }
-.backgroung-color {
-  background-color: var(--color-2);
-}
+
 .main-view {
   display: flex;
 
@@ -56,7 +58,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: var(--color-2);
+  background-color: var(--theme-2);
 }
 .playing-bar {
   grid-area: now-playing-bar;
@@ -278,6 +280,4 @@
   align-content: center;
   height: 100%;
   align-items: center;
-}
-.img {
 }

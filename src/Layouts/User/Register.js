@@ -42,12 +42,14 @@ function RegisterLayout(props) {
       register(variable).then((data) => {
         const { message } = data
 
-        if (!message.msgError) {
+        if (data.isSuccess === true) {
           setMessage({ msgBody: 'Đăng ký thành công', msgError: false })
 
           setTimeout(() => {
             navigate('/user/login')
           }, 2000)
+        } else {
+          setMessage({ msgBody: data.errors.message, msgError: true })
         }
       })
     } else {
@@ -56,7 +58,7 @@ function RegisterLayout(props) {
   }
 
   return (
-    <div className={cx('wrapper')}>
+    <div className={cx('wrapper', 'scroll')}>
       <div className={cx('title')}>
         <h1>Đăng ký và trải nghiệm</h1>
       </div>

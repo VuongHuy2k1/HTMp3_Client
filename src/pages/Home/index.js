@@ -50,7 +50,6 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
           selectSongByAlbum(response.songLists)
           selectSong(response.song[0])
         }
-        console.log(response.songLists)
       }
       Apii()
     }
@@ -70,7 +69,10 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
       <div className={cx('top-padding')}></div>
 
       <div className={cx('content')}>
-        <Slides />
+        <div className={cx('slide')}>
+          <Slides />
+        </div>
+
         <div className={cx('top-padding')}></div>
         <section className={cx('list-item')}>
           {loading ? (

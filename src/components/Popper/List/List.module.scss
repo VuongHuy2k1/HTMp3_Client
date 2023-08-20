@@ -26,14 +26,20 @@
   margin-bottom: 10px;
   padding: 4px 4px;
   margin: 14px 14px 10px 14px;
-  background-color: var(--color-6);
+  background-color: var(--color-line-2);
   border-radius: 6px;
 }
 .content-infor{
  padding-left: 6px;
-
   width: 80%;
-
+  p{
+    padding: 0;
+  margin: 0;
+}
+svg{
+  font-size: var(--size-text-4);
+  padding: 0 0.3rem;
+}
 }
 .song-name{
   color: var(--color-text);
@@ -106,6 +112,7 @@ padding: 0;
 margin: 0;
 width: 236px;
 overflow: inherit;
+z-index: 999;
 }
 .menu-list-item{
   display: flex;
@@ -154,4 +161,5 @@ svg{
 margin: 0;
 height: 160px;
 overflow:auto;
+flex-direction: column;
 }

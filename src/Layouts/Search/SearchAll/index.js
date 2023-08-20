@@ -10,17 +10,18 @@ import styles from './Style.module.scss'
 import { useParams } from 'react-router-dom'
 
 import { useDebounce } from '../../../hooks'
-import HeaderBar from '../component/HeaderBar'
 
 const cx = classNames.bind(styles)
 
 function SearchAllLayout() {
   const { name } = useParams()
   const [searchResultSong, setSearchResultSong] = useState([])
+  const [loading, setLoading] = useState(false)
   const [searchResultAlbum, setSearchResultAlbum] = useState([])
   const [searchResultSinger, setSearchResultSinger] = useState([])
   const debouncedValue = useDebounce(name, 10)
   useEffect(() => {
+    setLoading(true)
     if (!debouncedValue.trim()) {
       setSearchResultSong([])
       setSearchResultAlbum([])
@@ -30,24 +31,33 @@ function SearchAllLayout() {
 
     const fetchApi = async () => {
       const result = await searchApi.search(debouncedValue)
-
-      setSearchResultSong(result.song)
-      setSearchResultAlbum(result.album)
-      setSearchResultSinger(result.singer)
+      console.log(result)
+      setSearchResultSong(result.songs.slice(0, 5))
+      setSearchResultAlbum(result.albums.slice(0, 5))
+      setSearchResultSinger(result.singers.slice(0, 5))
     }
-
+    setLoading(false)
     fetchApi()
   }, [debouncedValue])
 
   return (
     <div className={cx('wrapper', 'scroll')}>
-      <HeaderBar />
-      <div className={cx('container')}>
-        <h3 className={cx('title')}>Bài hát</h3>
-        <div className={cx('content')}>
-          <SongList songs={searchResultSong} typeSave="album" />
-        </div>
-      </div>
+      {searchResultSong.length <= 0 ? (
+        <></>
+      ) : (
+        <>
+          <div className={cx('container-song')}>
+            <h3 className={cx('title')}>Bài hát</h3>
+            <div className={cx('content')}>
+              <SongList
+                songs={searchResultSong}
+                typeSave="album"
+                loading={loading}
+              />
+            </div>
+          </div>
+        </>
+      )}
 
       {searchResultAlbum.length <= 0 ? (
         <></>
@@ -58,7 +68,6 @@ function SearchAllLayout() {
           </section>
         </>
       )}
-
       {searchResultSinger.length <= 0 ? (
         <></>
       ) : (

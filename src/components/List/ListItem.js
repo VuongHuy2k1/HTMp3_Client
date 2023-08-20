@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 
 const ListItem = ({ albums = [], typee, selectType, sort }) => {
   const { type } = useParams()
-  console.log('typee', typee)
+
   const albumTags = albums.map((album, index) => {
     if (album.type === typee) {
       return <Item album={album} key={index} index={index} />
@@ -27,7 +27,7 @@ const ListItem = ({ albums = [], typee, selectType, sort }) => {
       <>
         <div className={cx('top-list')}>
           <div className={cx('top-list-left')}>
-            <h2 className={cx('titel-list', 'titel-type')}>{typee}</h2>
+            <p className={cx('titel-list', 'titel-type')}>{typee}</p>
           </div>
           <Link className={cx('top-list-right')} to={`/album/${typee}/all`}>
             <span

@@ -6,10 +6,10 @@ export const saveAlbum = async (list) => {
 
   try {
     const res = await httpRequests.put(
-      `api/media/post-last-album/${userId}`,
+      `api/media/put-current-song/${userId}`,
       list,
     )
-    return res
+    return res.item
   } catch (error) {
     if (error.code === 'ERR_NETWORK') {
       return { message: error.message, isSuccess: false }
@@ -22,8 +22,8 @@ export const getLastPlay = async () => {
   const userId = Cookies.get('userId')
   try {
     const res = await httpRequests.get(`api/media/get-last-music/${userId}`)
-    console.log(res)
-    return res
+
+    return res.item
   } catch (error) {
     console.log(error)
   }

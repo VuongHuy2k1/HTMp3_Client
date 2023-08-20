@@ -19,31 +19,13 @@ function UserHeader() {
     fetchApi()
   }, [])
   return (
-    <header className={cx('container', 'wrapper')}>
+    <header className={cx('container')}>
       <div className={cx('logo')}>
         <Link to="/">
           <img className={cx('muzic-logo')} src={images.logo} alt="miuzzic" />
         </Link>
       </div>
-      <div className={cx('account')}>
-        <Menu>
-          <center>
-            {img !== undefined ? (
-              <>
-                <img class={cx('user-avatar')} src={url + img} alt="image" />
-              </>
-            ) : (
-              <>
-                <img
-                  class="img-circle autofit2"
-                  src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
-                  alt="image"
-                />
-              </>
-            )}
-          </center>
-        </Menu>
-      </div>
+      <div className={cx('account')}></div>
     </header>
   )
 }

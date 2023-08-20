@@ -1,11 +1,15 @@
 .header-bar {
-  background-color: var(--color-2);
+  background-color: var(--theme-2);
   height: 64px;
   color: var(--color-text);
   text-align: center;
   font-weight: 500;
-  position: fixed;
+  z-index: 2;
+  position: absolute;
   width: -webkit-fill-available;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .titel {
   font-size: 1.5rem;
@@ -13,11 +17,14 @@
   padding: 18px;
 }
 .backgroud {
-  background-color: var(--color-2);
+  background-color: var(--theme-2);
 }
 .list-bar {
   padding-top: 80px;
   padding-left: 16px;
+  padding-bottom: 100px;
+  position: inherit;
+
 }
 .warrper {
   overflow-y: scroll;

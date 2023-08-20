@@ -14,7 +14,7 @@ function UserSlider() {
     const fetchApi = async () => {
       const res = await UserServices.isAuthen()
 
-      setImg(res.user.img)
+      setImg(res.img)
     }
     fetchApi()
   }, [])
@@ -27,25 +27,20 @@ function UserSlider() {
             <center>
               {img !== undefined ? (
                 <>
-                  <img
-                    class="img-circle autofit2"
-                    src={url + img}
-                    alt="image"
-                  />
+                  <img class="img-circle autofit2" src={url + img} alt="imag" />
                 </>
               ) : (
                 <>
                   <img
                     class="img-circle autofit2"
                     src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
-                    alt="image"
+                    alt="imge"
                   />
                 </>
               )}
             </center>
           </div>
 
-          <h4></h4>
           <p class={cx('user-role')}></p>
         </div>
 

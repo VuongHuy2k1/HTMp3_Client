@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { setFocus, changePlaylist, getPlayListId } from '../../../actions'
 
 import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
 import images from '../../../assect/images'
-import * as PlayListService from '../../../service/playListService'
+
 import * as UserServices from '../../../service/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import More from '../../../components/Popper/More'
 import {
   faChartLine,
-  faHouse,
   faPlus,
   faCompass,
 } from '@fortawesome/free-solid-svg-icons'
-import Message from '../../../components/Message'
-import { connect } from 'react-redux'
-import { useNavigate, NavLink } from 'react-router-dom'
-const cx = classNames.bind(styles)
-function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState(false)
-  const [a, setA] = useState([])
 
+import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+const cx = classNames.bind(styles)
+function Sidebar({ setFocus, userPlaylist }) {
   const [num, setNum] = useState(1)
 
   const listMenu = [
@@ -103,11 +98,13 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
         </NavLink>
       </div>
 
-      <div className={cx('content-list')}>
-        {ListMenu}
-        <div className={cx('line')}></div>
+      <div className={cx('content-list')}>{ListMenu}</div>
+      <div className={cx('poster')}>
+        <p>Nghe nhạc không quảng cáo cùng kho nhạc PREMIUM</p>
+        <button>NÂNG CẤP TÀI KHOẢN</button>
       </div>
 
+      <div className={cx('line')}></div>
       <div className={cx('album-list')}>{ListTag}</div>
 
       <div className={cx('album')}>
@@ -126,16 +123,6 @@ function Sidebar({ setFocus, changePlaylist, userPlaylist }) {
           </div>
         </div>
       </div>
-
-      {loading ? (
-        <>
-          <div className={cx('mess')}>
-            <Message message={message} />
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
     </nav>
   )
 }

@@ -7,44 +7,41 @@ import styles from './Menu.module.scss'
 import * as UserServices from '../../../service/userService'
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faPencilSquare,
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
-
+import { Outside } from '../../../hooks'
 const cx = classNames.bind(styles)
 
-function Menu({ children, selectSong, selectSongByAlbum }) {
-  const [loading, setLoading] = useState(false)
+function Menu({ selectSong }) {
   const [showList, setShowList] = useState(false)
   const navigate = useNavigate()
   const [img, setImg] = useState()
   const [user, setUser] = useState({
     username: '',
   })
-  const url = 'https://music-x8ce.onrender.com/img/'
+  const url = 'http://localhost:8989/img/'
   useEffect(() => {
     const fetchApi = async () => {
-      setLoading(true)
       const res = await UserServices.isAuthen()
 
       setUser({
-        username: res.user.username,
+        username: res.username,
       })
-      setImg(res.user.img)
-      setLoading(false)
+      setImg(res.img)
     }
     fetchApi()
   }, [])
 
   const onLogout = () => {
     selectSong(0)
-    // selectSongByAlbum(0)
+
     Cookies.remove('access_token')
     Cookies.remove('userId')
-    setLoading(true)
+
     const timerId = setTimeout(() => {
       clearTimeout(timerId)
       navigate('/')
@@ -55,10 +52,9 @@ function Menu({ children, selectSong, selectSongByAlbum }) {
     }, 1001)
     const timerLoading = setTimeout(() => {
       clearTimeout(timerLoading)
-
-      setLoading(false)
     }, 3000)
   }
+
   const renderResult = (attrs) => (
     <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
       <Wrapper className={cx('menu-popper')}>
@@ -81,8 +77,14 @@ function Menu({ children, selectSong, selectSongByAlbum }) {
             </div>
             <div className={cx('name')}>
               <p>{user.username}</p>
+              <div className={cx('type-use')}>BASIC</div>
             </div>
           </div>
+
+          <button className={cx('update-btn')}>
+            <Link to="/upgrade">Nâng cấp tài khoản</Link>
+          </button>
+
           <line></line>
           <div className={cx('edit')}>
             <h3 className={cx('content')}>Cá nhân</h3>
@@ -122,22 +124,25 @@ function Menu({ children, selectSong, selectSongByAlbum }) {
       visible={showList}
       placement="bottom-end"
       render={renderResult}
+      onClickOutside={() => setShowList(false)}
     >
-      <center onClick={oneClick}>
-        {img !== undefined ? (
-          <>
-            <img class={cx('img-avatar')} src={url + img} alt="" />
-          </>
-        ) : (
-          <>
-            <img
-              class={cx('img-avatar')}
-              src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
-              alt=""
-            />
-          </>
-        )}
-      </center>
+      <div>
+        <center onClick={oneClick} onBlur={() => setShowList(false)}>
+          {img !== undefined ? (
+            <>
+              <img class={cx('img-avatar')} src={url + img} alt="" />
+            </>
+          ) : (
+            <>
+              <img
+                class={cx('img-avatar')}
+                src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
+                alt=""
+              />
+            </>
+          )}
+        </center>
+      </div>
     </Tippy>
   )
 }

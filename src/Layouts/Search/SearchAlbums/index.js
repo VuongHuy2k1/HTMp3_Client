@@ -6,7 +6,6 @@ import classNames from 'classnames/bind'
 import styles from './Style.module.scss'
 import { useParams } from 'react-router-dom'
 import { useDebounce } from '../../../hooks'
-import HeaderBar from '../component/HeaderBar'
 
 const cx = classNames.bind(styles)
 
@@ -24,7 +23,7 @@ function SearchAlbumLayout() {
     const fetchApi = async () => {
       const result = await searchApi.search(debouncedValue, 0)
 
-      setSearchResult(result.album)
+      setSearchResult(result.albums)
     }
 
     fetchApi()
@@ -32,8 +31,6 @@ function SearchAlbumLayout() {
 
   return (
     <div className={cx('wrapper', 'scroll')}>
-      <HeaderBar />
-
       {searchResult.length <= 0 ? (
         <>
           <h3 className={cx('no')}>Không có kết quả phù hợp</h3>

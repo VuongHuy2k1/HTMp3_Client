@@ -30,7 +30,6 @@ function ChangePassLayout() {
     }
     if (variable.newPassword === variable.reNewPassword) {
       UserService.changePass(variable).then((mess) => {
-        console.log(mess)
         if (mess.data.result === true) {
           setMessage({ msgBody: 'Đổi mật khẩu thành công', msgError: false })
           setTimeout(() => {

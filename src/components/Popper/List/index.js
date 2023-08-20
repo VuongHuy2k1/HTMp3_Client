@@ -5,6 +5,8 @@ import {
   changePlaylist,
   setFocus,
   selectedUserPlayList,
+  selectedMess,
+  selectedLoad,
 } from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './List.module.scss'
@@ -16,9 +18,10 @@ import {
   faCirclePlus,
   faDownload,
   faEllipsis,
+  faHeadphones,
 } from '@fortawesome/free-solid-svg-icons'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Message from '../../Message'
 
 import * as PlayListService from '../../../service/playListService'
@@ -32,11 +35,11 @@ function List({
   setFocus,
   playlistId,
   selectedUserPlayList,
+  selectedMess,
+  selectedLoad,
 }) {
   const [showList, setShowList] = useState(false)
   const [showPlaylist, setShowPlaylist] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState(false)
 
   const isAuthenticated = UserServices.isLog()
 
@@ -48,22 +51,28 @@ function List({
     const response = await PlayListService.getSongPlayList(e)
     selectedUserPlayList(response)
   }
+
   const removeSong = async (a, b) => {
     const response = await PlayListService.removeSong(a, b)
   }
   const removeClick = () => {
     removeSong(playlistId, song._id)
+
     const timerId = setTimeout(() => {
       clearTimeout(timerId)
-      setLoading(true)
-      setMessage({
-        msgBody: 'Xóa danh sách phát thành công',
+      selectedLoad(true)
+      selectedMess({
+        msgBody: 'Xóa khỏi danh sách phát thành công',
         msgError: false,
       })
-      setShowList(false)
-      setLoading(false)
       fepi(playlistId)
-    }, 300)
+      setShowList(false)
+    }, 700)
+    const timerOff = setTimeout(() => {
+      clearTimeout(timerOff)
+
+      selectedLoad(false)
+    }, 2000)
   }
 
   const onShow = () => {
@@ -77,10 +86,17 @@ function List({
   const ListTag = userPlaylist.map((playList) => {
     const addClick = () => {
       addSong(playList._id, song._id)
+
+      selectedLoad(true)
+      selectedMess({
+        msgBody: 'Thêm vào danh sách phát thành công',
+        msgError: false,
+      })
       const timerId = setTimeout(() => {
         clearTimeout(timerId)
         setShowList(false)
-      }, 100)
+        selectedLoad(false)
+      }, 2500)
     }
 
     if (isAuthenticated === true) {
@@ -109,11 +125,17 @@ function List({
             <div className={cx('song-infor')}>
               <img
                 className={cx('song-img')}
-                src={song.links.images[1].url}
+                src={
+                  song.links === undefined ? song.img : song.links.images[1].url
+                }
                 alt={song.name}
               ></img>
               <div className={cx('content-infor')}>
                 <p className={cx('song-name')}>{song.name}</p>
+                <p className={cx('views')}>
+                  <FontAwesomeIcon icon={faHeadphones}></FontAwesomeIcon>
+                  {song.views}
+                </p>
               </div>
             </div>
             <ul className={cx('menu-body')}>
@@ -126,7 +148,11 @@ function List({
                   <p className={cx('title')}>Xóa khỏi playlist</p>
                 </li>
               ) : (
-                <li className={cx('menu-item')} onClick={onShow}>
+                <li
+                  className={cx('menu-item')}
+                  onClick={onShow}
+                  onClickOutside={() => setShowList(false)}
+                >
                   <FontAwesomeIcon
                     className={cx('menu-icon')}
                     icon={faCirclePlus}
@@ -152,15 +178,6 @@ function List({
           </div>
         </Wrapper>
       </div>
-      {loading ? (
-        <>
-          <div className={cx('mess')}>
-            <Message message={message} />
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
     </div>
   )
 
@@ -184,12 +201,17 @@ function List({
       visible={showList}
       placement="bottom-end"
       render={renderResult}
+      onClickOutside={() => {
+        setShowList(false)
+        setShowPlaylist(false)
+      }}
     >
       <div class={cx('hover-like-icon')}>
         <FontAwesomeIcon
           className={cx('icon-li')}
           icon={faEllipsis}
           onClick={oneClick}
+          onBlur={() => setShowList(false)}
         />
       </div>
     </Tippy>
@@ -209,4 +231,6 @@ export default connect(mapStateToProps, {
   changePlaylist,
   setFocus,
   selectedUserPlayList,
+  selectedMess,
+  selectedLoad,
 })(List)

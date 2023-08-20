@@ -38,12 +38,13 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
       Cookies.set('access_token', data.access_token, {
         path: '/',
       })
-      if (data.isAuthen === true) {
+      if (data.isSuccess === true) {
         setLoading(true)
-        Cookies.set('userId', data.userId, {
+
+        Cookies.set('userId', data.item.userId, {
           path: '/',
         })
-        Cookies.set('access_token', data.access_token, {
+        Cookies.set('access_token', data.item.access_token, {
           path: '/',
         })
 

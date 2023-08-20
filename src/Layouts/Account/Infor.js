@@ -19,12 +19,12 @@ function InforLayout() {
       const res = await UserService.isAuthen()
 
       setUser({
-        name: res.user.name,
-        email: res.user.email,
-        img: res.user.img,
-        gender: res.user.gender,
-        dateOfBirth: res.user.dateOfBirth,
-        nation: res.user.nation,
+        name: res.name,
+        email: res.email,
+        img: res.img,
+        gender: res.gender,
+        dateOfBirth: res.dateOfBirth,
+        nation: res.nation,
       })
     }
     fetchApi()
