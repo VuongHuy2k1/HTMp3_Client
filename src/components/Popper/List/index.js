@@ -83,7 +83,7 @@ function List({
     }
   }
 
-  const ListTag = userPlaylist.map((playList) => {
+  const ListTag = userPlaylist.map((playList, index) => {
     const addClick = () => {
       addSong(playList._id, song._id)
 
@@ -101,7 +101,7 @@ function List({
 
     if (isAuthenticated === true) {
       return (
-        <li className={cx('menu-list-item')} onClick={addClick}>
+        <li className={cx('menu-list-item')} onClick={addClick} key={index}>
           <FontAwesomeIcon icon={faBarsStaggered}></FontAwesomeIcon>
           <p> {playList.name}</p>
         </li>
@@ -148,11 +148,7 @@ function List({
                   <p className={cx('title')}>Xóa khỏi playlist</p>
                 </li>
               ) : (
-                <li
-                  className={cx('menu-item')}
-                  onClick={onShow}
-                  onClickOutside={() => setShowList(false)}
-                >
+                <li className={cx('menu-item')} onClick={onShow}>
                   <FontAwesomeIcon
                     className={cx('menu-icon')}
                     icon={faCirclePlus}
@@ -166,7 +162,11 @@ function List({
               )}
 
               <li className={cx('')}>
-                <a draggable="false" href={song.url} class={cx('menu-item')}>
+                <a
+                  draggable="false"
+                  href={song.url}
+                  className={cx('menu-item')}
+                >
                   <FontAwesomeIcon
                     className={cx('menu-icon')}
                     icon={faDownload}
@@ -206,7 +206,7 @@ function List({
         setShowPlaylist(false)
       }}
     >
-      <div class={cx('hover-like-icon')}>
+      <div className={cx('hover-like-icon')}>
         <FontAwesomeIcon
           className={cx('icon-li')}
           icon={faEllipsis}

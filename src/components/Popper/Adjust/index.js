@@ -141,6 +141,7 @@ function Adjust({}) {
     if (num === topic.id) {
       return (
         <li
+          key={index}
           className={cx('topic', 'active')}
           id={index}
           onClick={() => selectTopic(topic.id, topic.theme)}
@@ -153,6 +154,7 @@ function Adjust({}) {
     } else {
       return (
         <li
+          key={index}
           className={cx('topic')}
           id={index}
           onClick={() => selectTopic(topic.id, topic.theme)}

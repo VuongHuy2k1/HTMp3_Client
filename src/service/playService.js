@@ -15,7 +15,7 @@ export const saveAlbum = async (list) => {
       return { message: error.message, isSuccess: false }
     }
     console.log(error)
-    return { message: error.response.data, isSuccess: false }
+    return { message: error, isSuccess: false }
   }
 }
 export const getLastPlay = async () => {

@@ -4,9 +4,32 @@ import styles from './Listbar.module.scss'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { selectSongByAlbum } from '../../../actions'
+import * as albumsSrevice from '../../../service/albumsSevrice'
+import * as songsService from '../../../service/songsService'
 const cx = classNames.bind(styles)
 const Listbar = ({ selectedSongList, turn }) => {
+  const [album, setAlbum] = useState('')
+  const [songs, setSongs] = useState([])
   const [listSong, setListSong] = useState([])
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await albumsSrevice.getAllAlbum(0)
+      if (response) {
+        const name = response[0]?.name
+        setAlbum(name)
+      }
+    }
+    fetchApi()
+  }, [])
+  useEffect(() => {
+    if (album !== '' && album !== undefined) {
+      const Api = async () => {
+        const songsFromAlbum = await songsService.getSongsFromAlbum(album)
+        setSongs(songsFromAlbum)
+      }
+      Api()
+    }
+  }, [album])
   useEffect(() => {
     setListSong(selectedSongList)
   }, [selectedSongList])

@@ -7,7 +7,7 @@ function SkeletonSong({ num }) {
   return Array(num)
     .fill(0)
     .map((item, index) => (
-      <div className={cx('warrper')}>
+      <div className={cx('warrper')} key={index}>
         <div className={cx('song-item')}>
           <Skeleton width={50} height={50} />
 

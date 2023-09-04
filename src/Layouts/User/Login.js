@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react'
+import { useState } from 'react'
 import React from 'react'
 import { login } from '../../service/userService'
-
+import * as LastPlay from '../../service/playService'
 import { selectSong, selectSongByAlbum } from '../../actions'
 import classNames from 'classnames/bind'
 import styles from './User.module.scss'
@@ -58,9 +58,18 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
           window.location.reload()
         }, 2001)
         setMessage({ msgBody: 'Đăng nhập thành công', msgError: false })
+        const getMusic = async () => {
+          const response = await LastPlay.getLastPlay()
+
+          if (response !== undefined) {
+            selectSongByAlbum(response.songList)
+            selectSong(response.song)
+          }
+        }
+        getMusic()
+
         const timerLoading = setTimeout(() => {
           clearTimeout(timerLoading)
-
           setLoading(false)
         }, 3000)
       } else {
@@ -71,25 +80,12 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
       }
     })
   }
-  // //lOGIN GOOGLE
-
-  // const clientId =
-  //   '440209034208-85452ve5cm4hvmj27ph3seo736h9ngqg.apps.googleusercontent.com'
-  // const responseGoogle = (response) => {
-  //   console.log(response)
-  // }
-  // const onSuccess = (res) => {
-  //   console.log('[Login Success] currentUser:', res.profileObj)
-  // }
-  // const onFail = (res) => {
-  //   console.log('[Login failed] res:', res)
-  // }
 
   return (
-    <div class={cx('div')}>
+    <div className={cx('div')}>
       {loading ? (
         <div className={cx('loading-page')}>
-          <ScaleLoader loading={loading} color={'#1ed760'} size={300} />
+          <ScaleLoader loading={loading} color={'#8D22C3'} size={300} />
         </div>
       ) : (
         <div className={cx('wrapper')}>
@@ -107,11 +103,12 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
               <div className={cx('main-form')}>
                 <div className={cx('group-main')}>
                   <div className={cx('title-group')}>
-                    <label for="" className={cx('label-title')}>
+                    <label htmlFor="name" className={cx('label-title')}>
                       <span>Tên đăng nhập </span>
                     </label>
                   </div>
                   <input
+                    id="name"
                     className={cx('input-value')}
                     type="text"
                     placeholder="Tên đăng nhập"
@@ -124,11 +121,12 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
 
                 <div className={cx('group-main')}>
                   <div className={cx('title-group')}>
-                    <label for="" className={cx('label-title')}>
+                    <label htmlFor="pass" className={cx('label-title')}>
                       <span>Nhập mật khẩu</span>
                     </label>
                   </div>
                   <input
+                    id="pass"
                     className={cx('input-value')}
                     type="password"
                     name="password"
@@ -139,12 +137,12 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                 </div>
               </div>
               <div className={cx('btn-form')}>
-                <button type="submit" class={cx('btn-submit')}>
-                  <div class={cx('btn-submit-title')}>Đăng nhập</div>
+                <button type="submit" className={cx('btn-submit')}>
+                  <div className={cx('btn-submit-title')}>Đăng nhập</div>
                 </button>
                 <span>
                   Bạn chưa có tài khoản
-                  <Link to="/user/register" class={cx('btn-remove')}>
+                  <Link to="/user/register" className={cx('btn-remove')}>
                     Đăng ký
                   </Link>
                 </span>

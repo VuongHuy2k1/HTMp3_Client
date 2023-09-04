@@ -13,13 +13,13 @@
   grid-template-columns: 25% 75%;
 //  height: 100%;
   min-height: 100vh;
-  padding: 0px 25%;
+  padding: 0rem 25%;
  
 
 }
 .header {
   background-color: black;
-  height: 80px;
+  height: 5rem;
 }
 .slider {
   grid-area: right;
@@ -35,5 +35,5 @@
 }
 .footer {
   background-color: black;
-  height: 120px;
+  height: 11.25rem;
 }

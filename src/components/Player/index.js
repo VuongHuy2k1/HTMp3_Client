@@ -2,7 +2,6 @@ import React from 'react'
 
 import { useEffect, useRef, useState } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import TimeSlider from 'react-input-slider'
 
 import {
   setPlayerState,
@@ -36,7 +35,7 @@ const Player = ({
   const dispatch = useDispatch()
   const [shuffled, setShuffled] = useState(false)
   const [repeat, setRepeat] = useState(false)
-  const [x, setX] = useState(0)
+
   const [turn, setTurn] = useState(false)
 
   const getBackgroundSize = () => {
@@ -44,42 +43,33 @@ const Player = ({
       backgroundSize: `${(currentLocation * 100) / duration}% 100%`,
     }
   }
-  const getBackgroundVolum = () => {
-    return {
-      backgroundSize: `${(x * 100) / 100}% 100%`,
-    }
-  }
 
   const audioRef = useRef()
-  let clicked = false
+
   const songplay = selectList.findIndex((e) => e._id === selectedSongPlay._id)
+  useEffect(() => {
+    // Đợi cho trang web được tải xong
 
-  const spaceDownFunc = (event) => {
-    if (event.keyCode === 32 && !clicked) {
-      clicked = true
-      document.getElementsByClassName('main-control')[0].click()
+    if (playerState === 1) {
+      dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
+      audioRef.current.play()
+      window.history.pushState({}, '', '')
+    } else if (playerState === 0) {
+      dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
+      audioRef.current.pause()
     }
-  }
-  const spaceUpFunc = (event) => {
-    if (event.keyCode === 32 && clicked) {
-      clicked = false
+  }, [dispatch, songplay])
+
+  useEffect(() => {
+    // Đợi cho trang web được tải xong
+    window.onload = () => {
+      dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
+      audioRef.current.pause()
     }
-  }
-  useEffect(() => {
-    dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
-    audioRef.current.play()
-
-    document.getElementById('focus-link').click()
-    window.history.pushState({}, '', '')
-  }, [songplay, dispatch])
-  useEffect(() => {
-    dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
-    audioRef.current.pause()
-  }, [dispatch])
-
-  useEffect(() => {
-    document.addEventListener('keydown', spaceDownFunc)
-    document.addEventListener('keyup', spaceUpFunc)
+    // Xóa sự kiện onload khi component bị unmount
+    return () => {
+      window.onload = null
+    }
   }, [])
 
   useEffect(() => {
@@ -125,9 +115,9 @@ const Player = ({
   }
   const icon = () => {
     if (!playerState) {
-      return <FontAwesomeIcon icon={faPlayCircle} size={16} />
+      return <FontAwesomeIcon icon={faPlayCircle} />
     } else {
-      return <FontAwesomeIcon icon={faPauseCircle} size={16} />
+      return <FontAwesomeIcon icon={faPauseCircle} />
     }
   }
 
@@ -150,7 +140,7 @@ const Player = ({
         const timerId = setTimeout(() => {
           clearTimeout(timerId)
           selectSongById(selectList[songplay])
-        }, 100)
+        }, 500)
       } else {
         selectSongById(selectList[songplay + 1])
       }
@@ -187,7 +177,7 @@ const Player = ({
       return <div>00:00</div>
     }
   }
-  const classTurn = turn === false ? 'btn-turn' : 'btn-turn-active'
+
   const pressTurn = () => {
     if (turn === false) {
       setTurn(true)
@@ -281,11 +271,11 @@ const Player = ({
               <FontAwesomeIcon icon={faRepeat} className={cx('reicon')} />
             </svg>
           </div>
-          <Progress />
+
           <audio
             id="main-track"
             src={songUrl()}
-            preload
+            preload="auto"
             loop={repeat}
             controls
             onEnded={nextSong}
@@ -296,10 +286,17 @@ const Player = ({
               })
 
               setInterval(() => {
-                dispatch({
-                  type: 'SET_CURRENT_LOCATION',
-                  payload: audioRef.current.currentTime,
-                })
+                if (audioRef.current) {
+                  dispatch({
+                    type: 'SET_CURRENT_LOCATION',
+                    payload: audioRef.current.currentTime,
+                  })
+                } else {
+                  dispatch({
+                    type: 'SET_CURRENT_LOCATION',
+                    payload: 0,
+                  })
+                }
               }, 1000)
             }}
             ref={audioRef}
@@ -324,7 +321,11 @@ const Player = ({
         </div>
       </div>
       <div className={cx('player-right')}>
-        <button className={cx(classTurn)} onClick={pressTurn}>
+        <Progress />
+        <button
+          className={cx(turn === false ? 'btn-turn' : 'btn-turn-active')}
+          onClick={pressTurn}
+        >
           <FontAwesomeIcon
             className={cx('icon-turn')}
             icon={faList}

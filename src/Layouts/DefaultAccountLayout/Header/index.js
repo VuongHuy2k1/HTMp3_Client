@@ -8,20 +8,20 @@ import { useEffect, useState } from 'react'
 const cx = classNames.bind(styles)
 
 function UserHeader() {
-  const url = 'http://localhost:8989/img/'
-  const [img, setImg] = useState()
-  useEffect(() => {
-    const fetchApi = async () => {
-      const res = await UserServices.isAuthen()
+  // const url = 'http://localhost:8989/img/'
+  // const [img, setImg] = useState()
+  // useEffect(() => {
+  //   const fetchApi = async () => {
+  //     const res = await UserServices.isAuthen()
 
-      setImg(res.user.img)
-    }
-    fetchApi()
-  }, [])
+  //     setImg(res.user.img)
+  //   }
+  //   fetchApi()
+  // }, [])
   return (
     <header className={cx('container')}>
       <div className={cx('logo')}>
-        <Link to="/">
+        <Link to="#">
           <img className={cx('muzic-logo')} src={images.logo} alt="miuzzic" />
         </Link>
       </div>

@@ -9,7 +9,7 @@ import * as UserServices from '../../../service/userService'
 import { setStatus } from '../../../actions'
 import styles from './Item.module.scss'
 import Skeleton from 'react-loading-skeleton'
-import { faEllipsis, faPlay } from '@fortawesome/free-solid-svg-icons'
+
 import List from '../../../components/Popper/List'
 const cx = classNames.bind(styles)
 
@@ -55,7 +55,7 @@ const Item = ({
               className={cx('icon-img')}
             />
             <div className={cx('flex-img')}>
-              <div class={cx('img-play')}>
+              <div className={cx('img-play')}>
                 {value === true ? (
                   <img
                     alt=""
@@ -82,7 +82,7 @@ const Item = ({
               className={cx('icon-img')}
             />
             <div className={cx('flex-img')}>
-              <form class={cx('hover-play')} onClick={handleClick}>
+              <form className={cx('hover-play')} onClick={handleClick}>
                 <FontAwesomeIcon
                   icon={faPlay}
                   className={cx('icon-play')}

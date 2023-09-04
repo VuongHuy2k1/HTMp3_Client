@@ -97,7 +97,7 @@ const FlexComponet = ({
     e.preventDefault()
 
     const formdata = new FormData()
-    formdata.append('image', playList.image)
+
     formdata.append('name', playList.name)
     PlayListService.changePlayList(playlistId._id, formdata)
 
@@ -182,7 +182,10 @@ const FlexComponet = ({
                     <div className={cx('group-main')}>
                       <div className={cx('group-main')}>
                         <div className={cx('title-group')}>
-                          <label for="" className={cx('label-title-list')}>
+                          <label
+                            htmlFor="name"
+                            className={cx('label-title-list')}
+                          >
                             <span>Tên danh sách </span>
                           </label>
                         </div>
@@ -194,13 +197,16 @@ const FlexComponet = ({
                           autoFocus={true}
                           value={playList.name}
                           onChange={onChange}
+                          id="name"
                         ></input>
                       </div>
                     </div>
 
                     <div className={cx('btn-form')}>
-                      <button type="submit" class={cx('btn-submit')}>
-                        <div class={cx('btn-submit-title')}>Lưu danh sách</div>
+                      <button type="submit" className={cx('btn-submit')}>
+                        <div className={cx('btn-submit-title')}>
+                          Lưu danh sách
+                        </div>
                       </button>
                     </div>
                   </form>
@@ -234,17 +240,20 @@ const FlexComponet = ({
                     <>
                       {playlistId.img === undefined ? (
                         <>
-                          <img src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"></img>
+                          <img
+                            alt=""
+                            src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"
+                          ></img>
                         </>
                       ) : (
                         <>
-                          <img src={url + playlistId.img}></img>
+                          <img alt="" src={url + playlistId.img}></img>
                         </>
                       )}
                     </>
                   ) : (
                     <>
-                      <img src={playList.image.preview}></img>
+                      <img alt="" src={playList.image.preview}></img>
                     </>
                   )}
                 </div>
@@ -259,12 +268,16 @@ const FlexComponet = ({
                     <div className={cx('group-main')}>
                       <div className={cx('group-main')}>
                         <div className={cx('title-group')}>
-                          <label for="" className={cx('label-title-list')}>
+                          <label
+                            htmlFor="name-list"
+                            className={cx('label-title-list')}
+                          >
                             <span>Tên danh sách </span>
                           </label>
                         </div>
                         <input
                           className={cx('input-value')}
+                          id="name-list"
                           type="text"
                           name="name"
                           placeholder={playlistId.name}
@@ -278,13 +291,14 @@ const FlexComponet = ({
                       </div>
                     </div>
 
-                    <div className={cx('group-main')}>
+                    {/* <div className={cx('group-main')}>
                       <div className={cx('title-group')}>
-                        <label for="" className={cx('label-title-list')}>
+                        <label htmlFor="img" className={cx('label-title-list')}>
                           <span>Chọn ảnh</span>
                         </label>
                       </div>
                       <input
+                        id="img"
                         className={cx('input-value')}
                         accept="image/*"
                         type="file"
@@ -292,10 +306,10 @@ const FlexComponet = ({
                         onChange={onChangeImage}
                         required
                       ></input>
-                    </div>
+                    </div> */}
                     <div className={cx('btn-form')}>
-                      <button type="submit" class={cx('btn-submit')}>
-                        <div class={cx('btn-submit-title')}>Thay đổi</div>
+                      <button type="submit" className={cx('btn-submit')}>
+                        <div className={cx('btn-submit-title')}>Thay đổi</div>
                       </button>
                     </div>
                   </form>

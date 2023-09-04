@@ -13,7 +13,7 @@
 }
 .content {
   grid-area: top-bar;
-  height: 15vh;
+  height: 20vh;
   display: flex;
   justify-content: center;
 }
@@ -25,16 +25,19 @@
 }
 .logo {
   display: flex;
-  padding-bottom: 24px;
-  padding-top: 16px;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
   flex-direction: row;
   flex-shrink: 0;
   justify-content: space-between;
 }
 
 .muzic-logo {
-  height: 40px;
-  max-width: 131px;
+  height: 13.5rem;
+  margin-top: -3rem;
+  max-width: 11.938rem;
   width: 100%;
-  color: black;
+ 
+  zoom: 1.2;
+
 }

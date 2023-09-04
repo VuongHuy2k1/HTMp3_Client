@@ -1,6 +1,6 @@
 .main-view-container {
   padding: var(--padding-main-view);
-  // padding-bottom: 24px;
+  // padding-bottom: 1.5rem;
   width: 100%;
   height: fit-content;
 
@@ -30,7 +30,7 @@
 }
 .view-left {
   grid-area: left;
-  padding-bottom: 24px;
+  padding-bottom: 1.5rem;
   text-align: -webkit-center;
   padding-top: inherit;
 }
@@ -39,7 +39,7 @@
   grid-area: right;
 
   height: 90vh;
-  padding-bottom: 120px;
+  padding-bottom: 11.25rem;
 }
 .list-item {
   grid-area: list;
@@ -50,7 +50,7 @@
   overflow-y: scroll;
 }
 .scroll::-webkit-scrollbar {
-  width: 0px;
+  width: 0rem;
 }
 
 /* Track */
@@ -61,7 +61,7 @@
 /* Handle */
 .scroll::-webkit-scrollbar-thumb {
   background: rgb(148, 163, 184);
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 /* Handle on hover */

@@ -8,7 +8,7 @@
 }
 .title {
   box-sizing: border-box;
-  margin-block: 0px;
+  margin-block: 0rem;
   font-size: 1.5rem;
   font-weight: 700;
   font-family: var(
@@ -23,14 +23,14 @@
     var(--fallback-fonts, sans-serif)
   );
   color: var(--color-text-5);
-  padding: 16px 16px 16px 0px;
+  padding: 1rem 1rem 1rem 0rem;
 }
 .list-item {
-  padding: 24px 32px;
+  padding: 1.5rem 2rem;
 }
 .no {
   font-size: 1.75rem;
   text-align: center;
   color: white;
-  padding: 60px;
+  padding: 3.75rem;
 }

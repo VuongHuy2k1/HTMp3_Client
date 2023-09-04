@@ -31,7 +31,7 @@ function SearchAllLayout() {
 
     const fetchApi = async () => {
       const result = await searchApi.search(debouncedValue)
-      console.log(result)
+
       setSearchResultSong(result.songs.slice(0, 5))
       setSearchResultAlbum(result.albums.slice(0, 5))
       setSearchResultSinger(result.singers.slice(0, 5))
@@ -47,15 +47,25 @@ function SearchAllLayout() {
       ) : (
         <>
           <div className={cx('container-song')}>
-            <h3 className={cx('title')}>Bài hát</h3>
-            <div className={cx('content')}>
+            <div className={cx('content-song')}>
+              <h3 className={cx('title')}>Bài hát</h3>
 
+              {/* <h3
+                className={cx('title-right')}
+                onClick={() =>
+                  parentCallback({ num: 2, layout: <SearchSongsLayout /> })
+                }
+              >
+                XEM TẤT CẢ
+              </h3> */}
+            </div>
+
+            <div className={cx('content')}>
               <SongList
                 songs={searchResultSong}
                 typeSave="album"
                 loading={loading}
               />
-
             </div>
           </div>
         </>
@@ -66,7 +76,11 @@ function SearchAllLayout() {
       ) : (
         <>
           <section className={cx('list-item')}>
-            <ListItem albums={searchResultAlbum} typee={'Album'} />
+            <ListItem
+              albums={searchResultAlbum}
+              typee={'Album'}
+              search={true}
+            />
           </section>
         </>
       )}
@@ -74,13 +88,13 @@ function SearchAllLayout() {
         <></>
       ) : (
         <>
-          <section className={cx('list-item')}>
+          {/* <section className={cx('list-item')}>
             <ListSinger
               singers={searchResultSinger}
               content="Nghệ sĩ"
               sort="none"
             />
-          </section>
+          </section> */}
         </>
       )}
     </div>

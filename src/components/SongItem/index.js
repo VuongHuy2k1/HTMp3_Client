@@ -11,12 +11,13 @@ import {
   addSong,
   selectedUserPlayList,
   selectedTypeSave,
+  setStatus,
 } from '../../actions'
 import classNames from 'classnames/bind'
 import styles from './SongItem.module.scss'
 import List from '../Popper/List'
 import * as PlayService from '../../service/playService'
-
+import * as UserServices from '../../service/userService'
 import { faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
 const cx = classNames.bind(styles)
 
@@ -34,9 +35,10 @@ const SongItem = ({
   charts,
   top,
   mini,
+  setStatus,
 }) => {
   const [songsList, setSongsList] = useState([])
-
+  const value = UserServices.isLog()
   useEffect(() => {
     const fetchApi = async () => {
       const songsFromAlbum = await songsService.getSongsFromAlbum(song.album)
@@ -115,8 +117,10 @@ const SongItem = ({
             className={cx('icon-img')}
           />
           <div className={cx('flex-img')}>
-            {selectedSongPlay._id === song._id && playerState ? (
-              <div class={cx('img-play')}>
+            {selectedSongPlay._id === song._id &&
+            playerState &&
+            value === true ? (
+              <div className={cx('img-play')}>
                 <img
                   alt=""
                   src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
@@ -124,7 +128,7 @@ const SongItem = ({
                 />
               </div>
             ) : (
-              <form class={cx('hover-play')} onClick={handleClick}>
+              <form className={cx('hover-play')} onClick={handleClick}>
                 <FontAwesomeIcon
                   icon={faPlay}
                   className={cx('icon-play')}
@@ -172,6 +176,11 @@ const SongItem = ({
       <div
         id={cx(now_selected)}
         className={mini ? cx('song-item-mini') : cx('song-item')}
+        onClick={() => {
+          if (value !== true) {
+            setStatus(true)
+          }
+        }}
       >
         <div className={cx('music-icon')}>{iconStart()}</div>
 
@@ -179,7 +188,7 @@ const SongItem = ({
         <div className={cx('name')}>{song.name}</div>
         {mini ? <></> : <div className={cx('author')}>{song.singer}</div>}
 
-        <div class={cx('icon-dow')}>
+        <div className={cx('icon-dow')}>
           <List song={song} type={type} playlistId={playlistId} />
         </div>
       </div>
@@ -202,4 +211,5 @@ export default connect(mapStateToProps, {
   selectedTypeSave,
   addSong,
   selectedUserPlayList,
+  setStatus,
 })(SongItem)

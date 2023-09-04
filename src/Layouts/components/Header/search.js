@@ -37,8 +37,8 @@ function Search() {
     const fetchApi = async () => {
       const result = await searchApi.search(debouncedValue)
 
-      setSearchResultSong(result.songs)
-      setSearchResultAlbum(result.albums)
+      setSearchResultSong(result.songs.slice(0, 4))
+      setSearchResultAlbum(result.albums.slice(0, 4))
     }
 
     fetchApi()
@@ -68,15 +68,15 @@ function Search() {
             <div className={cx('search-wapper', 'scroll')}>
               <div className={cx('search-titel-top')}>
                 <h4 className={cx('search-titel')}> Từ khóa liên quan </h4>
-                {searchResultSong.map((resultt) => (
-                  <SearchSong songs={resultt} />
+                {searchResultSong.map((resultt, index) => (
+                  <SearchSong songs={resultt} key={index} />
                 ))}
               </div>
               <div className={cx('search-titel-bottom')}>
                 <h4 className={cx('search-titel')}> Gợi ý kết quả </h4>
 
-                {searchResultAlbum.map((result) => (
-                  <SearchAlbum albums={result} />
+                {searchResultAlbum.map((result, index) => (
+                  <SearchAlbum albums={result} key={index} />
                 ))}
               </div>
             </div>

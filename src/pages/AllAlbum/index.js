@@ -24,7 +24,6 @@ function AllAlbumLayout() {
 
       setAlbumsList(response)
     }
-
     fetchApi()
   }, [])
 
@@ -33,7 +32,12 @@ function AllAlbumLayout() {
       <div className={cx('top-padding')}></div>
       <div className={cx('content')}>
         <section className={cx('list-item')}>
-          <ListItem albums={albumsList} typee={type} sort="sort-row" />
+          <ListItem
+            albums={albumsList}
+            typee={type}
+            sort="sort-row"
+            search={true}
+          />
         </section>
       </div>
     </div>

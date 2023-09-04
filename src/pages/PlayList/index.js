@@ -24,7 +24,7 @@ function PlayListLayout({
   const { playlist_id } = useParams()
   const [loading, setLoading] = useState(false)
   const debouncedValue = useDebounce(playlist_id, 30)
-  console.log(songsList)
+
   useEffect(() => {
     setLoading(true)
     if (!debouncedValue.trim()) {
@@ -37,7 +37,7 @@ function PlayListLayout({
       getPlayListId(debouncedValue)
 
       getPlayListId(debouncedValue)
-      console.log(1)
+
       selectedUserPlayList(response)
       setLoading(false)
     }

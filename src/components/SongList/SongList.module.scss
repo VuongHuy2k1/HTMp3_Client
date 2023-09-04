@@ -2,14 +2,14 @@
   grid-column: 5/13;
   // grid-row: 2/12;
   // overflow-x: auto;
-  padding-left: 2px;
+  padding-left: 0.125rem;
   min-height: 40vh;
   height: fit-content;
   max-height: 120%;
 }
 
 .warrper::-webkit-scrollbar {
-  width: 0px;
+  width: 0rem;
 }
 
 /* Track */
@@ -20,7 +20,7 @@
 /* Handle */
 .warrper::-webkit-scrollbar-thumb {
   background: rgb(148, 163, 184);
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 /* Handle on hover */
@@ -28,15 +28,15 @@
   background: #ccc;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5rem) {
   .warrper {
     grid-column: 1/13;
   }
 }
 
 .warrper.header:hover {
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
   background-color: initial;
 }
 

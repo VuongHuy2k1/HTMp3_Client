@@ -7,8 +7,8 @@
 
 .logo {
   display: flex;
-  padding-bottom: 24px;
-  padding-top: 16px;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
   flex-direction: row;
   flex-shrink: 0;
   justify-content: space-between;
@@ -18,12 +18,13 @@
   /* border: 0; */
   -ms-flex: 1;
   flex: 1;
-  margin-bottom: 18px;
-  padding: 0 24px;
+  margin-bottom: 1.125rem;
+  padding: 0 1.5rem;
 }
 .muzic-logo {
-  height: 40px;
-  max-width: 131px;
+  height: 10rem;
+  margin-top: -3.5rem;
+  max-width: 11.938rem;
   width: 100%;
 }
 .wrapper {
@@ -31,10 +32,10 @@
   justify-content: space-between;
 }
 .user-avatar {
-  height: 46px;
-  width: 46px;
-  border-radius: 90px;
-  margin-top: 16px;
+  height: 2.875rem;
+  width: 2.875rem;
+  border-radius: 5.625rem;
+  margin-top: 1rem;
 }
 .account {
   align-items: center;

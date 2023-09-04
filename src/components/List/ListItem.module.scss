@@ -1,14 +1,14 @@
 :root {
-  --column-width: 181px;
+  --column-width: 180.063rem;
   --column-count: 5;
-  --grid-gap: 24px;
-  --padding-card: 10px;
+  --grid-gap: 1.5rem;
+  --padding-card: 0.625rem;
 }
 .content {
-  // padding:0px 27px  ;
+  
 }
 .warrper {
-  border-radius: 4px;
+  border-radius: 0.25rem;
   -ms-flex: 1;
   flex: 1;
   isolation: isolate;
@@ -22,8 +22,8 @@
 }
 .card-type {
   white-space: nowrap;
-  max-height: 40px;
-  padding-bottom: 16px;
+  max-height: 2.5rem;
+  padding-bottom: 1rem;
   overflow-y: clip;
 }
 .card-top {
@@ -33,14 +33,14 @@ overflow: hidden;
 }
 .img-card {
   --card-image-border-radius: clamp(
-    4px,
-    (var(--column-width, 0px) - 32px) * 0.025,
-    8px
+    0.25rem,
+    (var(--column-width, 0rem) - 2rem) * 0.025,
+    0.5rem
   );
   border-radius: var(--card-image-border-radius);
   width: 100%;
 
-  // box-shadow: 0 8px 32px rgb(0 0 0 / 100%);
+  // box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 100%);
   padding-bottom: 100%;
   position: relative;
 }
@@ -51,9 +51,9 @@ overflow: hidden;
   position: absolute;
   top: 0;
   --card-image-border-radius: clamp(
-    4px,
-    (var(--column-width, 0px) - 32px) * 0.025,
-    8px
+    0.25rem,
+    (var(--column-width, 0rem) - 2rem) * 0.025,
+    0.5rem
   );
   border-radius: var(--card-image-border-radius);
   width: 100%;
@@ -70,8 +70,8 @@ overflow: hidden;
   transform: scale(1.1) translateZ(0);
 }
 .card-bottom {
-  min-height: 62px;
-  padding: 12px 10px;
+  min-height: 3.875rem;
+  padding: 0.75rem 0.625rem;
 }
 .card-name {
   display: inline-block;
@@ -81,7 +81,7 @@ overflow: hidden;
 .name {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  margin-block: 0px;
+  margin-block: 0rem;
   font-size: 1rem;
   font-weight: 700;
   font-family: var(
@@ -94,7 +94,7 @@ overflow: hidden;
     CircularSp-Deva,
     var(--fallback-fonts, sans-serif)
   );
-  padding-block-end: 4px;
+  padding-block-end: 0.25rem;
   color: var(--color-text-5);
   &:hover {
    color:var(--color-3);
@@ -108,7 +108,7 @@ overflow: hidden;
 .type {
   box-sizing: border-box;
 
-  margin-block: 0px;
+  margin-block: 0rem;
   font-size: 0.8125rem;
   font-weight: 400;
   font-family: var(
@@ -138,8 +138,8 @@ overflow: hidden;
   position: absolute;
   visibility: hidden;
   right: 0;
-  bottom: 15px;
-  padding: 5px;
+  bottom: 0.938rem;
+  padding: 0.313rem;
 
   transition: 0.6s;
   opacity: 0;
@@ -165,8 +165,8 @@ overflow: hidden;
     var(--fallback-fonts, sans-serif)
   );
   background-color: transparent;
-  border: 0px;
-  border-radius: 500px;
+  border: 0rem;
+  border-radius: 20rem;
   display: inline-block;
   position: relative;
   text-align: center;
@@ -178,9 +178,9 @@ overflow: hidden;
     transform;
   user-select: none;
   vertical-align: middle;
-  transform: translate3d(0px, 0px, 0px);
-  padding: 0px;
-  min-inline-size: 0px;
+  transform: translate3d(0rem, 0rem, 0rem);
+  padding: 0rem;
+  min-inline-size: 0rem;
   align-self: center;
 }
 .player-btn-span {
@@ -191,15 +191,15 @@ overflow: hidden;
   background-color: #1ed760;
   color: var(--text-base, #000000);
   display: flex;
-  border-radius: 500px;
+  border-radius: 20rem;
   font-size: inherit;
 
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  inline-size: 48px;
-  block-size: 48px;
+  inline-size: 3rem;
+  block-size: 3rem;
 }
 .player-btn-span-a {
   display: flex;
@@ -210,11 +210,11 @@ overflow: hidden;
 }
 //ListItem
 .warrper {
-  padding-bottom: 12px;
+  padding-bottom: 0.75rem;
 }
 .top-list {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   justify-content: space-between;
   justify-items: center;
 }
@@ -225,7 +225,7 @@ overflow: hidden;
 .titel-list {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  margin-block: 0px;
+  margin-block: 0rem;
   font-size: 1.5rem;
   font-weight: 700;
   font-family: var(
@@ -247,7 +247,7 @@ overflow: hidden;
 .more-list {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  margin-block: 0px;
+  margin-block: 0rem;
   font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -281,7 +281,7 @@ overflow: hidden;
   overflow: hidden;
 }
 .img:hover .img-card form.hover-player {
-  right: 10px;
+  right: 0.625rem;
   visibility: visible;
   opacity: 1;
 
@@ -291,6 +291,6 @@ overflow: hidden;
 }
 .sort-row {
   grid-auto-rows: auto;
-  padding-bottom: 100px;
-  border-bottom: 2px solid #333;
+  padding-bottom: 6.25rem;
+  border-bottom: 0.125rem solid #333;
 }

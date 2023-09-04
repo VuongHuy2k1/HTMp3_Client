@@ -1,6 +1,6 @@
 .header-bar {
   background-color: var(--theme-2);
-  height: 64px;
+  height: 4rem;
   color: var(--color-text);
   text-align: center;
   font-weight: 500;
@@ -14,26 +14,26 @@
 .titel {
   font-size: 1.5rem;
 
-  padding: 18px;
+  padding: 1.125rem;
 }
 .backgroud {
   background-color: var(--theme-2);
 }
 .list-bar {
-  padding-top: 80px;
-  padding-left: 16px;
-  padding-bottom: 100px;
+  padding-top: 5rem;
+  padding-left: 1rem;
+  padding-bottom: 6.25rem;
   position: inherit;
 
 }
 .warrper {
   overflow-y: scroll;
-  padding-left: 2px;
+  padding-left: 0.125rem;
   height: 100vh;
 }
 
 .warrper::-webkit-scrollbar {
-  width: 0px;
+  width: 0rem;
 }
 
 /* Track */
@@ -44,7 +44,7 @@
 /* Handle */
 .warrper::-webkit-scrollbar-thumb {
   background: rgb(148, 163, 184);
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 /* Handle on hover */
@@ -52,15 +52,15 @@
   background: #ccc;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5rem) {
   .warrper {
     grid-column: 1/13;
   }
 }
 
 .warrper.header:hover {
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
   background-color: initial;
 }
 

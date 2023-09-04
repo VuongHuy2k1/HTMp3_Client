@@ -3,17 +3,15 @@ import styles from './ListSinger.module.scss'
 import { selectAlbum } from '../../actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import { Link, useParams } from 'react-router-dom'
-import { useState } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { connect } from 'react-redux'
 // import { selectAlbum } from "D:/WorkSpace/NodeWordSpace/MusicWeb/client/src/actions";
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 const cx = classNames.bind(styles)
 
 const Item = ({ singer, selectAlbum }) => {
-  const [, setHovered] = useState(false)
-  const dispatch = useDispatch()
   return (
     <div className={cx('item')}>
       <div className={cx('warrper')}>
@@ -25,11 +23,11 @@ const Item = ({ singer, selectAlbum }) => {
                 src={singer.img}
                 alt=""
               ></img>
-              <form class={cx('hover-player')}>
-                <div class={cx('hover-player-a')}>
-                  <button class={cx('player-btn')}>
-                    <span class={cx('player-btn-span')}>
-                      <span class={cx('player-btn-span-a')}>
+              <form className={cx('hover-player')}>
+                <div className={cx('hover-player-a')}>
+                  <button className={cx('player-btn')}>
+                    <span className={cx('player-btn-span')}>
+                      <span className={cx('player-btn-span-a')}>
                         <FontAwesomeIcon
                           className={cx('icon-li')}
                           icon={faPlay}

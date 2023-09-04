@@ -91,11 +91,12 @@ function EditLayout() {
           <div className={cx('main-form')}>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="name" className={cx('label-title')}>
                   <span>Tên</span>
                 </label>
               </div>
               <input
+                id="name"
                 className={cx('input-value')}
                 type="text"
                 name="name"
@@ -105,11 +106,12 @@ function EditLayout() {
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="email" className={cx('label-title')}>
                   <span>Email</span>
                 </label>
               </div>
               <input
+                id="email"
                 className={cx('input-value')}
                 type="email"
                 name="email"
@@ -119,13 +121,14 @@ function EditLayout() {
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')} type="text">
+                <label htmlFor="sex" className={cx('label-title')} type="text">
                   <span>Giới tính</span>
                 </label>
               </div>
-              <div class={cx('select-sex')}>
+              <div className={cx('select-sex')}>
                 <select
-                  class={cx('select-opiton')}
+                  id="sex"
+                  className={cx('select-opiton')}
                   name="gender"
                   value={user.gender}
                   onChange={onChange}
@@ -142,7 +145,7 @@ function EditLayout() {
                   height="16"
                   width="16"
                   aria-hidden="true"
-                  class="Svg-sc-1bi12j5-0 EQkJl SelectArrow-sc-12qvh0d-0 igsFfm"
+                  className="Svg-sc-1bi12j5-0 EQkJl SelectArrow-sc-12qvh0d-0 igsFfm"
                   viewBox="0 0 16 16"
                 >
                   <path d="M.47 4.97a.75.75 0 011.06 0L8 11.44l6.47-6.47a.75.75 0 111.06 1.06L8 13.56.47 6.03a.75.75 0 010-1.06z"></path>
@@ -151,13 +154,13 @@ function EditLayout() {
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')} type="text">
+                <label htmlFor="bith" className={cx('label-title')} type="text">
                   <span>Ngày sinh</span>
                 </label>
               </div>
               <div className={cx('labels-inputs')}>
                 <div className={cx('pad-rig')}>
-                  <label for="dob-date" class={cx('lable-1')}>
+                  <label htmlFor="dob-date" className={cx('lable-1')}>
                     Date
                   </label>
                   <input
@@ -168,18 +171,19 @@ function EditLayout() {
                     name="dateOfBirth"
                     value={user.dateOfBirth}
                     onChange={onChange}
-                    class={cx('input-birthday')}
+                    className={cx('input-birthday')}
                   ></input>
                 </div>
               </div>
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="country" className={cx('label-title')}>
                   <span>Quốc gia</span>
                 </label>
               </div>
               <input
+                id="country"
                 className={cx('input-value')}
                 type="text"
                 name="nation"
@@ -189,11 +193,12 @@ function EditLayout() {
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="img" className={cx('label-title')}>
                   <span>Đổi ảnh đại diện</span>
                 </label>
               </div>
               <input
+                id="img"
                 className={cx('input-value')}
                 type="file"
                 name="image"
@@ -203,11 +208,11 @@ function EditLayout() {
             </div>
           </div>
           <div className={cx('btn-form')}>
-            <Link to="/account/infor" class={cx('btn-remove')}>
+            <Link to="/account/infor" className={cx('btn-remove')}>
               Hủy
             </Link>
-            <button type="submit" class={cx('btn-submit')}>
-              <div class={cx('btn-submit-title')}>Lưu hồ sơ</div>
+            <button type="submit" className={cx('btn-submit')}>
+              <div className={cx('btn-submit-title')}>Lưu hồ sơ</div>
             </button>
           </div>
         </form>

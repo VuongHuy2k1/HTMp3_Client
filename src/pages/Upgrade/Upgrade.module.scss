@@ -9,7 +9,7 @@ p{
 }
 .bg{
     background-color: var(--primary-bg);
-    border-radius: 12px;
+    border-radius: 0.75rem;
     padding: 1.6rem;
     margin: 0.6rem 0.8rem;
 }
@@ -17,7 +17,7 @@ p{
     font-size: var(--size-text-6);
     color: var(--color-out);
     font-weight:var(--weight-text-4) ;
-    line-height: 29px;
+    line-height: 1.813rem;
 }
 .container{
     display: flex;
@@ -30,8 +30,8 @@ p{
 }
 .detail-method{
     margin-top: 0.8rem;
-    border: 1px solid rgba(254,255,255,.1);
-    border-radius: 12px;
+    border: 0.063rem solid rgba(254,255,255,.1);
+    border-radius: 0.75rem;
     padding:  1rem 1.6rem;
     display: flex;
    flex-direction: row-reverse;
@@ -65,7 +65,7 @@ p{
     justify-content: center;
     align-items: center;
     padding: 0.1rem 0.6rem;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     margin-left: 0.8rem;
 }
 .old-price{
@@ -73,8 +73,8 @@ p{
     font-size: var(--size-text-2);
     font-style: normal;
     font-weight: var(--weight-text-2);
-    line-height: 20px;
-    letter-spacing: 0.1px;
+    line-height: 1.25rem;
+    letter-spacing: 0.0.063rem;
     text-decoration: line-through;
     margin-top: 0.01rem;
 }
@@ -113,7 +113,7 @@ p{
     flex-direction: row;
     margin-top: 0.8rem;
     padding-bottom: 1.6rem;
-    border-bottom: 1px solid var(--Dark-color-line-2);
+    border-bottom: 0.063rem solid var(--Dark-color-line-2);
     align-items: center;
     img{
          width: 2.8rem;
@@ -126,13 +126,13 @@ p{
         font-weight: var(--weight-text-4);
       
         font-size: var(--size-text-4);
-        line-height: 19px;
+        line-height: 1.188rem;
     }
 }
 .time-bill{
     margin-top: 0.6rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--Dark-color-line-2);
+    border-bottom: 0.063rem solid var(--Dark-color-line-2);
 }
 .time{
     display: flex;
@@ -143,13 +143,13 @@ p{
 .left{
     color: var(--color-text-7);
     font-size: var(--size-text-4);
-    line-height: 22px;
+    line-height: 1.375rem;
     font-weight: var(--weight-text-2);
 }
 .right{
     color: var(--color-out);
     font-size: var(--size-text-3);
-    line-height: 22px;
+    line-height: 1.375rem;
     font-weight: var(--weight-text-2);
 }
 .pay-bill{
@@ -166,13 +166,13 @@ p{
 .top{
     color: var(--color-out);
     font-size: var(--size-text-1);
-    line-height: 22px;
+    line-height: 1.375rem;
     font-weight: var(--weight-text-2);
 }
 .bottom{
     color: var(--color-12);
     font-size: var(--size-text-9);
-    line-height: 34px;
+    line-height: 2.125rem;
     font-weight: var(--weight-text-4);
 }
 .btn{
@@ -182,8 +182,8 @@ p{
     height: 2.8rem;
     border-radius: 2rem;
     font-size: var(--size-text-2);
-    line-height: 22px;
+    line-height: 1.375rem;
     font-weight: var(--weight-text-4);
-    border-radius: 100px;
+    border-radius: 6.25rem;
     border: currentColor;
 }

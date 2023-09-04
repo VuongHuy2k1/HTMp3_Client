@@ -7,16 +7,16 @@ import styles from './Menu.module.scss'
 import * as UserServices from '../../../service/userService'
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faPencilSquare,
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
-import { Outside } from '../../../hooks'
+
 const cx = classNames.bind(styles)
 
-function Menu({ selectSong }) {
+function Menu({ selectSong, role }) {
   const [showList, setShowList] = useState(false)
   const navigate = useNavigate()
   const [img, setImg] = useState()
@@ -29,7 +29,7 @@ function Menu({ selectSong }) {
       const res = await UserServices.isAuthen()
 
       setUser({
-        username: res.username,
+        username: res?.username,
       })
 
       setImg(res.img)
@@ -64,12 +64,12 @@ function Menu({ selectSong }) {
             <div className={cx('avatar')}>
               {img !== undefined ? (
                 <>
-                  <img class={cx('user-avatar')} src={url + img} alt="" />
+                  <img className={cx('user-avatar')} src={url + img} alt="" />
                 </>
               ) : (
                 <>
                   <img
-                    class={cx('user-avatar')}
+                    className={cx('user-avatar')}
                     src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
                     alt=""
                   />
@@ -77,20 +77,22 @@ function Menu({ selectSong }) {
               )}
             </div>
             <div className={cx('name')}>
-              <p>{user.username}</p>
-              <div className={cx('type-use')}>BASIC</div>
+              <p>{user?.username}</p>
+              <div className={cx('type-use')}>{role}</div>
             </div>
           </div>
 
           <button className={cx('update-btn')}>
-            <Link to="/upgrade">Nâng cấp tài khoản</Link>
+            <Link to="/upgrade" target="_blank">
+              Nâng cấp tài khoản
+            </Link>
           </button>
 
-          <line></line>
+          <div className={cx('line')}></div>
           <div className={cx('edit')}>
             <h3 className={cx('content')}>Cá nhân</h3>
 
-            <Link to="/account/infor" className={cx('btn')}>
+            <Link to="/account/infor" target="_blank" className={cx('btn')}>
               <FontAwesomeIcon
                 className={cx('icon')}
                 icon={faPencilSquare}
@@ -98,7 +100,7 @@ function Menu({ selectSong }) {
               <p className={cx('title')}>Thay đổi thông tin</p>
             </Link>
           </div>
-          <line></line>
+          <div className={cx('line')}></div>
           <div className={cx('btn')} onClick={onLogout}>
             <FontAwesomeIcon
               className={cx('icon')}
@@ -131,12 +133,12 @@ function Menu({ selectSong }) {
         <center onClick={oneClick} onBlur={() => setShowList(false)}>
           {img !== undefined ? (
             <>
-              <img class={cx('img-avatar')} src={url + img} alt="" />
+              <img className={cx('img-avatar')} src={url + img} alt="" />
             </>
           ) : (
             <>
               <img
-                class={cx('img-avatar')}
+                className={cx('img-avatar')}
                 src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
                 alt=""
               />

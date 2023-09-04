@@ -15,6 +15,7 @@ function SearchFull() {
   const { name } = useParams()
   const [num, setNum] = useState(1)
   const [layout, setLayout] = useState(<SearchAllLayout />)
+
   const listMenu = [
     {
       id: 1,
@@ -34,12 +35,12 @@ function SearchFull() {
       title: 'ALBUM',
       layout: <SearchAlbumLayout />,
     },
-    {
-      id: 4,
-      to: `/search/${name}/singer`,
-      title: 'NGHỆ SĨ',
-      layout: <SearchSingerLayout />,
-    },
+    // {
+    //   id: 4,
+    //   to: `/search/${name}/singer`,
+    //   title: 'NGHỆ SĨ',
+    //   layout: <SearchSingerLayout />,
+    // },
   ]
 
   const tag = listMenu.map((item, index) => {
@@ -47,7 +48,7 @@ function SearchFull() {
       return (
         <div
           key={index}
-          class={cx('tab-item', 'active')}
+          className={cx('tab-item', 'active')}
           onClick={() => {
             setNum(item.id)
             setLayout(item.layout)
@@ -60,7 +61,7 @@ function SearchFull() {
       return (
         <div
           key={index}
-          class={cx('tab-item')}
+          className={cx('tab-item')}
           onClick={() => {
             setNum(item.id)
             setLayout(item.layout)
@@ -74,8 +75,10 @@ function SearchFull() {
   return (
     <div className={cx('wrapper', 'scroll')}>
       <div className={cx('header-bar')}>
-        <div class={cx('tabs')}>
-          <div class={cx('title-headr-bar', 'tab-item')}>KẾT QUẢ TÌM KIẾM</div>
+        <div className={cx('tabs')}>
+          <div className={cx('title-headr-bar', 'tab-item')}>
+            KẾT QUẢ TÌM KIẾM
+          </div>
           {tag}
         </div>
       </div>

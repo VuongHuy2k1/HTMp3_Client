@@ -70,11 +70,12 @@ function ChangePassLayout() {
           <div className={cx('main-form')}>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="pass" className={cx('label-title')}>
                   <span>Mật khẩu hiện tại</span>
                 </label>
               </div>
               <input
+                id="pass"
                 className={cx('input-value')}
                 type="password"
                 name="oldpassword"
@@ -84,11 +85,12 @@ function ChangePassLayout() {
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="newpass" className={cx('label-title')}>
                   <span>Mật khẩu mới</span>
                 </label>
               </div>
               <input
+                id="newpass"
                 className={cx('input-value')}
                 type="password"
                 name="newpassword"
@@ -98,11 +100,12 @@ function ChangePassLayout() {
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
-                <label for="" className={cx('label-title')}>
+                <label htmlFor="repass" className={cx('label-title')}>
                   <span>Lặp lại khẩu mới</span>
                 </label>
               </div>
               <input
+                id="repass"
                 className={cx('input-value')}
                 type="password"
                 name="renewpassword"
@@ -112,11 +115,11 @@ function ChangePassLayout() {
             </div>
           </div>
           <div className={cx('btn-form')}>
-            <Link to="/account/infor" class={cx('btn-remove')}>
+            <Link to="/account/infor" className={cx('btn-remove')}>
               Hủy
             </Link>
-            <button type="submit" class={cx('btn-submit')}>
-              <div class={cx('btn-submit-title')}>Thay đổi</div>
+            <button type="submit" className={cx('btn-submit')}>
+              <div className={cx('btn-submit-title')}>Thay đổi</div>
             </button>
           </div>
         </form>

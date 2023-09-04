@@ -1,7 +1,7 @@
 .header {
   grid-column: 5/13;
   // grid-row: 1/12;
-  border-bottom: 1px solid var(--color-6);
+  border-bottom: 0.063rem solid var(--color-6);
   color: rgb(148, 163, 184);
   width: 98%;
   height: -moz-fit-content;
@@ -23,7 +23,7 @@
   text-align: center;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5rem) {
   .song-item.header {
     grid-column: 1/13;
   }

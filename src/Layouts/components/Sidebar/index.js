@@ -26,7 +26,7 @@ function Sidebar({ setFocus, userPlaylist }) {
       id: 2,
       to: '/chart',
       icon: faChartLine,
-      title: 'BXH',
+      title: 'Bảng xếp hạng',
     },
   ]
 
@@ -61,28 +61,24 @@ function Sidebar({ setFocus, userPlaylist }) {
       )
   })
 
-  const ListTag = userPlaylist.map((playList) => {
+  const ListTag = userPlaylist.map((playList, index) => {
     if (isAuthenticated === true || userPlaylist.leght > 0) {
       return (
-        <>
-          <div className={cx('list-name')}>
-            <NavLink
-              to={`/playlist/${playList._id}/${playList.name}`}
-              onClick={() => setNum(0)}
-              className={cx('co')}
-            >
-              <li className={cx('content')}>
-                <h6 className={cx('titel')}>{playList.name}</h6>
-              </li>
-            </NavLink>
-            <form className={cx('icon-delete')}>
-              <More playList={playList} />
-            </form>
-          </div>
-        </>
+        <div className={cx('list-name')} key={index}>
+          <NavLink
+            to={`/playlist/${playList._id}/${playList.name}`}
+            onClick={() => setNum(0)}
+            className={cx('co')}
+          >
+            <li className={cx('content')}>
+              <h6 className={cx('titel')}>{playList.name}</h6>
+            </li>
+          </NavLink>
+          <form className={cx('icon-delete')}>
+            <More playList={playList} />
+          </form>
+        </div>
       )
-    } else {
-      return <></>
     }
   })
 
@@ -101,7 +97,11 @@ function Sidebar({ setFocus, userPlaylist }) {
       <div className={cx('content-list')}>{ListMenu}</div>
       <div className={cx('poster')}>
         <p>Nghe nhạc không quảng cáo cùng kho nhạc PREMIUM</p>
-        <button>NÂNG CẤP TÀI KHOẢN</button>
+        <button>
+          <NavLink to="/upgrade" target="_blank">
+            NÂNG CẤP TÀI KHOẢN
+          </NavLink>
+        </button>
       </div>
 
       <div className={cx('line')}></div>

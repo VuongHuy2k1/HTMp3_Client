@@ -5,6 +5,8 @@ import { setVolume } from '../../actions'
 
 import styles from './ProgressBar.module.scss'
 import classNames from 'classnames/bind'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVolumeHigh, faVolumeXmark } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 
@@ -17,6 +19,10 @@ class ProgressBar extends React.Component {
   render() {
     return (
       <div className={cx('progress')}>
+        <FontAwesomeIcon
+          icon={this.props.volume <= 0 ? faVolumeXmark : faVolumeHigh}
+        />
+
         <input
           type="range"
           min="0"

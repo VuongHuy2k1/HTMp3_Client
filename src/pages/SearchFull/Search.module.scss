@@ -1,5 +1,5 @@
 .wrapper {
-  padding-bottom: 240px;
+  margin-bottom: 5.8rem;
   overflow-x: auto;
 }
 .container{
@@ -11,7 +11,7 @@
 }
 .title {
   box-sizing: border-box;
-  margin-block: 0px;
+  margin-block: 0rem;
   font-size: 1.5rem;
   font-weight: 700;
   font-family: var(
@@ -26,7 +26,7 @@
     var(--fallback-fonts, sans-serif)
   );
   color: var(--color-text-5);
-  padding: 16px 16px 16px 0px;
+  padding: 1rem 1rem 1rem 0rem;
 }
 .list-item {
   padding: var(--padding-main-view);
@@ -39,7 +39,7 @@
   grid-area: main-view;
   height: var(--height-header);
   min-width: 0;
-margin: 20px 0px;
+margin: 1.25rem 0rem;
   z-index: 1;
   padding-top: var(--height-header);
  
@@ -47,23 +47,24 @@ margin: 20px 0px;
 .tabs {
   display: flex;
   align-items: flex-end;
-  border-bottom: 1px solid var(--color-line-2);
+  border-bottom: 0.063rem solid var(--color-line-2);
+  padding-left: 4.5rem;
 }
 .active {
-  border-bottom: 2px solid var(--color-3) !important;
+  border-bottom: 0.125rem solid var(--color-3) !important;
   p{
     color: var(--color-3) !important ;
   }
 }
 .title-headr-bar {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: var(--color-text-5) !important ;
   font-weight: 700 !important;
   border-right-color:  var(--color-line-2) !important;
 }
 .tab-item {
   white-space: nowrap;
-  padding: 10px 15px;
+  padding: 0.625rem 0.938rem;
   cursor: pointer;
   font-weight: 600;
   display: flex;

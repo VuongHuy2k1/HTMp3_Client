@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 
 const cx = classNames.bind(styles)
 
-const ListItem = ({ albums = [], typee, selectType, sort }) => {
+const ListItem = ({ albums = [], typee, selectType, sort, search }) => {
   const { type } = useParams()
 
   const albumTags = albums.map((album, index) => {
@@ -29,16 +29,20 @@ const ListItem = ({ albums = [], typee, selectType, sort }) => {
           <div className={cx('top-list-left')}>
             <p className={cx('titel-list', 'titel-type')}>{typee}</p>
           </div>
-          <Link className={cx('top-list-right')} to={`/album/${typee}/all`}>
-            <span
-              className={cx('more-list')}
-              onClick={() => {
-                selectType(typee)
-              }}
-            >
-              Xem tất cả
-            </span>
-          </Link>
+          {search === true ? (
+            <></>
+          ) : (
+            <Link className={cx('top-list-right')} to={`/album/${typee}/all`}>
+              <span
+                className={cx('more-list')}
+                onClick={() => {
+                  selectType(typee)
+                }}
+              >
+                Xem tất cả
+              </span>
+            </Link>
+          )}
         </div>
       </>
       {/* ) : (

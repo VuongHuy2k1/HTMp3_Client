@@ -1,15 +1,41 @@
 .main-view-container{
     height: fit-content;
     overflow: scroll;
-    padding-bottom: 80px;
-    margin-top: 90px;
-    // margin-bottom: 90px;
+    padding-bottom: 5rem;
+    margin-top: 5.625rem;
+    // margin-bottom: 5.625rem;
     // padding: 0 3rem;
 }
 .chart-container{
   padding: 0 3rem;
   margin-bottom: 4rem;
 color: inherit;
+}
+.chart-content{
+  display: flex;
+  color: white;
+  align-items: center;
+  margin: 1rem 0 1.6rem 0.8rem;
+  h3{
+    background: radial-gradient(50% 124.93% at 95.86% -10%,#3efad9 0,hsla(0,0%,100%,0) 100%),linear-gradient(91.56deg,#ff9357 1.54%,#9100ff 98.71%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+}
+.icon-play{
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  margin-left: 0.75rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .chart{
   height: 20rem !important;
@@ -56,9 +82,9 @@ position: relative;
  
 }
 .chart-mini{
-  border-radius: 16px;
+  border-radius: 1rem;
   background-color: var(--chart-box-bg-alpha);
-  padding: 20px 10px;
+  padding: 1.25rem 0.625rem;
   width: 40%;
  
 }
@@ -68,7 +94,7 @@ position: relative;
   width: fit-content;
   text-transform: capitalize;
  
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 650;
   line-height: normal;
   color: var(--color-text-6);
@@ -79,7 +105,7 @@ position: relative;
 }
 .content-chart-mini{
   position: relative;
-  padding: 0 4rem;
+  padding: 0 2rem;
   padding-bottom: 0.6rem;
   width: fit-content;
   text-transform: capitalize;
@@ -87,9 +113,21 @@ position: relative;
   font-weight: 600;
   line-height: normal;
   color: var(--color-text-6);
+  display: flex;
  p{
   padding: 0;
   margin: 0;
+ }
+ path{
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  color: var(--color-impo-1);
+  line-height: normal;
+ }
+ span{
+  margin-left: 0.2rem;
+  
  }
 }
 .loading-chart{

@@ -1,20 +1,21 @@
 import { httpRequests } from '../utils'
 import Cookies from 'js-cookie'
 
-export const createPlayList = (playlist) => {
+export const createPlayList = async (playlist) => {
   const userId = Cookies.get('userId')
-  return httpRequests
-    .post(`api/playlist/create-playlist/${userId}`, playlist)
-    .then((response) => {
-      return response.item.data
-    })
-    .catch((error) => {
-      if (error.code === 'ERR_NETWORK') {
-        return { message: error.message, isSuccess: false }
-      }
-      console.log(error)
-      return { message: error.response.data, isSuccess: false }
-    })
+  try {
+    const response = await httpRequests.post(
+      `api/playlist/create-playlist/${userId}`,
+      playlist,
+    )
+    return response.item.data
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return { message: error.message, isSuccess: false }
+    }
+    console.log(error)
+    return { message: error, isSuccess: false }
+  }
 }
 export const getPlayList = async () => {
   const userId = Cookies.get('userId')

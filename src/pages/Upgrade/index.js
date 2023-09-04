@@ -75,8 +75,8 @@ function Upgrade() {
   const method = lable.map((item, index) => {
     return (
       <label
-        for={item.id}
-        class={cx('detail-method', num === index ? 'active' : '')}
+        htmlFor={item.id}
+        className={cx('detail-method', num === index ? 'active' : '')}
         key={index}
         value={item.nowPrice}
         onClick={() => pressValue(item.nowPrice, index, item.moth)}
@@ -85,19 +85,19 @@ function Upgrade() {
           type="radio"
           id={item.id}
           value={item.nowPrice}
-          class={cx('radio')}
+          className={cx('radio')}
           name="method"
           checked={num === index ? 'checked' : ''}
         ></input>
 
-        <div for={item.id} class={cx('content-method')}>
-          <p class={cx('moth')}>{item.moth} tháng</p>
+        <div htmlFor={item.id} className={cx('content-method')}>
+          <p className={cx('moth')}>{item.moth} tháng</p>
 
-          <div class={cx('price')}>
-            <p class={cx('now-price')}>{item.nowPrice}</p>
-            <p class={cx('discount')}>Tiết kiệm {item.discount}</p>
+          <div className={cx('price')}>
+            <p className={cx('now-price')}>{item.nowPrice}</p>
+            <p className={cx('discount')}>Tiết kiệm {item.discount}</p>
           </div>
-          <div class={cx('old-price')}>
+          <div className={cx('old-price')}>
             <p>{item.oldPrice}</p>
           </div>
         </div>
@@ -105,28 +105,28 @@ function Upgrade() {
     )
   })
   return (
-    <div class={cx('wrapper')}>
-      <div class={cx('content-upgrade')}>
+    <div className={cx('wrapper')}>
+      <div className={cx('content-upgrade')}>
         <p></p>
       </div>
-      <div class={cx('container')}>
-        <div class={cx('container-left')}>
-          <div class={cx('packages', 'bg')}>
-            <div class={cx('content')}> Chọn gói nâng cấp</div>
+      <div className={cx('container')}>
+        <div className={cx('container-left')}>
+          <div className={cx('packages', 'bg')}>
+            <div className={cx('content')}> Chọn gói nâng cấp</div>
             <form>
               <ul>{method}</ul>
             </form>
           </div>
           <div className={cx('method', 'bg')}>
-            <div class={cx('content')}> Phương thức thanh toán</div>
+            <div className={cx('content')}> Phương thức thanh toán</div>
           </div>
         </div>
-        <div class={cx('container-right')}>
-          <div class={cx('benefit', 'bg')}>
-            <div class={cx('content')}> Đặc quyền</div>
-            <ul class={cx('list-benefit')}>
-              <li class={cx('content-benefit')}>
-                <i class="b">
+        <div className={cx('container-right')}>
+          <div className={cx('benefit', 'bg')}>
+            <div className={cx('content')}> Đặc quyền</div>
+            <ul className={cx('list-benefit')}>
+              <li className={cx('content-benefit')}>
+                <i className="b">
                   <svg
                     width="24"
                     height="24"
@@ -142,8 +142,8 @@ function Upgrade() {
                 </i>
                 Nghe nhạc không quảng cáo
               </li>
-              <li class={cx('content-benefit')}>
-                <i class="b">
+              <li className={cx('content-benefit')}>
+                <i className="b">
                   <svg
                     width="24"
                     height="24"
@@ -159,8 +159,8 @@ function Upgrade() {
                 </i>
                 Nghe nhạc không quảng cáo
               </li>
-              <li class={cx('content-benefit')}>
-                <i class="b">
+              <li className={cx('content-benefit')}>
+                <i className="b">
                   <svg
                     width="24"
                     height="24"
@@ -176,8 +176,8 @@ function Upgrade() {
                 </i>
                 Nghe nhạc không quảng cáo
               </li>
-              <li class={cx('content-benefit')}>
-                <i class="b">
+              <li className={cx('content-benefit')}>
+                <i className="b">
                   <svg
                     width="24"
                     height="24"
@@ -193,8 +193,8 @@ function Upgrade() {
                 </i>
                 Nghe nhạc không quảng cáo
               </li>
-              <li class={cx('content-benefit')}>
-                <i class="b">
+              <li className={cx('content-benefit')}>
+                <i className="b">
                   <svg
                     width="24"
                     height="24"
@@ -212,33 +212,33 @@ function Upgrade() {
               </li>
             </ul>
           </div>
-          <div class={cx('bill', 'bg')}>
-            <div class={cx('infor')}>
+          <div className={cx('bill', 'bg')}>
+            <div className={cx('infor')}>
               <img
-                class={cx('user-img')}
+                className={cx('user-img')}
                 alt=""
                 src={img !== undefined ? url + img : urlImg}
               ></img>
-              <p class={cx('user-name')}>{user.username}</p>
+              <p className={cx('user-name')}>{user.username}</p>
             </div>
 
-            <div class={cx('time-bill')}>
-              <div class={cx('time')}>
-                <p class={cx('left')}>Thời điểm nâng cấp</p>
-                <p class={cx('right')}>{date}</p>
+            <div className={cx('time-bill')}>
+              <div className={cx('time')}>
+                <p className={cx('left')}>Thời điểm nâng cấp</p>
+                <p className={cx('right')}>{date}</p>
               </div>
-              <div class={cx('time')}>
-                <p class={cx('left')}>Hiệu lực đến</p>
-                <p class={cx('right')}>{endDate}</p>
+              <div className={cx('time')}>
+                <p className={cx('left')}>Hiệu lực đến</p>
+                <p className={cx('right')}>{endDate}</p>
               </div>
             </div>
-            <div class={cx('pay-bill')}>
-              <div class={cx('price-bill')}>
-                <p class={cx('top')}>Tổng thanh toán:</p>
-                <p class={cx('bottom')}>{value}</p>
+            <div className={cx('pay-bill')}>
+              <div className={cx('price-bill')}>
+                <p className={cx('top')}>Tổng thanh toán:</p>
+                <p className={cx('bottom')}>{value}</p>
               </div>
 
-              <button class={cx('btn')}>
+              <button className={cx('btn')}>
                 {/* <span>THANH TOÁN</span> */}
                 <PayPalScriptProvider
                   options={{

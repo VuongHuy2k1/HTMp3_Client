@@ -1,5 +1,5 @@
 .progress {
-  width: 100px;
+  width: 6.25rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -8,11 +8,11 @@
 /* The slider itself */
 .slider {
   appearance: none;
-  width: 100px; /* Full-width */
-  height: 4px; /* Specified height */
+  width: 6.25rem; /* Full-width */
+  height: 0.25rem; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none;
-  border-radius: 9999px;
+  border-radius: 624.938rem;
 }
 
 /* Mouse-over effects */
@@ -23,17 +23,17 @@
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
   appearance: none;
-  width: 8px; /* Set a specific slider handle width */
-  height: 8px; /* Slider handle height */
+  width: 0.5rem; /* Set a specific slider handle width */
+  height: 0.5rem; /* Slider handle height */
   background: #2a8eb9; /* Green background */
-  border-radius: 9999px;
+  border-radius: 624.938rem;
 }
 
 .slider::-moz-range-thumb {
-  width: 4px; /* Set a specific slider handle width */
-  height: 4px; /* Slider handle height */
+  width: 0.25rem; /* Set a specific slider handle width */
+  height: 0.25rem; /* Slider handle height */
   background: #2a8eb9; /* Green background */
-  border-radius: 9999px;
+  border-radius: 624.938rem;
 }
 
 .tooltip {

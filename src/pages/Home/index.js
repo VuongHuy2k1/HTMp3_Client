@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import * as songsService from '../../service/songsService'
+
 import * as albumsSrevice from '../../service/albumsSevrice'
 import * as LastPlay from '../../service/playService'
-import * as UserServices from '../../service/userService'
 import classNames from 'classnames/bind'
 import styles from './Home.module.scss'
 import List from '../../components/List'
-import ListSinger from '../../components/ListSinger'
+
 import { connect } from 'react-redux'
 import { selectSong, selectSongByAlbum } from '../../actions'
 
@@ -15,7 +14,6 @@ import Slides from '../../Layouts/components/Slide'
 const cx = classNames.bind(styles)
 
 const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
-  const value = UserServices.isLog()
   const [loading, setLoading] = useState(false)
 
   const [albumsList, setAlbumsList] = useState([])
@@ -42,28 +40,19 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
       setLoading(false)
     }
     fetchApi()
-    if (value === true) {
-      const Apii = async () => {
-        const response = await LastPlay.getLastPlay()
-
-        if (response !== undefined) {
-          selectSongByAlbum(response.songLists)
-          selectSong(response.song[0])
-        }
-      }
-      Apii()
-    }
-
-    if (value === false) {
-      const Api = async () => {
-        const songsFromAlbum = await songsService.getSongsFromAlbum(
-          albumsList[0].name,
-        )
-        selectSongByAlbum(songsFromAlbum)
-      }
-      Api()
-    }
   }, [])
+  // useEffect(() => {
+  //   const getMusic = async () => {
+  //     const response = await LastPlay.getLastPlay()
+  //     console.log(response, 333)
+  //     if (response !== undefined) {
+  //       selectSongByAlbum(response.songList)
+  //       selectSong(response.song)
+  //     }
+  //   }
+
+  //   getMusic()
+  // })
   return (
     <div className={cx('main-view-container', 'scroll')}>
       <div className={cx('top-padding')}></div>

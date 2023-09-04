@@ -105,7 +105,7 @@ function More({
       render={renderResult}
       onClickOutside={() => setShowList(false)}
     >
-      <div class={cx('hover-like-icon')}>
+      <div className={cx('hover-like-icon')}>
         <FontAwesomeIcon
           className={cx('icon-li')}
           icon={faEllipsis}

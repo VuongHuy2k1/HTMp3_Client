@@ -9,14 +9,12 @@ import {
 import * as songsService from '../../service/songsService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
-
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 const cx = classNames.bind(styles)
 
 const Item = ({
@@ -26,7 +24,7 @@ const Item = ({
   selectSongByAlbum,
   setStatus,
 }) => {
-  const [value, setValue] = useState(true)
+  const [value] = useState(true)
   const id = value === false ? 'block' : ''
 
   const [songsList, setSongsList] = useState([])
@@ -38,7 +36,7 @@ const Item = ({
       setSongsList(response)
     }
     fetchApi()
-  }, [])
+  }, [album.name])
 
   return (
     <div className={cx('item')}>
@@ -65,10 +63,10 @@ const Item = ({
                   alt=""
                 ></img>
               </Link>
-              <form class={cx('hover-player')} id={cx(id)}>
-                <div class={cx('hover-player-a')}>
+              <form className={cx('hover-player')} id={cx(id)}>
+                <div className={cx('hover-player-a')}>
                   <div
-                    class={cx('player-btn')}
+                    className={cx('player-btn')}
                     onClick={() => {
                       selectSongByAlbum(songsList)
                       selectSong(songsList[0])
@@ -76,8 +74,8 @@ const Item = ({
                       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
                     }}
                   >
-                    <span class={cx('player-btn-span')}>
-                      <span class={cx('player-btn-span-a')}>
+                    <span className={cx('player-btn-span')}>
+                      <span className={cx('player-btn-span-a')}>
                         <FontAwesomeIcon
                           className={cx('icon-li')}
                           icon={faPlay}

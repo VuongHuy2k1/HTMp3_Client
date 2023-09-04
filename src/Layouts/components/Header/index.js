@@ -22,24 +22,26 @@ function Header() {
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState()
   const [user, setUser] = useState({
-    username: '',
+    role: 'basic',
   })
 
   const url = 'http://localhost:8989/'
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchApi = async () => {
-      setLoading(true)
-      const res = await UserServices.isAuthen()
+    if (value === true) {
+      const fetchApi = async () => {
+        setLoading(true)
+        const res = await UserServices.isAuthen()
 
-      setUser({
-        username: res.username,
-      })
-      setImg(res.img)
-      setLoading(false)
+        setUser({
+          role: res.priority,
+        })
+        setImg(res.img)
+        setLoading(false)
+      }
+      fetchApi()
     }
-    fetchApi()
   }, [])
 
   const goBack = (e) => {
@@ -77,7 +79,7 @@ function Header() {
             <Skeleton width={40} />
           ) : (
             <div className={cx('accout')}>
-              <Menu></Menu>
+              <Menu role={user.role}></Menu>
             </div>
           )}
         </>

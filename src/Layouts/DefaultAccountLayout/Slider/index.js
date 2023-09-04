@@ -22,17 +22,21 @@ function UserSlider() {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('slider')}>
-        <div class={cx('admin-user-item')}>
-          <div class={cx('image')}>
+        <div className={cx('admin-user-item')}>
+          <div className={cx('image')}>
             <center>
               {img !== undefined ? (
                 <>
-                  <img class="img-circle autofit2" src={url + img} alt="imag" />
+                  <img
+                    className="img-circle autofit2"
+                    src={url + img}
+                    alt="imag"
+                  />
                 </>
               ) : (
                 <>
                   <img
-                    class="img-circle autofit2"
+                    className="img-circle autofit2"
                     src="https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576"
                     alt="imge"
                   />
@@ -41,23 +45,23 @@ function UserSlider() {
             </center>
           </div>
 
-          <p class={cx('user-role')}></p>
+          <p className={cx('user-role')}></p>
         </div>
 
-        <ul class={cx('admin-user-menu')}>
-          <li class={cx('active')}>
+        <ul className={cx('admin-user-menu')}>
+          <li className={cx('active')}>
             <Link to="/account/infor" className={cx('herf-slider')}>
               <FontAwesomeIcon className={cx('icon')} icon={faHome} />
               <span> Hồ sơ</span>
             </Link>
           </li>
-          <li class="">
+          <li className="">
             <Link to="/account/edit" className={cx('herf-slider')}>
               <FontAwesomeIcon className={cx('icon')} icon={faPen} />
               <span> Sửa hồ sơ</span>
             </Link>
           </li>
-          <li class="">
+          <li className="">
             <a href="/account/change" className={cx('herf-slider')}>
               <FontAwesomeIcon className={cx('icon')} icon={faKey} />
               <span> Thay đổi mật khẩu</span>

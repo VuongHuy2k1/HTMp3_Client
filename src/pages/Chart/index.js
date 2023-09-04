@@ -20,6 +20,8 @@ import {
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import ScaleLoader from 'react-spinners/ScaleLoader'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay, faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 
@@ -222,9 +224,16 @@ const ChartLayout = () => {
   return (
     <div className={cx('main-view-container', 'scroll')}>
       <div className={cx('chart-container')}>
+        <div className={cx('chart-content')}>
+          <h3>#HUTAchart</h3>
+          <FontAwesomeIcon
+            icon={faPlayCircle}
+            className={cx('icon-play')}
+          ></FontAwesomeIcon>
+        </div>
         <div className={cx('chart')}>
           {loading ? (
-            <ScaleLoader loading={true} color={'#1ed760'} size={300} />
+            <ScaleLoader loading={true} color={'#8D22C3'} size={300} />
           ) : (
             <Line
               options={options}
@@ -260,6 +269,9 @@ const ChartLayout = () => {
           <div className={cx('chart-mini')}>
             <div className={cx('content-chart-mini')}>
               <p>Tuần</p>
+              <span>
+                <FontAwesomeIcon icon={faPlayCircle}></FontAwesomeIcon>
+              </span>
             </div>
             {loading ? (
               <SkeletonSong num={16} />
@@ -276,6 +288,9 @@ const ChartLayout = () => {
           <div className={cx('chart-mini')}>
             <div className={cx('content-chart-mini')}>
               <p>Tháng</p>
+              <span>
+                <FontAwesomeIcon icon={faPlayCircle}></FontAwesomeIcon>
+              </span>
             </div>
             {loading ? (
               <SkeletonSong num={16} />
