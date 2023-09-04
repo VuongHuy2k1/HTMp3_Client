@@ -9,7 +9,7 @@ import * as UserServices from '../../../service/userService'
 import { setStatus } from '../../../actions'
 import styles from './Item.module.scss'
 import Skeleton from 'react-loading-skeleton'
-
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import List from '../../../components/Popper/List'
 const cx = classNames.bind(styles)
 
