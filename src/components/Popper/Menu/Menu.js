@@ -120,7 +120,7 @@ function Menu({ selectSong, role }) {
       return setShowList(false)
     }
   }
-
+  console.log(img)
   return (
     <Tippy
       interactive
