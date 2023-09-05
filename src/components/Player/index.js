@@ -47,6 +47,7 @@ const Player = ({
   const audioRef = useRef()
 
   const songplay = selectList.findIndex((e) => e._id === selectedSongPlay._id)
+
   useEffect(() => {
     // Đợi cho trang web được tải xong
 
@@ -56,6 +57,9 @@ const Player = ({
       window.history.pushState({}, '', '')
     } else if (playerState === 0) {
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
+      audioRef.current.pause()
+    }
+    if (playerState === 1 && songplay === selectList.length - 1) {
       audioRef.current.pause()
     }
   }, [dispatch, songplay])
@@ -107,10 +111,16 @@ const Player = ({
     if (songplay > 0) {
       selectSongById(selectList[songplay - 1])
     }
+    if (shuffled === true) {
+      selectSongById(selectList[Math.round(Math.random() * selectList.length)])
+    }
   }
   const onForwardClick = () => {
     if (songplay < selectList.length - 1) {
       selectSongById(selectList[songplay + 1])
+    }
+    if (shuffled === true) {
+      selectSongById(selectList[Math.round(Math.random() * selectList.length)])
     }
   }
   const icon = () => {
@@ -132,18 +142,12 @@ const Player = ({
       }
     }
   }
+
   const nextSong = () => {
     if (shuffled === true) {
       selectSongById(selectList[Math.round(Math.random() * selectList.length)])
     } else {
-      if (repeat === true) {
-        const timerId = setTimeout(() => {
-          clearTimeout(timerId)
-          selectSongById(selectList[songplay])
-        }, 500)
-      } else {
-        selectSongById(selectList[songplay + 1])
-      }
+      selectSongById(selectList[songplay + 1])
     }
   }
 

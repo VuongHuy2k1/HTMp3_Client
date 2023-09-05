@@ -41,18 +41,7 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
     }
     fetchApi()
   }, [])
-  // useEffect(() => {
-  //   const getMusic = async () => {
-  //     const response = await LastPlay.getLastPlay()
-  //     console.log(response, 333)
-  //     if (response !== undefined) {
-  //       selectSongByAlbum(response.songList)
-  //       selectSong(response.song)
-  //     }
-  //   }
 
-  //   getMusic()
-  // })
   return (
     <div className={cx('main-view-container', 'scroll')}>
       <div className={cx('top-padding')}></div>
