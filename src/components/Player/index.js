@@ -59,9 +59,6 @@ const Player = ({
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
       audioRef.current.pause()
     }
-    if (playerState === 1 && songplay === selectList.length - 1) {
-      audioRef.current.pause()
-    }
   }, [dispatch, songplay])
 
   useEffect(() => {
@@ -143,8 +140,13 @@ const Player = ({
     }
   }
 
-  const nextSong = () => {
-    if (shuffled === true) {
+  const nextSong = (e) => {
+    e.preventDefault()
+    if (songplay === selectList.length - 1 && shuffled === false) {
+      audioRef.current.pause()
+      dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
+      return
+    } else if (shuffled === true) {
       selectSongById(selectList[Math.round(Math.random() * selectList.length)])
     } else {
       selectSongById(selectList[songplay + 1])
