@@ -5,7 +5,6 @@
   position: fixed;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 104;
-
   display: flex !important;
   left: 0;
   bottom: 0;
@@ -16,9 +15,10 @@
   align-items: center;
 }
 .block-container {
-  background-color: rgba(61, 122, 183, 0.33);
+  background: radial-gradient(139.39% 100% at 0 0, #4e2a8c 0, rgba(78, 42, 140, 0.26) 100%);
+  border-color: #8647eb;
   display: flex;
-
+  border-radius: 1.2rem;
   width: 50.625rem;
   height: 25rem;
 }
@@ -37,12 +37,13 @@
   img {
     width: 18.75rem;
     height: 18.75rem;
+    border-radius: 0.6rem;
   }
 }
 .text-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   flex-direction: column;
   text-align: center;
   h2 {
@@ -57,13 +58,13 @@
 }
 .btn-signup {
   position: relative;
-  background-color: #1ed760;
-  color: #000000;
+  background-color: var( --color-impo-1);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  color: #fff !important;
   border-radius: 20rem;
   font-size: inherit;
   padding-block: 0.875rem;
   padding-inline: 2rem;
-  border: #000 0.031rem solid;
   font-weight: 700;
 }
 
@@ -88,6 +89,8 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 1.2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .main-form {
@@ -97,7 +100,7 @@
 }
 .group-main {
   box-sizing: border-box;
-  padding-block-end: 0.75rem;
+  padding-block-end: 1.75rem;
 }
 
 .title-group {
@@ -130,10 +133,14 @@
   color: #000000;
 }
 .list-container {
-  background-color: #36588b69;
+  background: radial-gradient(139.39% 100% at 0 0, #4e2a8c 0, rgba(78, 42, 140, 0.26) 100%);
+  border-color: #8647eb;
+ 
   display: flex;
   width: 50.625rem;
   height: 28.75rem;
+  border-radius: 1.2rem;
+  justify-content: space-between;
 }
 .label-title-list {
   color: wheat;
@@ -169,8 +176,9 @@
 }
 .btn-submit-title {
   position: relative;
-  background-color: #1ed760;
-  color: #000000;
+  background-color: var( --color-impo-1);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  color: #fff !important;
   border-radius: 20rem;
   font-size: inherit;
   padding-block: 0.875rem;

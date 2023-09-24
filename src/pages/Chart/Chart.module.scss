@@ -40,10 +40,9 @@ color: inherit;
 .chart{
   height: 20rem !important;
    width:100% !important;
-display: flex;
+
   margin-bottom: 2rem;
-  align-items: center;
-    justify-content: center;
+
   
 }
 
@@ -134,4 +133,11 @@ position: relative;
 
   color:#FF0000;
  
+}
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: inherit;
 }

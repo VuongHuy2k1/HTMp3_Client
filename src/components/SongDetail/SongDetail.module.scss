@@ -58,14 +58,15 @@
 }
 
 .album-img > img {
-  height: 18.75rem;
-  width: 18.75rem;
+width: 80%;
+aspect-ratio: 1;
+
   box-shadow: 0 0.313rem 0.5rem 0 rgba(0,0,0,.2);
 }
 
 .artist-img > img {
   height: 4rem;
-  border-radius: 1000%;
+  border-radius: 1000rem;
 }
 
 .artist-img > .artist-name {
@@ -80,7 +81,7 @@
   padding: 0.625rem;
 }
 .play-img {
-  border-radius: 62.5rem;
+  border-radius: 100%;
   animation: play-img infinite 8s linear;
 }
 @keyframes play-img {

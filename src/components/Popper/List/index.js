@@ -20,9 +20,9 @@ import {
   faEllipsis,
   faHeadphones,
 } from '@fortawesome/free-solid-svg-icons'
-
-import { useState, useEffect, useRef } from 'react'
-import Message from '../../Message'
+import Popup from 'reactjs-popup'
+import PopupComponent from '../../Flexpreminum'
+import { useState } from 'react'
 
 import * as PlayListService from '../../../service/playListService'
 import * as UserServices from '../../../service/userService'
@@ -37,6 +37,7 @@ function List({
   selectedUserPlayList,
   selectedMess,
   selectedLoad,
+  priority,
 }) {
   const [showList, setShowList] = useState(false)
   const [showPlaylist, setShowPlaylist] = useState(false)
@@ -44,6 +45,7 @@ function List({
   const isAuthenticated = UserServices.isLog()
 
   const addSong = async (a, b) => {
+    // eslint-disable-next-line no-unused-vars
     const response = await PlayListService.addSong(a, b)
   }
 
@@ -53,6 +55,7 @@ function List({
   }
 
   const removeSong = async (a, b) => {
+    // eslint-disable-next-line no-unused-vars
     const response = await PlayListService.removeSong(a, b)
   }
   const removeClick = () => {
@@ -83,6 +86,7 @@ function List({
     }
   }
 
+  // eslint-disable-next-line array-callback-return
   const ListTag = userPlaylist.map((playList, index) => {
     const addClick = () => {
       addSong(playList._id, song._id)
@@ -148,32 +152,81 @@ function List({
                   <p className={cx('title')}>Xóa khỏi playlist</p>
                 </li>
               ) : (
-                <li className={cx('menu-item')} onClick={onShow}>
-                  <FontAwesomeIcon
-                    className={cx('menu-icon')}
-                    icon={faCirclePlus}
-                  ></FontAwesomeIcon>
-                  <p className={cx('title')}>Thêm vào playlist</p>
-                  <FontAwesomeIcon
-                    className={cx('menu-more')}
-                    icon={faChevronRight}
-                  ></FontAwesomeIcon>
-                </li>
+                <>
+                  {priority === true ? (
+                    <Popup
+                      modal
+                      trigger={
+                        <li
+                          className={cx('menu-item')}
+                          onClick={
+                            (() => setShowList(false), setShowPlaylist(false))
+                          }
+                        >
+                          <FontAwesomeIcon
+                            className={cx('menu-icon')}
+                            icon={faCirclePlus}
+                          ></FontAwesomeIcon>
+                          <p className={cx('title')}>Thêm vào playlist</p>
+                          <FontAwesomeIcon
+                            className={cx('menu-more')}
+                            icon={faChevronRight}
+                          ></FontAwesomeIcon>
+                        </li>
+                      }
+                      overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
+                    >
+                      {(close) => <PopupComponent close={close} />}
+                    </Popup>
+                  ) : (
+                    <li className={cx('menu-item')} onClick={onShow}>
+                      <FontAwesomeIcon
+                        className={cx('menu-icon')}
+                        icon={faCirclePlus}
+                      ></FontAwesomeIcon>
+                      <p className={cx('title')}>Thêm vào playlist</p>
+                      <FontAwesomeIcon
+                        className={cx('menu-more')}
+                        icon={faChevronRight}
+                      ></FontAwesomeIcon>
+                    </li>
+                  )}
+                </>
               )}
 
-              <li className={cx('')}>
-                <a
-                  draggable="false"
-                  href={song.url}
-                  className={cx('menu-item')}
+              {priority === true ? (
+                <Popup
+                  modal
+                  trigger={
+                    <li className={cx('')}>
+                      <div className={cx('menu-item')}>
+                        <FontAwesomeIcon
+                          className={cx('menu-icon')}
+                          icon={faDownload}
+                        ></FontAwesomeIcon>
+                        <p className={cx('title')}>Tải xuống</p>
+                      </div>
+                    </li>
+                  }
+                  overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
                 >
-                  <FontAwesomeIcon
-                    className={cx('menu-icon')}
-                    icon={faDownload}
-                  ></FontAwesomeIcon>
-                  <p className={cx('title')}>Tải xuống</p>
-                </a>
-              </li>
+                  {(close) => <PopupComponent close={close} />}
+                </Popup>
+              ) : (
+                <li className={cx('')}>
+                  <a
+                    draggable="false"
+                    href={song.url}
+                    className={cx('menu-item')}
+                  >
+                    <FontAwesomeIcon
+                      className={cx('menu-icon')}
+                      icon={faDownload}
+                    ></FontAwesomeIcon>
+                    <p className={cx('title')}>Tải xuống</p>
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </Wrapper>

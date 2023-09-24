@@ -6,7 +6,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-// import { selectAlbum } from "D:/WorkSpace/NodeWordSpace/MusicWeb/client/src/actions";
+
 import React from 'react'
 
 const cx = classNames.bind(styles)

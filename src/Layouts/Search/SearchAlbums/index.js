@@ -1,6 +1,6 @@
 import ListItem from '../../../components/List/ListItem'
 import { useState, useEffect } from 'react'
-
+import SkeletonCard from '../../../components/Skeleton/skeletoncerd'
 import * as searchApi from '../../../service/searchSrevice'
 import classNames from 'classnames/bind'
 import styles from './Style.module.scss'
@@ -11,10 +11,11 @@ const cx = classNames.bind(styles)
 
 function SearchAlbumLayout() {
   const { name } = useParams()
-
+  const [loading, setLoading] = useState(false)
   const [searchResult, setSearchResult] = useState([])
   const debouncedValue = useDebounce(name, 10)
   useEffect(() => {
+    setLoading(true)
     if (!debouncedValue.trim()) {
       setSearchResult([])
       return
@@ -25,21 +26,36 @@ function SearchAlbumLayout() {
 
       setSearchResult(result.albums)
     }
-
+    setTimeout(function () {
+      setLoading(false)
+    }, 1000)
     fetchApi()
   }, [debouncedValue])
 
   return (
     <div className={cx('wrapper', 'scroll')}>
-      {searchResult.length <= 0 ? (
-        <>
-          <h3 className={cx('no')}>Không có kết quả phù hợp</h3>
-        </>
+      {loading ? (
+        <div className={cx('pa')}>
+          <SkeletonCard num={6} />
+        </div>
       ) : (
         <>
-          <section className={cx('list-item')}>
-            <ListItem albums={searchResult} typee={'Album'} sort="sort-row" />
-          </section>
+          {searchResult.length <= 0 ? (
+            <div className={cx('container-none')}>
+              <i> </i>
+              <span>Không có kết quả phù hợp</span>
+            </div>
+          ) : (
+            <>
+              <section className={cx('list-item')}>
+                <ListItem
+                  albums={searchResult}
+                  typee={'Album'}
+                  sort="sort-row"
+                />
+              </section>
+            </>
+          )}
         </>
       )}
     </div>

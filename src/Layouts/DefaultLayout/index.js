@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  selectSongByAlbum,
-  setStatus,
-  setFocus,
-  changePlaylist,
-} from '../../actions'
+import { setStatus, setFocus, changePlaylist } from '../../actions'
 import Header from '../components/Header'
 import { connect } from 'react-redux'
 import styles from './DefaultLayout.module.scss'
@@ -27,6 +22,7 @@ const DefaultLayout = ({
   turn,
 }) => {
   const value = UserService.isLog()
+  console.log(value)
   const [off, setOff] = useState(false)
   useEffect(() => {
     setOff(turn)
@@ -92,7 +88,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  selectSongByAlbum,
   setStatus,
   setFocus,
   changePlaylist,

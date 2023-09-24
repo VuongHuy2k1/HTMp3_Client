@@ -53,3 +53,30 @@ align-items: baseline;
 
 
 }
+
+.container-none{
+  width: 100%;
+  padding: 30px 0;
+  min-height: 220px;
+  background:var(--background-header);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+span{
+  color: var(--color-text);
+  margin-top: 1rem;
+  font-size: var(--size-text-4);
+}
+}
+i{
+  width: 90px;
+    height: 90px;
+    background-image: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.9.70/static/media/music-icon.cfa4aa91.svg);
+}
+.pa{
+  margin-top: 2rem;
+  margin-right: 2rem;
+}

@@ -4,12 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faKey, faPen } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import * as UserServices from '../../../service/userService'
-import { Link } from 'react-router-dom'
-
+import { NavLink } from 'react-router-dom'
+import {
+  FaUserEdit,
+  FaUserClock,
+  FaUserCog,
+  FaUserCircle,
+} from 'react-icons/fa'
 const cx = classNames.bind(styles)
 function UserSlider() {
   const url = 'http://localhost:8989/img/'
   const [img, setImg] = useState()
+  const [num, setNum] = useState(1)
+
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserServices.isAuthen()
@@ -19,6 +26,49 @@ function UserSlider() {
     fetchApi()
   }, [])
 
+  const listMenu = [
+    {
+      id: 1,
+      to: '/account/infor',
+      icon: <FaUserCircle className={cx('icon')} />,
+      title: 'Hồ sơ',
+    },
+    {
+      id: 2,
+      to: '/account/edit',
+      icon: <FaUserEdit className={cx('icon')} />,
+      title: 'Sửa hồ sơ',
+    },
+    {
+      id: 3,
+      to: '/account/change',
+      icon: <FaUserCog className={cx('icon')} />,
+      title: 'Thay đổi mật khẩu',
+    },
+    {
+      id: 4,
+      to: '/account/change',
+      icon: <FaUserClock className={cx('icon')} />,
+      title: 'Lịch sử',
+    },
+  ]
+  const ListMenu = listMenu.map((item, index) => {
+    return (
+      <li
+        className={cx('content', item.id === num ? 'active' : '')}
+        key={index}
+      >
+        <NavLink
+          className={cx('herf-slider')}
+          to={item.to}
+          onClick={() => setNum(item.id)}
+        >
+          {item.icon}
+          <span className={cx('titel')}>{item.title}</span>
+        </NavLink>
+      </li>
+    )
+  })
   return (
     <div className={cx('wrapper')}>
       <div className={cx('slider')}>
@@ -48,26 +98,7 @@ function UserSlider() {
           <p className={cx('user-role')}></p>
         </div>
 
-        <ul className={cx('admin-user-menu')}>
-          <li className={cx('active')}>
-            <Link to="/account/infor" className={cx('herf-slider')}>
-              <FontAwesomeIcon className={cx('icon')} icon={faHome} />
-              <span> Hồ sơ</span>
-            </Link>
-          </li>
-          <li className="">
-            <Link to="/account/edit" className={cx('herf-slider')}>
-              <FontAwesomeIcon className={cx('icon')} icon={faPen} />
-              <span> Sửa hồ sơ</span>
-            </Link>
-          </li>
-          <li className="">
-            <a href="/account/change" className={cx('herf-slider')}>
-              <FontAwesomeIcon className={cx('icon')} icon={faKey} />
-              <span> Thay đổi mật khẩu</span>
-            </a>
-          </li>
-        </ul>
+        <ul className={cx('admin-user-menu')}>{ListMenu}</ul>
       </div>
     </div>
   )

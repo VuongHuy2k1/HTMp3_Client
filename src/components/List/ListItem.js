@@ -1,18 +1,16 @@
 import classNames from 'classnames/bind'
 import styles from './ListItem.module.scss'
 import Item from './Item'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { useState } from 'react'
+
 import { selectType } from '../../actions'
 import { connect } from 'react-redux'
 
 const cx = classNames.bind(styles)
 
 const ListItem = ({ albums = [], typee, selectType, sort, search }) => {
-  const { type } = useParams()
-
+  // eslint-disable-next-line array-callback-return
   const albumTags = albums.map((album, index) => {
     if (album.type === typee) {
       return <Item album={album} key={index} index={index} />
@@ -23,7 +21,6 @@ const ListItem = ({ albums = [], typee, selectType, sort, search }) => {
   })
   return (
     <div className={cx('content')}>
-      {/* {type === undefined && typee !== 'Album' ? ( */}
       <>
         <div className={cx('top-list')}>
           <div className={cx('top-list-left')}>
@@ -45,15 +42,6 @@ const ListItem = ({ albums = [], typee, selectType, sort, search }) => {
           )}
         </div>
       </>
-      {/* ) : (
-        <>
-          <div className={cx('top-list')}>
-            <div className={cx('top-list-left')}>
-              <h2 className={cx('titel-list', 'titel-type')}>{typee}</h2>
-            </div>
-          </div>
-        </>
-      )} */}
 
       <div className={cx('list', 'sort', sort)}>{albumTags}</div>
     </div>

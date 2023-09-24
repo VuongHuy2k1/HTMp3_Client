@@ -3,6 +3,7 @@ import { useState } from 'react'
 import React from 'react'
 import { login } from '../../service/userService'
 import * as LastPlay from '../../service/playService'
+import * as UserServices from '../../service/userService'
 import { selectSong, selectSongByAlbum } from '../../actions'
 import classNames from 'classnames/bind'
 import styles from './User.module.scss'
@@ -15,7 +16,7 @@ const cx = classNames.bind(styles)
 
 function LoginLayout({ props, selectSong, selectSongByAlbum }) {
   const navigate = useNavigate()
-
+  const [userPriority, setUserPriority] = useState(false)
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -58,11 +59,28 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
           window.location.reload()
         }, 2001)
         setMessage({ msgBody: 'Đăng nhập thành công', msgError: false })
+        const fetchApi = async () => {
+          const res = await UserServices.isAuthen()
+
+          if (res.priority === 'vip') {
+            setUserPriority(true)
+          }
+        }
+        fetchApi()
         const getMusic = async () => {
           const response = await LastPlay.getLastPlay()
-
+          console.log(response)
           if (response !== undefined) {
-            selectSongByAlbum(response.songList)
+            if (userPriority === true) {
+              selectSongByAlbum(response.songList)
+            } else {
+              const arr = response.songList.filter(function (item) {
+                return item.priority !== 'vip'
+              })
+
+              selectSongByAlbum(arr)
+            }
+
             selectSong(response.song)
           }
         }
@@ -140,12 +158,21 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                 <button type="submit" className={cx('btn-submit')}>
                   <div className={cx('btn-submit-title')}>Đăng nhập</div>
                 </button>
-                <span>
-                  Bạn chưa có tài khoản
-                  <Link to="/user/register" className={cx('btn-remove')}>
-                    Đăng ký
-                  </Link>
-                </span>
+
+                <div className={cx('login-more')}>
+                  <span>
+                    Bạn quên mật khẩu?
+                    <Link to="/user/forgot" className={cx('btn-remove')}>
+                      Khôi phục mật khẩu
+                    </Link>
+                  </span>
+                  <span>
+                    Bạn chưa có tài khoản
+                    <Link to="/user/register" className={cx('btn-remove')}>
+                      Đăng ký tài khoản mới
+                    </Link>
+                  </span>
+                </div>
               </div>
             </form>
           </>

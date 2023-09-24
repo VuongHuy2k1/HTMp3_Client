@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 import { connect } from 'react-redux'
@@ -12,24 +11,13 @@ import {
 import Wrapper from '../Wrapper'
 import styles from './Adjust.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faCheckCircle,
-  faEllipsis,
-  faGear,
-  faPen,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons'
-
-import { useRef, useState, useEffect } from 'react'
-
-import { title } from 'faker/lib/locales/az'
-
+import { faCheckCircle, faGear } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 const cx = classNames.bind(styles)
 
-function Adjust({}) {
+function Adjust() {
   const [showList, setShowList] = useState(false)
   const [num, setNum] = useState(1)
-  const [theme, setTheme] = useState('Sáng')
   const listTopic = [
     {
       id: 1,

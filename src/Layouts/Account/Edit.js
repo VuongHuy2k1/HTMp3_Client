@@ -64,6 +64,7 @@ function EditLayout() {
       msgBody: 'Cập nhật thành công',
       msgError: false,
     })
+    // eslint-disable-next-line no-unused-vars
     const timerReload = setTimeout(() => {
       clearTimeout(timerLoading)
 

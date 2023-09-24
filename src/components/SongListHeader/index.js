@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import styles from './SongListHeader.module.scss'
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 const cx = classNames.bind(styles)
 const SongListHeader = () => {
   return (

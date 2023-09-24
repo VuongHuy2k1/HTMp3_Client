@@ -3,6 +3,8 @@ import styles from './Account.module.scss'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import * as UserService from '../../service/userService'
+import { format } from 'date-fns'
+
 const cx = classNames.bind(styles)
 function InforLayout() {
   const [user, setUser] = useState({
@@ -17,13 +19,14 @@ function InforLayout() {
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserService.isAuthen()
+      const dateObject = new Date(res.dateOfBirth)
 
       setUser({
-        name: res.name,
+        name: res.username,
         email: res.email,
         img: res.img,
         gender: res.gender,
-        dateOfBirth: res.dateOfBirth,
+        dateOfBirth: `${dateObject.getDate()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`,
         nation: res.nation,
       })
     }

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './Album.module.scss'
-
+import Skeleton from 'react-loading-skeleton'
 import SkeletonSong from '../../components/Skeleton/skeletonSong'
 const cx = classNames.bind(styles)
 
@@ -33,6 +33,7 @@ function AlbumLayout() {
       setLoading(false)
     }
     fetchApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -41,7 +42,13 @@ function AlbumLayout() {
         <div className={cx('pad-top')}></div>
         <div className={cx('main-view-top')}>
           <div className={cx('view-left')}>
-            <SongDetail loading={loading} />
+            {loading ? (
+              <div className={cx('pa')}>
+                <Skeleton width={260} height={260} paddingTop={8} />
+              </div>
+            ) : (
+              <SongDetail loading={loading} />
+            )}
           </div>
           <div className={cx('view-right', 'scroll')}>
             <SongListHeader />

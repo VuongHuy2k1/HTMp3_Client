@@ -33,34 +33,24 @@ function Sidebar({ setFocus, userPlaylist }) {
   const isAuthenticated = UserServices.isLog()
 
   const ListMenu = listMenu.map((item, index) => {
-    if (item.id === num) {
-      return (
-        <li className={cx('content', 'active')} key={index}>
-          <NavLink
-            className={cx('content-link')}
-            to={item.to}
-            onClick={() => setNum(item.id)}
-          >
-            <FontAwesomeIcon className={cx('icon-li')} icon={item.icon} />
-            <span className={cx('titel')}>{item.title}</span>
-          </NavLink>
-        </li>
-      )
-    } else
-      return (
-        <li className={cx('content')} id="" key={index}>
-          <NavLink
-            className={cx('content-link')}
-            to={item.to}
-            onClick={() => setNum(item.id)}
-          >
-            <FontAwesomeIcon className={cx('icon-li')} icon={item.icon} />
-            <span className={cx('titel')}>{item.title}</span>
-          </NavLink>
-        </li>
-      )
+    return (
+      <li
+        className={cx('content', item.id === num ? 'active' : '')}
+        key={index}
+      >
+        <NavLink
+          className={cx('content-link')}
+          to={item.to}
+          onClick={() => setNum(item.id)}
+        >
+          <FontAwesomeIcon className={cx('icon-li')} icon={item.icon} />
+          <span className={cx('titel')}>{item.title}</span>
+        </NavLink>
+      </li>
+    )
   })
 
+  // eslint-disable-next-line array-callback-return
   const ListTag = userPlaylist.map((playList, index) => {
     if (isAuthenticated === true || userPlaylist.leght > 0) {
       return (

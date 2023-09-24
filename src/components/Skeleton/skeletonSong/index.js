@@ -9,9 +9,9 @@ function SkeletonSong({ num }) {
     .map((item, index) => (
       <div className={cx('warrper')} key={index}>
         <div className={cx('song-item')}>
-          <Skeleton width={50} height={50} />
+          <Skeleton width={50} height={50} duration={2} />
 
-          <Skeleton width={1200} height={25} />
+          <Skeleton width={1520} height={25} duration={2} />
         </div>
       </div>
     ))

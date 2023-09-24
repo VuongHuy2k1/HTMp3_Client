@@ -32,7 +32,7 @@ export const removePlayList = async (name) => {
     const res = await httpRequests.remove(
       `api/playlist/delete-playlist/${name}`,
     )
-    console.log(res)
+
     return res
   } catch (error) {
     console.log(error)
@@ -43,7 +43,7 @@ export const getSongPlayList = async (playlistId) => {
     const res = await httpRequests.get(
       `api/playlist/get-song-playlist/${playlistId}`,
     )
-    console.log(res)
+
     return res.item
   } catch (error) {
     console.log(error)
@@ -75,7 +75,8 @@ export const changePlayList = (playlistId, playlist) => {
   return httpRequests
     .put(`api/playlist/update-playlist-img/${playlistId}`, playlist)
     .then((response) => {
-      return response.item.data
+      console.log(response)
+      return response.data.item
     })
     .catch((error) => {
       if (error.code === 'ERR_NETWORK') {

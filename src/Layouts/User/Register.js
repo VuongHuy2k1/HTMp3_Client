@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import React from 'react'
 import { register } from '../../service/userService'
 
@@ -31,17 +31,15 @@ function RegisterLayout(props) {
     const variable = {
       username: user.username,
       password: user.password,
-      passwordConfirmation: user.passwordConfirmation,
+      rePassword: user.passwordConfirmation,
       email: user.email,
       gender: user.gender,
       dayOfBirth: user.birth,
       nation: user.countrty,
     }
-
+    console.log(variable)
     if (user.password === user.passwordConfirmation) {
       register(variable).then((data) => {
-        const { message } = data
-
         if (data.isSuccess === true) {
           setMessage({ msgBody: 'Đăng ký thành công', msgError: false })
 
@@ -214,7 +212,7 @@ function RegisterLayout(props) {
             <div className={cx('btn-submit-title')}>Đăng ký</div>
           </button>
           <span>
-            Bạn đã có tài khoản
+            Bạn đã có tài khoản?
             <Link to="/user/login" className={cx('btn-remove')}>
               Đăng nhập
             </Link>

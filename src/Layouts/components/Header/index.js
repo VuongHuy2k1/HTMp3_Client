@@ -1,9 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faAngleLeft,
-  faAngleRight,
-  faGear,
-} from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Search from './search'
@@ -20,11 +16,13 @@ const cx = classNames.bind(styles)
 function Header() {
   const value = UserServices.isLog()
   const [loading, setLoading] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const [img, setImg] = useState()
   const [user, setUser] = useState({
     role: 'basic',
   })
 
+  // eslint-disable-next-line no-unused-vars
   const url = 'http://localhost:8989/'
   const navigate = useNavigate()
 
@@ -42,6 +40,7 @@ function Header() {
       }
       fetchApi()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const goBack = (e) => {

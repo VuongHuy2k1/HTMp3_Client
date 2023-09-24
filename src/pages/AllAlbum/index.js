@@ -25,6 +25,7 @@ function AllAlbumLayout() {
       setAlbumsList(response)
     }
     fetchApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

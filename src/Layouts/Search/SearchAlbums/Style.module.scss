@@ -26,9 +26,29 @@
 .list-item {
   padding: 1.5rem 2rem;
 }
-.no {
-  font-size: 1.75rem;
-  text-align: center;
-  color: white;
-  padding: 3.75rem;
+.container-none{
+  width: 100%;
+  padding: 30px 0;
+  min-height: 220px;
+  background:var(--background-header);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+span{
+  color: var(--color-text);
+  margin-top: 1rem;
+  font-size: var(--size-text-4);
+}
+}
+i{
+  width: 90px;
+    height: 90px;
+    background-image: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.9.70/static/media/music-icon.cfa4aa91.svg);
+}
+.pa{
+  margin-top: 2.5rem;
+  margin-right: 2.5rem;
 }

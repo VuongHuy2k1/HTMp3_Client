@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useEffect, useRef, useState } from 'react'
 import { connect, useDispatch } from 'react-redux'
-
+import * as UserServices from '../../service/userService'
 import {
   setPlayerState,
   selectSongById,
@@ -33,20 +33,35 @@ const Player = ({
   selectedTurn,
 }) => {
   const dispatch = useDispatch()
+  const value = UserServices.isLog()
   const [shuffled, setShuffled] = useState(false)
   const [repeat, setRepeat] = useState(false)
+  // eslint-disable-next-line no-unused-vars
+  const [userPriority, setUserPriority] = useState(false)
 
   const [turn, setTurn] = useState(false)
-
+  const audioRef = useRef()
+  const songplay = selectList.findIndex((e) => e._id === selectedSongPlay._id)
   const getBackgroundSize = () => {
     return {
       backgroundSize: `${(currentLocation * 100) / duration}% 100%`,
     }
   }
 
-  const audioRef = useRef()
+  useEffect(() => {
+    if (value === true) {
+      const fetchApi = async () => {
+        const res = await UserServices.isAuthen()
 
-  const songplay = selectList.findIndex((e) => e._id === selectedSongPlay._id)
+        if (res.priority === 'vip') {
+          setUserPriority(true)
+        }
+      }
+      fetchApi()
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     // Đợi cho trang web được tải xong
@@ -59,6 +74,7 @@ const Player = ({
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
       audioRef.current.pause()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, songplay])
 
   useEffect(() => {
@@ -71,6 +87,7 @@ const Player = ({
     return () => {
       window.onload = null
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -89,6 +106,7 @@ const Player = ({
     } else {
       audioRef.current.pause()
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
+      audioRef.current.onMusicPlay = null
     }
   }
   //
@@ -101,6 +119,7 @@ const Player = ({
     if (!playerState) {
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
       audioRef.current.play()
+      audioRef.current.handleTimeSliderChange = null
     }
   }
 
@@ -147,8 +166,15 @@ const Player = ({
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
       return
     } else if (shuffled === true) {
+      if (audioRef.current && !audioRef.current.paused) {
+        audioRef.current.pause()
+      }
       selectSongById(selectList[Math.round(Math.random() * selectList.length)])
     } else {
+      if (audioRef.current && !audioRef.current.paused) {
+        audioRef.current.pause()
+      }
+
       selectSongById(selectList[songplay + 1])
     }
   }

@@ -5,22 +5,24 @@
   min-height: 100vh;
   background-repeat: round;
   background-size: 100%;
+ 
 }
 .header-container {
   height: 20rem;
   max-height: 20rem;
   padding-top: 3.5rem;
+ 
   min-height: 19.688rem;
   background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%);
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   img {
-    border: none;
+    border-radius: 0.8rem;
     box-shadow: 0 0.5rem 2rem rgb(0 0 0);
     display: flex;
     justify-content: center;
-    margin: 3.75rem 3.75rem 3.75rem 4.375rem;
+    // margin: 3.75rem 3.75rem 3.75rem 4.375rem;
     padding: 0.5rem;
     text-align: center;
     width: 13.75rem;
@@ -29,7 +31,8 @@
   }
 }
 .left-top {
-  width: 25%;
+  margin-left: 3.75rem;
+  margin-right: 3.75rem;
 }
 .right-top {
   color: #fff;
@@ -60,6 +63,31 @@
   }
 }
 .container {
-
  max-height: 40vh;
+
+}
+.container-none{
+  width: 100%;
+  padding: 30px 0;
+  min-height: 220px;
+  background:var(--background-header);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+span{
+  color: var(--color-text);
+  margin-top: 1rem;
+  font-size: var(--size-text-4);
+}
+}
+i{
+  width: 90px;
+    height: 90px;
+    background-image: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.9.70/static/media/music-icon.cfa4aa91.svg);
+}
+.skeleton{
+  padding: 0 2rem;
 }

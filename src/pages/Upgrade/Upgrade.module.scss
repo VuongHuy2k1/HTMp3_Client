@@ -19,6 +19,41 @@ p{
     font-weight:var(--weight-text-4) ;
     line-height: 1.813rem;
 }
+.content-upgrade{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    p{
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 42px;
+        font-weight: 600;
+        line-height: 52px;
+        display: -moz-box;
+        display: flex;
+        -moz-box-align: center;
+        align-items: center;
+        color:#8647eb ;
+    }
+    span{
+    background-color: #8647eb;
+    color: var(--theme-1);
+    border-radius: 0.3rem;
+    font-size: 1.6rem;
+    width: 8.8rem;
+    margin-top: 0.2rem;
+    font-weight: 650;
+    display: flex;
+    letter-spacing: 0.1rem;
+    padding: 0 0.2rem;
+   margin-left: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+     }
+   
+
 .container{
     display: flex;
     flex-direction: row;
@@ -178,12 +213,90 @@ p{
 .btn{
     background-color:var(--color-12) ;
     color: var(--color-out);
-    padding: 0 1.6rem;
-    height: 2.8rem;
-    border-radius: 2rem;
+    // padding: 0 1.6rem;
+    // height: 2.8rem;
+    // height: fit-content;
+    border-radius: 6rem;
     font-size: var(--size-text-2);
     line-height: 1.375rem;
     font-weight: var(--weight-text-4);
-    border-radius: 6.25rem;
     border: currentColor;
+}
+.container-pay{
+ display: flex;
+ flex-direction: row;
+ color: var(--color-1);
+ justify-content: space-between;
+ margin-top: 1rem;
+}
+.content-pay{
+    display: flex;
+    flex-direction: row;
+}
+.icon-pay{
+    background-color: #353841;
+    border-radius: 100%;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    path{
+        color: var(--color-1);
+    }
+}
+.title-pay {
+    margin-left: 1rem;
+}
+.logo-pay{
+    svg{
+        color: var(--color-1);
+        margin-right: 0.4rem;  
+    } 
+}
+.name-pay{
+    font-weight: var(--weight-text-2);
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 2px;
+}
+.perimum-content{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h5{
+        color: var(--color-1);
+        display: flex;
+        flex-direction: row;
+    }
+    p{
+       
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.2;
+        display: -moz-box;
+        display: flex;
+        -moz-box-align: center;
+        align-items: center;
+        color:#8647eb ;
+    }
+    span{
+    background-color: #8647eb;
+    color: var(--theme-1);
+    border-radius: 0.3rem;
+    font-size: 1.25rem;
+    width: 8.8rem;
+   
+    font-weight: 650;
+    display: flex;
+    letter-spacing: 0.1rem;
+    padding: 0 0.2rem;
+   margin-left: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
 }

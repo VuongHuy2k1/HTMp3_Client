@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react'
 
 import * as albumsSrevice from '../../service/albumsSevrice'
-import * as LastPlay from '../../service/playService'
+
 import classNames from 'classnames/bind'
 import styles from './Home.module.scss'
 import List from '../../components/List'
 
 import { connect } from 'react-redux'
-import { selectSong, selectSongByAlbum } from '../../actions'
 
 import SkeletonCard from '../../components/Skeleton/skeletoncerd'
 import Slides from '../../Layouts/components/Slide'
 const cx = classNames.bind(styles)
 
-const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
+const HomeLayout = () => {
   const [loading, setLoading] = useState(false)
 
   const [albumsList, setAlbumsList] = useState([])
+  // eslint-disable-next-line no-unused-vars
   const [singerList, setSingerList] = useState([])
   const [typeAlbum, setTypeAlbum] = useState([])
 
@@ -27,10 +27,12 @@ const HomeLayout = ({ selectSong, selectSongByAlbum, selectList }) => {
       const res = await albumsSrevice.getSingerAlbum(0)
 
       var type = []
-
-      for (let i = 0; i < response.length; i++) {
-        type[i] = response[i].type
+      if (response) {
+        for (let i = 0; i < response.length; i++) {
+          type[i] = response[i].type
+        }
       }
+
       const uniqueSet = new Set(type)
       const backToArray = [...uniqueSet]
 
@@ -78,6 +80,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { selectSong, selectSongByAlbum })(
-  HomeLayout,
-)
+export default connect(mapStateToProps, {})(HomeLayout)

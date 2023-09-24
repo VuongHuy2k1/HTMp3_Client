@@ -39,8 +39,8 @@ export const logOut = () => {
 
 export const isAuthen = () => {
   const tokenUser = Cookies.get('access_token')
-
-  return httpRequests.get(`api/user/authen/${tokenUser}`).then((res) => {
+  // nhớ bỏ en
+  return httpRequests.get(`api/user/auth/${tokenUser}`).then((res) => {
     if (res.status !== 401) {
       return res.item
     } else {
@@ -52,6 +52,7 @@ export const isAuthen = () => {
 export const isLog = () => {
   const tokenUser = Cookies.get('access_token')
   const userId = Cookies.get('userId')
+
   if (tokenUser === undefined || userId === undefined) {
     return false
   } else {
@@ -84,4 +85,27 @@ export const changePass = async (params) => {
   } catch (error) {
     console.log(error)
   }
+}
+export const sentMail = (user) => {
+  return httpRequests
+    .get('api/user/forgot-password', user)
+    .then((response) => {
+      if (response.status !== 401) {
+        return response.data
+      } else {
+        return {
+          user: { username: '' },
+          message: { msgBody: 'Error', msgError: true },
+        }
+      }
+    })
+    .catch((err) => {
+      return {
+        message: {
+          msgBody: 'Sai tai khoan hoac email',
+          msgError: true,
+        },
+        err,
+      }
+    })
 }

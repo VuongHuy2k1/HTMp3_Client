@@ -15,6 +15,7 @@ const config = {
 
   userLogin: '/user/login',
   userRegister: '/user/register',
+  userForgot: '/user/forgot',
   playList: '/playlist/:playlist_id/:playlist_name',
 }
 export default config

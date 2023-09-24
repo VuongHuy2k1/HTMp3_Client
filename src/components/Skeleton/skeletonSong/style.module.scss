@@ -42,12 +42,13 @@
     color: #eee !important;
   }
   .song-item {
-
+margin-left: 2rem;
   width:90%;
   height: fit-content;
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 6% 90%;
   padding: 0.625rem 0.313rem;
   transition: all 0.1s ease-in-out;
   position: relative;
+  align-items: center;
 }

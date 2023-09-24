@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { connect, useDispatch } from 'react-redux'
@@ -10,7 +11,7 @@ import { setStatus } from '../../../actions'
 import styles from './Item.module.scss'
 import Skeleton from 'react-loading-skeleton'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import List from '../../../components/Popper/List'
+
 const cx = classNames.bind(styles)
 
 const Item = ({
@@ -20,16 +21,44 @@ const Item = ({
   playerState,
   setStatus,
 }) => {
+  const { id } = useParams()
   const value = UserServices.isLog()
 
   const dispatch = useDispatch()
   const [showList, setShowList] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const [showListE, setShowListE] = useState(false)
+  // eslint-disable-next-line no-unused-vars
+  const [userPriority, setUserPriority] = useState(false)
+  const [songPriority, setSongPriority] = useState(false)
+
+  useEffect(() => {
+    if (value === true) {
+      const fetchApi = async () => {
+        const res = await UserServices.isAuthen()
+
+        if (res.priority === 'vip') {
+          setUserPriority(true)
+        }
+      }
+      fetchApi()
+    }
+    const fetchSongPreminum = async () => {
+      if (song.priority === 'vip') {
+        setSongPriority(true)
+      }
+    }
+    fetchSongPreminum()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [songPriority, song, id])
+
   const savePlay = async () => {
+    // eslint-disable-next-line no-unused-vars
     const response = await PlayService.saveAlbum({
       songId: song._id,
     })
   }
+
   const handleClick = () => {
     savePlay()
 
@@ -99,14 +128,9 @@ const Item = ({
       setShowListE(true)
     } else {
       setShowListE(false)
-      // setShowPlaylist(false)
     }
   }
-  const show = () => {
-    if (showList === true || showListE === true) {
-      return <List song={song} type={false} />
-    }
-  }
+
   return (
     <>
       {value === true ? (
@@ -119,19 +143,20 @@ const Item = ({
         >
           {phaser()}
           <div className={cx('right')}>
-            <div className={cx('name')}>{song ? song.name : <Skeleton />}</div>
+            <div className={cx('name')}>
+              {song ? (
+                <>
+                  <p>{song.name}</p>
+                  {/* {songPriority === true ? <span>premium</span> : <></>} */}
+                </>
+              ) : (
+                <Skeleton />
+              )}
+            </div>
             <div className={cx('singer')}>
               {song ? song.singer : <Skeleton />}
             </div>
           </div>
-
-          {/* <div className={cx('ba-icon')}>
-            <FontAwesomeIcon
-                icon={faEllipsis}
-                className={cx('more-icon')}
-              ></FontAwesomeIcon>
-            {show()}
-          </div> */}
         </div>
       ) : (
         <div
@@ -142,8 +167,13 @@ const Item = ({
         >
           {phaser()}
           <div className={cx('right')}>
-            <div className={cx('name')}>{song.name}</div>
-            <div className={cx('singer')}>{song.singer}</div>
+            <div className={cx('name')}>
+              <p>{song.name}</p>
+              {songPriority === true ? <span>premium</span> : <></>}
+            </div>
+            <div className={cx('singer')}>
+              {song ? song.singer : <Skeleton />}
+            </div>
           </div>
         </div>
       )}

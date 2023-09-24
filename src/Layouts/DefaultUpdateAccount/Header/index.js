@@ -2,8 +2,7 @@ import classNames from 'classnames/bind'
 import styles from './HeaderUpgrade.module.scss'
 import images from '../../../assect/images'
 import { Link } from 'react-router-dom'
-import * as UserServices from '../../../service/userService'
-import { useEffect, useState } from 'react'
+
 const cx = classNames.bind(styles)
 
 function UpdateHeader() {

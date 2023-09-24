@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import * as songsService from '../../service/songsService'
-import * as PlayListService from '../../service/playListService'
+import Popup from 'reactjs-popup'
+import PopupComponent from '../Flexpreminum'
 import {
   selectSong,
   selectSongByAlbum,
@@ -19,6 +20,7 @@ import List from '../Popper/List'
 import * as PlayService from '../../service/playService'
 import * as UserServices from '../../service/userService'
 import { faMusic, faPlay } from '@fortawesome/free-solid-svg-icons'
+
 const cx = classNames.bind(styles)
 
 const SongItem = ({
@@ -31,50 +33,67 @@ const SongItem = ({
   selectSongByAlbum,
   selectedUserList,
   playlistId,
-  selectedUserPlayList,
   charts,
   top,
   mini,
   setStatus,
 }) => {
   const [songsList, setSongsList] = useState([])
+  const [userPriority, setUserPriority] = useState(false)
+  const [songPriority, setSongPriority] = useState(false)
+
   const value = UserServices.isLog()
   useEffect(() => {
-    const fetchApi = async () => {
-      const songsFromAlbum = await songsService.getSongsFromAlbum(song.album)
-      const songsFromSinger = await songsService.getSongsFromSinger(song.singer)
+    if (value === true) {
+      const fetchApi = async () => {
+        const res = await UserServices.isAuthen()
 
-      if (songsFromAlbum.length <= 0) {
-        setSongsList(songsFromSinger)
-      } else {
-        setSongsList(songsFromAlbum)
+        if (res.priority === 'vip') {
+          setUserPriority(true)
+        }
       }
+      fetchApi()
     }
-    fetchApi()
+
+    if (song.priority === 'vip') {
+      setSongPriority(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const fepi = async (e) => {
-    const response = await PlayListService.getSongPlayList(e)
+  useEffect(() => {
+    if (value === true) {
+      const fetchApi = async () => {
+        const songsFromAlbum = await songsService.getSongsFromAlbum(song.album)
+        const songsFromSinger = await songsService.getSongsFromSinger(
+          song.singer,
+        )
 
-    selectedUserPlayList(response)
-  }
-
-  const removeSong = async (a, b) => {
-    const response = await PlayListService.removeSong(a, b)
-  }
-
+        if (songsFromAlbum.length <= 0) {
+          setSongsList(songsFromSinger)
+        } else {
+          setSongsList(songsFromAlbum)
+        }
+      }
+      fetchApi()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const savePlay = async () => {
     if (typeSave === 'album') {
+      // eslint-disable-next-line no-unused-vars
       const response = await PlayService.saveAlbum({
         albumName: song.album,
         songId: song._id,
       })
     } else if (typeSave === 'singer') {
+      // eslint-disable-next-line no-unused-vars
       const response = await PlayService.saveAlbum({
         singerName: song.singer,
         songId: song._id,
       })
     } else {
+      // eslint-disable-next-line no-unused-vars
       const response = await PlayService.saveAlbum({
         songId: song._id,
         playlistId: playlistId,
@@ -82,21 +101,28 @@ const SongItem = ({
     }
   }
 
-  const removeClick = () => {
-    removeSong(playlistId, song._id)
-    const timerId = setTimeout(() => {
-      clearTimeout(timerId)
-
-      fepi(playlistId)
-    }, 100)
-  }
-
   const handleClick = () => {
     dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
     if (type === true) {
-      selectSongByAlbum(selectedUserList)
+      if (userPriority === true) {
+        selectSongByAlbum(selectedUserList)
+      } else {
+        const arr = selectedUserList.filter(function (item) {
+          return item.priority !== 'vip'
+        })
+        console.log(arr)
+        selectSongByAlbum(arr)
+      }
     } else {
-      selectSongByAlbum(songsList)
+      if (userPriority === true) {
+        selectSongByAlbum(songsList)
+      } else {
+        const arr = songsList.filter(function (item) {
+          return item.priority !== 'vip'
+        })
+
+        selectSongByAlbum(arr)
+      }
     }
 
     savePlay()
@@ -109,35 +135,52 @@ const SongItem = ({
 
   const animation = () => {
     return (
-      <div>
-        <>
-          <img
-            src={song.links === undefined ? song.img : song.links.images[1].url}
-            alt={song.name}
-            className={cx('icon-img')}
-          />
-          <div className={cx('flex-img')}>
-            {selectedSongPlay._id === song._id &&
-            playerState &&
-            value === true ? (
-              <div className={cx('img-play')}>
-                <img
-                  alt=""
-                  src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
-                  id={cx('focused')}
-                />
-              </div>
-            ) : (
-              <form className={cx('hover-play')} onClick={handleClick}>
-                <FontAwesomeIcon
-                  icon={faPlay}
-                  className={cx('icon-play')}
-                ></FontAwesomeIcon>
-              </form>
-            )}
-          </div>
-        </>
-      </div>
+      <>
+        <img
+          src={song.links === undefined ? song.img : song.links.images[1].url}
+          alt={song.name}
+          className={cx('icon-img')}
+        />
+        <div className={cx('flex-img')}>
+          {selectedSongPlay._id === song._id &&
+          playerState &&
+          value === true ? (
+            <div className={cx('img-play')}>
+              <img
+                alt=""
+                src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif"
+                id={cx('focused')}
+              />
+            </div>
+          ) : (
+            <>
+              {userPriority === false && songPriority === true ? (
+                <Popup
+                  modal
+                  trigger={
+                    <form className={cx('hover-play')} onClick={handleClick}>
+                      <FontAwesomeIcon
+                        icon={faPlay}
+                        className={cx('icon-play')}
+                      ></FontAwesomeIcon>
+                    </form>
+                  }
+                  overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
+                >
+                  {(close) => <PopupComponent close={close} />}
+                </Popup>
+              ) : (
+                <form className={cx('hover-play')} onClick={handleClick}>
+                  <FontAwesomeIcon
+                    icon={faPlay}
+                    className={cx('icon-play')}
+                  ></FontAwesomeIcon>
+                </form>
+              )}
+            </>
+          )}
+        </div>
+      </>
     )
   }
 
@@ -183,13 +226,23 @@ const SongItem = ({
         }}
       >
         <div className={cx('music-icon')}>{iconStart()}</div>
+        <div className={cx('music-img')}>{animation()}</div>
 
-        {animation()}
-        <div className={cx('name')}>{song.name}</div>
+        <div className={cx('name')}>
+          <p>{song.name}</p>
+          {songPriority === true ? <span>premium</span> : <></>}
+        </div>
         {mini ? <></> : <div className={cx('author')}>{song.singer}</div>}
 
         <div className={cx('icon-dow')}>
-          <List song={song} type={type} playlistId={playlistId} />
+          <List
+            song={song}
+            type={type}
+            playlistId={playlistId}
+            priority={
+              userPriority === false && songPriority === true ? true : false
+            }
+          />
         </div>
       </div>
     </>

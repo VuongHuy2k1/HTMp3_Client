@@ -15,10 +15,9 @@ import Infor from '../pages/Infor'
 import Edit from '../pages/Edit'
 import ChangePass from '../pages/Change'
 
-import Uppgrade from '../pages/Upgrade'
-
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import Forgot from '../pages/Forgot'
 
 import DefaultUserLayout from '../Layouts/DefaultUserLayout'
 import DefaultAccountLayout from '../Layouts/DefaultAccountLayout'
@@ -59,5 +58,6 @@ const PrivateRoutes = [
 const AuthRoutes = [
   { path: config.userLogin, component: Login, layout: DefaultUserLayout },
   { path: config.userRegister, component: Register, layout: DefaultUserLayout },
+  { path: config.userForgot, component: Forgot, layout: DefaultUserLayout },
 ]
 export { PublicRoutes, PrivateRoutes, AuthRoutes }

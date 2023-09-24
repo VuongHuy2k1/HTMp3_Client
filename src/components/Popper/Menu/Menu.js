@@ -5,6 +5,8 @@ import { selectSong, selectSongByAlbum } from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './Menu.module.scss'
 import * as UserServices from '../../../service/userService'
+import * as albumsSrevice from '../../../service/albumsSevrice'
+import * as songsService from '../../../service/songsService'
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -16,8 +18,9 @@ import {
 
 const cx = classNames.bind(styles)
 
-function Menu({ selectSong, role }) {
+function Menu({ selectSong, role, selectSongByAlbum }) {
   const [showList, setShowList] = useState(false)
+  const [songsList, setSongsList] = useState([])
   const navigate = useNavigate()
   const [img, setImg] = useState()
   const [user, setUser] = useState({
@@ -36,7 +39,23 @@ function Menu({ selectSong, role }) {
     }
     fetchApi()
   }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const albumResponse = await albumsSrevice.getAllAlbum(0)
+        const firstAlbumName = albumResponse[0].name
+        const songsFromAlbum = await songsService.getSongsFromAlbum(
+          firstAlbumName,
+        )
 
+        setSongsList(songsFromAlbum)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
   const onLogout = () => {
     selectSong(0)
 
@@ -45,10 +64,12 @@ function Menu({ selectSong, role }) {
 
     const timerId = setTimeout(() => {
       clearTimeout(timerId)
+      selectSongByAlbum(songsList)
       navigate('/')
     }, 1000)
     const timerRelod = setTimeout(() => {
       clearTimeout(timerRelod)
+
       window.location.reload()
     }, 1001)
     const timerLoading = setTimeout(() => {
@@ -152,7 +173,6 @@ function Menu({ selectSong, role }) {
 
 const mapStateToProps = (state) => {
   return {
-    selectSongByAlbum: state.selectSongByAlbum,
     selectedSongPlay: state.selectedSongPlay,
     playerState: state.playerState,
   }

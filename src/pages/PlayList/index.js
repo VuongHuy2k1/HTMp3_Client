@@ -17,8 +17,9 @@ function PlayListLayout({
   selectedUserPlayList,
   getPlayListId,
   selectedUserList,
+  loadingState,
 }) {
-  const url = 'http://localhost:8989/img/'
+  // eslint-disable-next-line no-unused-vars
   const [songsList, setSongsList] = useState([])
   const [playList, setPlayList] = useState([])
   const { playlist_id } = useParams()
@@ -39,9 +40,13 @@ function PlayListLayout({
       getPlayListId(debouncedValue)
 
       selectedUserPlayList(response)
-      setLoading(false)
+
+      setTimeout(function () {
+        setLoading(false)
+      }, 1000)
     }
     fetchApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue])
 
   useEffect(() => {
@@ -61,54 +66,72 @@ function PlayListLayout({
     fetchApi()
   }, [debouncedValue])
 
+  useEffect(() => {
+    const fetchApi = async () => {
+      setLoading(loadingState)
+    }
+    fetchApi()
+  }, [loadingState])
+  console.log(selectedUserList[0], 'ty')
   return (
     <React.Fragment>
       <div className={cx('main-view-container', 'scroll')}>
         <div className={cx('header-container')}>
           <div className={cx('left-top')}>
-            {playList.img === undefined ? (
-              <>
-                <img
-                  alt=""
-                  src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"
-                ></img>
-              </>
+            {loading ? (
+              <Skeleton width={220} height={200} padding={8} />
             ) : (
               <>
-                <img src={url + playList.img} alt=""></img>
+                {selectedUserList[0] !== undefined ? (
+                  <img
+                    alt=""
+                    src={
+                      selectedUserList[0].links === undefined
+                        ? selectedUserList[0].img
+                        : selectedUserList[0].links.images[1].url
+                    }
+                  ></img>
+                ) : (
+                  <img
+                    alt=""
+                    src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"
+                  ></img>
+                )}
               </>
             )}
           </div>
           <div className={cx('right-top')}>
             <h4>PLAYLIST</h4>
-            {loading ? <Skeleton width={420} /> : <span>{playList.name} </span>}
+            {loading ? (
+              <Skeleton width={380} height={30} />
+            ) : (
+              <span>{playList.name} </span>
+            )}
 
             <span> </span>
           </div>
         </div>
         <div className={cx('container')}>
-          {songsList === null ? (
-            <>Danh sách trống </>
+          {selectedUserList.length <= 0 ? (
+            <div className={cx('container-none')}>
+              <i> </i>
+              <span>Không có bài hát trong playlist của bạn</span>
+            </div>
           ) : (
             <>
-              {songsList === undefined ? (
-                <>
-                  <span>Danh sách trống</span>
-                </>
+              <SongListHeader />
+              {loading ? (
+                <SkeletonSong
+                  num={selectedUserList.length}
+                  className={cx('skeleton')}
+                />
               ) : (
-                <>
-                  <SongListHeader />
-                  {loading ? (
-                    <SkeletonSong num={10} />
-                  ) : (
-                    <SongList
-                      songs={selectedUserList}
-                      typee={true}
-                      typeSave="playlist"
-                      playlistId={debouncedValue}
-                    />
-                  )}
-                </>
+                <SongList
+                  songs={selectedUserList}
+                  typee={true}
+                  typeSave="playlist"
+                  playlistId={debouncedValue}
+                />
               )}
             </>
           )}
@@ -119,7 +142,10 @@ function PlayListLayout({
 }
 
 const mapStateToProps = (state) => {
-  return { selectedUserList: state.selectedUserList }
+  return {
+    selectedUserList: state.selectedUserList,
+    loadingState: state.selectedLoad,
+  }
 }
 
 export default connect(mapStateToProps, {

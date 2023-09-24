@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 import { connect } from 'react-redux'
@@ -14,7 +13,7 @@ import styles from './More.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsis, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { useRef, useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import * as PlayListService from '../../../service/playListService'
 const cx = classNames.bind(styles)
@@ -28,9 +27,9 @@ function More({
   selectedLoad,
 }) {
   const [showList, setShowList] = useState(false)
-  const [show, setShow] = useState(false)
 
   const removePlayList = async (e) => {
+    // eslint-disable-next-line no-unused-vars
     const response = await PlayListService.removePlayList(e)
   }
   const fepi = async () => {

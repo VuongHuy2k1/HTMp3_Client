@@ -1,26 +1,20 @@
 import { connect } from 'react-redux'
 import classNames from 'classnames/bind'
 import styles from './FlexComponent.module.scss'
-import {
-  selectSongByAlbum,
-  setStatus,
-  setFocus,
-  changePlaylist,
-} from '../../actions'
+import { setStatus, setFocus, changePlaylist } from '../../actions'
 import { useEffect, useState } from 'react'
 import * as UserService from '../../service/userService'
 import * as PlayListService from '../../service/playListService'
 import Message from '../Message'
 import { Link } from 'react-router-dom'
+import images from '../../assect/images'
 const cx = classNames.bind(styles)
 const FlexComponet = ({
-  selectedSongList,
   setStatus,
   status,
   focus,
   setFocus,
   changePlaylist,
-  userPlaylist,
   playlistId,
 }) => {
   const value = UserService.isLog()
@@ -42,6 +36,7 @@ const FlexComponet = ({
       changePlaylist(response)
     }
     fetchApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const fepi = async () => {
@@ -56,6 +51,7 @@ const FlexComponet = ({
     setPlayList(newUser)
   }
 
+  // eslint-disable-next-line no-unused-vars
   const onChangeImage = (e) => {
     const file = e.target.files[0]
     file.preview = URL.createObjectURL(file)
@@ -126,10 +122,7 @@ const FlexComponet = ({
             <div className={cx('block-container')}>
               <div className={cx('content')}>
                 <div className={cx('img-content')}>
-                  <img
-                    src="https://i.scdn.co/image/ab67706f00000002a1c5958b0e50ec08114db10f"
-                    alt=""
-                  ></img>
+                  <img src={images.logoBlack} alt=""></img>
                 </div>
                 <div className={cx('text-content')}>
                   <h2>Bắt đầu nghe bằng tài khoản miễn phí</h2>
@@ -163,11 +156,14 @@ const FlexComponet = ({
                 <div className={cx('img-content')}>
                   {playList.image.preview === undefined ? (
                     <>
-                      <img src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"></img>
+                      <img
+                        alt=""
+                        src="https://media.proprofs.com/images/QM/user_images/2734691/1589295044.gif"
+                      ></img>
                     </>
                   ) : (
                     <>
-                      <img src={playList.image.preview}></img>
+                      <img alt="" src={playList.image.preview}></img>
                     </>
                   )}
                 </div>
@@ -258,7 +254,7 @@ const FlexComponet = ({
                   )}
                 </div>
                 <div className={cx('text-content')}>
-                  <h2>Sửa thông tin</h2>
+                  <h2>Sửa thông tin danh sách phát </h2>
                   <form
                     className={cx('post-form')}
                     name="crete_playlist"
@@ -291,22 +287,6 @@ const FlexComponet = ({
                       </div>
                     </div>
 
-                    {/* <div className={cx('group-main')}>
-                      <div className={cx('title-group')}>
-                        <label htmlFor="img" className={cx('label-title-list')}>
-                          <span>Chọn ảnh</span>
-                        </label>
-                      </div>
-                      <input
-                        id="img"
-                        className={cx('input-value')}
-                        accept="image/*"
-                        type="file"
-                        name="image"
-                        onChange={onChangeImage}
-                        required
-                      ></input>
-                    </div> */}
                     <div className={cx('btn-form')}>
                       <button type="submit" className={cx('btn-submit')}>
                         <div className={cx('btn-submit-title')}>Thay đổi</div>
@@ -351,7 +331,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  selectSongByAlbum,
   setStatus,
   setFocus,
   changePlaylist,

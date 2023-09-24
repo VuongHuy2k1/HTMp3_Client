@@ -1,12 +1,11 @@
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 
 import { selectAlbum, setPlayerState } from '../../actions'
 
-import { useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './SongDetail.module.scss'
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 const cx = classNames.bind(styles)
 
 const SongDetail = ({ selectedAlbumId, playerState, selectedSongPlay }) => {

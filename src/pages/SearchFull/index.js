@@ -1,4 +1,4 @@
-import { useState, useEffect, Children } from 'react'
+import { useState } from 'react'
 
 import classNames from 'classnames/bind'
 import styles from './Search.module.scss'
@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom'
 import { SearchAllLayout } from '../../Layouts/Search'
 import { SearchAlbumLayout } from '../../Layouts/Search'
 import { SearchSongsLayout } from '../../Layouts/Search'
-import { SearchSingerLayout } from '../../Layouts/Search'
 
 const cx = classNames.bind(styles)
 

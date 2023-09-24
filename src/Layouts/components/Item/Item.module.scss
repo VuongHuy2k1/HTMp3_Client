@@ -16,18 +16,7 @@
 
     width: 100%;
 
-    .name{
-      color: var(--color-text);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 100%;
-      font-weight: var(--weight-text-2);
-      font-size:var(--size-text-2);
-
-      transition: 0.7s;
-
-    }
+    
     .singer{
       color: var(--color-text-3);
       font-weight: var(--weight-text-3);
@@ -37,7 +26,37 @@
   }
   
 }
+.name{
+  color: var(--color-text);
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+  font-weight: var(--weight-text-2);
+  font-size:var(--size-text-2);
 
+  transition: 0.7s;
+  p{
+    white-space: nowrap;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  span{
+    background-color: var(--color-premium);
+    color: var(--theme-1);
+    border-radius: 0.3rem;
+    font-size: 0.6rem;
+    width: 3.8rem;
+    margin-top: 0.2rem;
+    font-weight: 650;
+    display: flex;
+    letter-spacing: 0.05rem;
+    padding: 0 0.2rem;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+}
 .song-item:hover {
   background-color: var(--color-hover-1);
   border-radius: 0.188rem;
@@ -66,6 +85,7 @@
 
 .song-item > .name {
   justify-content: flex-start !important;
+  
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
