@@ -90,7 +90,7 @@ function EditLayout() {
           noValidate="noValidate"
         >
           <div className={cx('main-form')}>
-            <div className={cx('group-main')}>
+            {/* <div className={cx('group-main')}>
               <div className={cx('title-group')}>
                 <label htmlFor="name" className={cx('label-title')}>
                   <span>Tên</span>
@@ -104,7 +104,7 @@ function EditLayout() {
                 value={user.name}
                 onChange={onChange}
               ></input>
-            </div>
+            </div> */}
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
                 <label htmlFor="email" className={cx('label-title')}>

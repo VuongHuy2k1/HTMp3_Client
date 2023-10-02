@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind'
 import styles from './Slider.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faKey, faPen } from '@fortawesome/free-solid-svg-icons'
+
 import { useEffect, useState } from 'react'
 import * as UserServices from '../../../service/userService'
 import { NavLink } from 'react-router-dom'
@@ -47,7 +46,7 @@ function UserSlider() {
     },
     {
       id: 4,
-      to: '/account/change',
+      to: '/account/history',
       icon: <FaUserClock className={cx('icon')} />,
       title: 'Lịch sử',
     },

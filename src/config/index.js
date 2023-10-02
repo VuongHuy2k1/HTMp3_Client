@@ -11,6 +11,7 @@ const config = {
   accoutInfor: '/account/infor',
   accoutEdit: '/account/edit',
   accoutChange: '/account/change',
+  history: '/account/history',
   upgrade: '/upgrade',
 
   userLogin: '/user/login',

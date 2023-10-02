@@ -2,19 +2,25 @@
     height: 10rem;
 }
 
-.slide {
-
- 
-  }
 .img{
-
+  height: 13rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   background-size: cover;
-  width: -webkit-fill-available;
+  width: 22rem;
+  margin: 2rem 1rem 0 1rem;
+  border-radius: var(--card-image-border-radius);
+  object-fit: fill;
+}
+.loading{
+  height: 13rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
 
   margin: 2rem 1rem 0 1rem;
   border-radius: var(--card-image-border-radius);
-
+  object-fit: fill;
 }

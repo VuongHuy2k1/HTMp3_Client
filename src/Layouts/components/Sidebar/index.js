@@ -8,12 +8,8 @@ import images from '../../../assect/images'
 import * as UserServices from '../../../service/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import More from '../../../components/Popper/More'
-import {
-  faChartLine,
-  faPlus,
-  faCompass,
-} from '@fortawesome/free-solid-svg-icons'
-
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { RiLineChartLine, RiCompass3Line } from 'react-icons/ri'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 const cx = classNames.bind(styles)
@@ -21,11 +17,16 @@ function Sidebar({ setFocus, userPlaylist }) {
   const [num, setNum] = useState(1)
 
   const listMenu = [
-    { id: 1, to: '/', icon: faCompass, title: 'Khám phá' },
+    {
+      id: 1,
+      to: '/',
+      icon: <RiCompass3Line className={cx('icon-li')} />,
+      title: 'Khám phá',
+    },
     {
       id: 2,
       to: '/chart',
-      icon: faChartLine,
+      icon: <RiLineChartLine className={cx('icon-li')} />,
       title: 'Bảng xếp hạng',
     },
   ]
@@ -43,7 +44,7 @@ function Sidebar({ setFocus, userPlaylist }) {
           to={item.to}
           onClick={() => setNum(item.id)}
         >
-          <FontAwesomeIcon className={cx('icon-li')} icon={item.icon} />
+          {item.icon}
           <span className={cx('titel')}>{item.title}</span>
         </NavLink>
       </li>
@@ -61,7 +62,7 @@ function Sidebar({ setFocus, userPlaylist }) {
             className={cx('co')}
           >
             <li className={cx('content')}>
-              <h6 className={cx('titel')}>{playList.name}</h6>
+              <span className={cx('titel')}>{playList.name}</span>
             </li>
           </NavLink>
           <form className={cx('icon-delete')}>

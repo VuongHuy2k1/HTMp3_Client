@@ -22,7 +22,7 @@ const DefaultLayout = ({
   turn,
 }) => {
   const value = UserService.isLog()
-  console.log(value)
+
   const [off, setOff] = useState(false)
   useEffect(() => {
     setOff(turn)

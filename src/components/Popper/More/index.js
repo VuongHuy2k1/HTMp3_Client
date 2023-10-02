@@ -10,11 +10,9 @@ import {
 } from '../../../actions'
 import Wrapper from '../Wrapper'
 import styles from './More.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsis, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { useState } from 'react'
-
+import { RiMoreLine, RiEdit2Line, RiDeleteBinLine } from 'react-icons/ri'
 import * as PlayListService from '../../../service/playListService'
 const cx = classNames.bind(styles)
 
@@ -63,10 +61,7 @@ function More({
       <Wrapper>
         <ul className={cx('menu-body')}>
           <li className={cx('menu-item')} onClick={removeClick}>
-            <FontAwesomeIcon
-              className={cx('icon')}
-              icon={faTrash}
-            ></FontAwesomeIcon>
+            <RiDeleteBinLine className={cx('icon')} />
             Xóa playlist
           </li>
           <li
@@ -77,10 +72,7 @@ function More({
               getPlayListId(playList)
             }}
           >
-            <FontAwesomeIcon
-              className={cx('icon')}
-              icon={faPen}
-            ></FontAwesomeIcon>
+            <RiEdit2Line className={cx('icon')} />
             Chỉnh sửa playlist
           </li>
         </ul>
@@ -105,11 +97,7 @@ function More({
       onClickOutside={() => setShowList(false)}
     >
       <div className={cx('hover-like-icon')}>
-        <FontAwesomeIcon
-          className={cx('icon-li')}
-          icon={faEllipsis}
-          onClick={oneClick}
-        />
+        <RiMoreLine className={cx('icon-li')} onClick={oneClick} />
       </div>
     </Tippy>
   )

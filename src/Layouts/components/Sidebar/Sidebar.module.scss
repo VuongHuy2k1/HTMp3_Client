@@ -78,8 +78,8 @@
 }
 .icon-li {
   flex-shrink: 0;
-  height: 1.25rem;
-  width: 1.25rem;
+  height: 1.4rem;
+  width: 1.4rem;
   color: var(--color-text-side);
   font-weight: 400;
 }
@@ -89,7 +89,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 0.375rem 0rem;
+  padding: 0.2rem 0rem;
+display: inline-block;
+width: 100%;
+  font-size: 0.9rem;
+
 }
 //Album
 .album {
@@ -133,8 +137,7 @@
   color: rgb(175, 169, 169);
 }
 .album-list-titel {
-  // color: var(--color-text);
-  // font-weight: var(--weight-text);
+
 }
 //active
 .active {
@@ -146,20 +149,25 @@ svg{
 }
 .titel{
   color: var(--color-text-6);
+ 
 }
 }
 .album-list {
- 
+
   list-style: none;
   width: inherit;
   padding-left: 1.25rem;
 }
 .list-name {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-right: 1.25rem;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-right: 1.25rem;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding-top: 0.4rem;
+
 }
 .icon-delete {
   visibility: hidden;

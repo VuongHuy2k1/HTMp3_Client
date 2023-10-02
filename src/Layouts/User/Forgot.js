@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import React from 'react'
-import { login } from '../../service/userService'
+import { forgotPass, login } from '../../service/userService'
 
 import Popup from 'reactjs-popup'
 import { selectSong, selectSongByAlbum } from '../../actions'
@@ -25,7 +25,7 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
     rePassword: '',
     code: '',
   })
-
+  const [nameButton, setNameButton] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
   const onChange = (e) => {
@@ -33,35 +33,37 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault()
+  const onSubmit = (e) => {
+    e.preventDefault()
 
-  //   login(user).then((data) => {
-  //     if (data.isSuccess === true) {
-  //       setLoading(true)
+    if (nameButton === 'forgot') {
+      forgotPass(user).then((data) => {
+        if (data.isSuccess === true) {
+          setLoading(true)
 
-  //       const timerId = setTimeout(() => {
-  //         clearTimeout(timerId)
+          const timerId = setTimeout(() => {
+            clearTimeout(timerId)
 
-  //         // navigate('/login', { replace: true })
-  //       }, 2000)
-  //       const timerRelod = setTimeout(() => {
-  //         clearTimeout(timerRelod)
-  //       }, 2001)
-  //       setMessage({ msgBody: 'Khôi phục thành công', msgError: false })
+            setMessage({ msgBody: 'Khôi phục thành công', msgError: false })
+          }, 2000)
+          const timerRelod = setTimeout(() => {
+            clearTimeout(timerRelod)
+          }, 2001)
 
-  //       const timerLoading = setTimeout(() => {
-  //         clearTimeout(timerLoading)
-  //         setLoading(false)
-  //       }, 3000)
-  //     } else {
-  //       setMessage({
-  //         msgBody: 'Khôi phục lỗi',
-  //         msgError: true,
-  //       })
-  //     }
-  //   })
-  // }
+          const timerLoading = setTimeout(() => {
+            clearTimeout(timerLoading)
+            // navigate('/login', { replace: true })
+            setLoading(false)
+          }, 3000)
+        } else {
+          setMessage({
+            msgBody: 'Khôi phục lỗi',
+            msgError: true,
+          })
+        }
+      })
+    }
+  }
 
   return (
     <div className={cx('div')}>
@@ -80,7 +82,7 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
               id="login"
               className={cx('post-form')}
               noValidate="noValidate"
-              // onSubmit={onSubmit}
+              onSubmit={onSubmit}
             >
               <div className={cx('main-form')}>
                 <div className={cx('group-main')}>
@@ -108,13 +110,13 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
                     </label>
                   </div>
                   <input
-                    id="name"
+                    id="email"
                     className={cx('input-value')}
                     type="text"
                     placeholder="Email"
-                    name="email"
+                    name="userEmail"
                     autoFocus={true}
-                    value={user.email}
+                    value={user.userEmail}
                     onChange={onChange}
                   ></input>
                 </div>
@@ -156,35 +158,45 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
                       <span>Mã bảo vệ</span>
                     </label>
                   </div>
-                  <input
-                    id="code"
-                    className={cx('input-value')}
-                    type="text"
-                    name="code"
-                    placeholder="Nhập mã bảo vệ"
-                    onChange={onChange}
-                    value={user.code}
-                  ></input>
-                </div>
-              </div>
-              <div className={cx('btn-form')}>
-                <button type="submit" className={cx('btn-submit')}>
-                  <div className={cx('btn-submit-title')}>Khôi phục</div>
-                </button>
-                <div className={cx('login-more')}>
-                  <span>
-                    Bạn chưa có mã bảo vệ?
+                  <div className={cx('out')}>
+                    <input
+                      id="code"
+                      className={cx('input-value')}
+                      type="text"
+                      name="code"
+                      placeholder="Nhập mã bảo vệ"
+                      onChange={onChange}
+                      value={user.code}
+                    ></input>
+
                     <Popup
                       modal
                       overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
                       trigger={
-                        <div className={cx('btn-remove')}>Nhận mã bảo vệ</div>
+                        <button className={cx('btn-code', 'btt')}>
+                          <div className={cx('btn-code-title')}>Lấy mã</div>
+                        </button>
                       }
                     >
-                      {(close) => <SentmailComponent close={close} />}
+                      {(close) => (
+                        <SentmailComponent
+                          close={close}
+                          name={user.username}
+                          mail={user.userEmail}
+                        />
+                      )}
                     </Popup>
-                  </span>
+                  </div>
                 </div>
+              </div>
+              <div className={cx('btn-form')}>
+                <button
+                  className={cx('btn-submit')}
+                  onClick={(e) => setNameButton('forgot')}
+                  type="submit"
+                >
+                  <div className={cx('btn-submit-title')}>Khôi phục</div>
+                </button>
               </div>
             </form>
           </>

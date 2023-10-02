@@ -37,7 +37,7 @@ function RegisterLayout(props) {
       dayOfBirth: user.birth,
       nation: user.countrty,
     }
-    console.log(variable)
+
     if (user.password === user.passwordConfirmation) {
       register(variable).then((data) => {
         if (data.isSuccess === true) {

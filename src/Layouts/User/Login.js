@@ -8,7 +8,7 @@ import { selectSong, selectSongByAlbum } from '../../actions'
 import classNames from 'classnames/bind'
 import styles from './User.module.scss'
 import Message from '../../components/Message'
-
+import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri'
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
 import ScaleLoader from 'react-spinners/ScaleLoader'
@@ -24,6 +24,7 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
 
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const onChange = (e) => {
     e.preventDefault()
     setUser({ ...user, [e.target.name]: e.target.value })
@@ -69,7 +70,7 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
         fetchApi()
         const getMusic = async () => {
           const response = await LastPlay.getLastPlay()
-          console.log(response)
+
           if (response !== undefined) {
             if (userPriority === true) {
               selectSongByAlbum(response.songList)
@@ -82,6 +83,8 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
             }
 
             selectSong(response.song)
+          } else {
+            selectSongByAlbum([])
           }
         }
         getMusic()
@@ -143,15 +146,25 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                       <span>Nhập mật khẩu</span>
                     </label>
                   </div>
-                  <input
-                    id="pass"
-                    className={cx('input-value')}
-                    type="password"
-                    name="password"
-                    placeholder="Nhập mật khẩu"
-                    onChange={onChange}
-                    value={user.password}
-                  ></input>
+                  <div className={cx('out')}>
+                    <input
+                      id="pass"
+                      className={cx('input-value')}
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Nhập mật khẩu"
+                      onChange={onChange}
+                      value={user.password}
+                    ></input>
+                    <button
+                      className={cx('show-pass')}
+                      onClick={() => setShowPassword(!showPassword)}
+                      type="button"
+                    >
+                      {' '}
+                      {showPassword ? <RiEyeLine /> : <RiEyeOffLine />}
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className={cx('btn-form')}>

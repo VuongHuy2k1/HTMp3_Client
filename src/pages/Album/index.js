@@ -47,7 +47,11 @@ function AlbumLayout() {
                 <Skeleton width={260} height={260} paddingTop={8} />
               </div>
             ) : (
-              <SongDetail loading={loading} />
+              <SongDetail
+                loading={loading}
+                songs={songsList}
+                typeSave={typeList}
+              />
             )}
           </div>
           <div className={cx('view-right', 'scroll')}>

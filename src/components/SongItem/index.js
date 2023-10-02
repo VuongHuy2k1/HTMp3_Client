@@ -110,7 +110,7 @@ const SongItem = ({
         const arr = selectedUserList.filter(function (item) {
           return item.priority !== 'vip'
         })
-        console.log(arr)
+
         selectSongByAlbum(arr)
       }
     } else {

@@ -84,6 +84,9 @@ const ChartLayout = () => {
   const [top1, setTop1] = useState('')
   const [top2, setTop2] = useState('')
   const [top3, setTop3] = useState('')
+  const [top1Img, setTop1Img] = useState('')
+  const [top2Img, setTop2Img] = useState('')
+  const [top3Img, setTop3Img] = useState('')
   useEffect(() => {
     const fetchApi = async () => {
       setLoading(true)
@@ -98,6 +101,22 @@ const ChartLayout = () => {
       setTop1(songs[0].name)
       setTop2(songs[1].name)
       setTop3(songs[2].name)
+      setTop1Img(
+        songs[0].links === undefined
+          ? songs[0].img
+          : songs[0].links.images[1].url,
+      )
+      setTop2Img(
+        songs[1].links === undefined
+          ? songs[1].img
+          : songs[1].links.images[1].url,
+      )
+      setTop3Img(
+        songs[2].links === undefined
+          ? songs[2].img
+          : songs[2].links.images[1].url,
+      )
+
       setSongsList(songs)
       setSongsListWeek(songsWeek)
       setSongsListMoth(songsMoth)
@@ -154,7 +173,30 @@ const ChartLayout = () => {
         labels.length > 0
       ) {
         // Dữ liệu hợp lệ, thiết lập cấu hình biểu đồ
+        const series = [
+          {
+            name: top1,
+            data: customSort([...line1], currentHour),
+            color: 'rgb(74, 144, 226)',
+            image:
+              'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
+          },
+          {
+            name: top2,
+            data: customSort([...line2], currentHour),
+            color: '#27BB9A',
+            image:
+              'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
+          },
 
+          {
+            name: top3,
+            data: customSort([...line3], currentHour),
+            color: '#D74D4D',
+            image:
+              'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
+          },
+        ]
         const optionss = {
           chart: {
             type: 'line',
@@ -184,41 +226,76 @@ const ChartLayout = () => {
               opacity: 0.5,
             },
           },
+          plotOptions: {
+            line: {
+              strokeWidth: 0.5, // Điều chỉnh độ dày của đường
+            },
+            markers: {
+              size: 6, // Kích thước của markers (đặt giá trị mong muốn)
+              colors: ['#FF5733'], // Màu sắc của markers
+              strokeColors: '#fff', // Màu sắc viền của markers
+              strokeWidth: 2, // Độ dày viền của markers
+              hover: {
+                size: 8, // Kích thước markers khi di chuột qua (tùy chọn)
+              },
+            },
+          },
+          tooltip: {
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+              // Lấy tên của dãy dữ liệu dựa trên seriesIndex
+              const seriesName = w.globals.seriesNames[seriesIndex]
+              const color = w.globals.seriesColors[seriesIndex]
+              const imageUrl = () => {
+                if (
+                  w.globals.seriesColors[seriesIndex] === 'rgb(74, 144, 226)'
+                ) {
+                  return top1Img
+                }
+                if (w.globals.seriesColors[seriesIndex] === '#27BB9A') {
+                  return top2Img
+                }
+                if (w.globals.seriesColors[seriesIndex] === '#D74D4D') {
+                  return top3Img
+                }
+              }
+
+              // const seriesImg = series[seriesIndex].data[dataPointIndex].image
+              // Lấy giá trị dữ liệu từ dãy dữ liệu tương ứng
+              // const imageUrl =
+              //   'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif'
+              const dataValue = series[seriesIndex][dataPointIndex]
+              const tooltipStyle = `
+             
+              background-color:${color} ;
+              left: 0px;
+              top: 99px;
+              opacity: 1;
+              color: #fff;
+              display: flex;
+              align-items: center;
+              overflow: hidden;
+              width: 100%;
+              padding:6px
+            `
+
+              return `<div  style="${tooltipStyle}">   <img src="${imageUrl()}" alt="Image" width="40" height="40" style="    object-fit: cover;
+              border-radius: 4px;
+              margin-right: 5px;
+              flex-shrink: 0;"> ${seriesName} ${dataValue}%</div>`
+            },
+          },
         }
-        const series = [
-          {
-            name: top1,
-            data: customSort([...line1], currentHour),
-
-            color: 'rgba(53, 162, 235, 0.5)',
-          },
-          {
-            name: top2,
-            data: customSort([...line2], currentHour),
-
-            color: '#27BB9A',
-          },
-
-          {
-            name: top3,
-            data: customSort([...line3], currentHour),
-
-            color: '#D74D4D',
-          },
-        ]
 
         setOptions(optionss)
         setSeries(series)
       } else {
         // Dữ liệu không hợp lệ, hiển thị thông báo lỗi hoặc xử lý theo cách khác
-
         console.error('Dữ liệu không đủ để hiển thị biểu đồ.')
       }
     }
     fetchApi()
   }, [labels, currentHour, point1, point2, point3])
 
-  console.log(labels)
   return (
     <div className={cx('main-view-container', 'scroll')}>
       <div className={cx('chart-container')}>

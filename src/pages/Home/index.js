@@ -39,7 +39,9 @@ const HomeLayout = () => {
       setSingerList(res)
       setAlbumsList(response)
       setTypeAlbum(backToArray)
-      setLoading(false)
+      setTimeout(function () {
+        setLoading(false)
+      }, 1500)
     }
     fetchApi()
   }, [])

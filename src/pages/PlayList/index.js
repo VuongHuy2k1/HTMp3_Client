@@ -11,6 +11,7 @@ import styles from './PlayList.module.scss'
 import { selectedUserPlayList, getPlayListId } from '../../actions'
 import SkeletonSong from '../../components/Skeleton/skeletonSong'
 import Skeleton from 'react-loading-skeleton'
+import { RiPlayListLine } from 'react-icons/ri'
 const cx = classNames.bind(styles)
 
 function PlayListLayout({
@@ -72,7 +73,7 @@ function PlayListLayout({
     }
     fetchApi()
   }, [loadingState])
-  console.log(selectedUserList[0], 'ty')
+
   return (
     <React.Fragment>
       <div className={cx('main-view-container', 'scroll')}>
@@ -101,7 +102,11 @@ function PlayListLayout({
             )}
           </div>
           <div className={cx('right-top')}>
-            <h4>PLAYLIST</h4>
+            <div className={cx('right-top-content')}>
+              <RiPlayListLine className={cx('icon-turn')} />
+              <h4>PLAYLIST</h4>
+            </div>
+
             {loading ? (
               <Skeleton width={380} height={30} />
             ) : (

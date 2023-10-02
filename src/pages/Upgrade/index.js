@@ -6,9 +6,9 @@ import styles from './Upgrade.module.scss'
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
 import { FaCreditCard, FaCcPaypal, FaCcVisa } from 'react-icons/fa'
 import Message from '../../components/Message'
-import { ListGroup } from 'react-bootstrap'
-import { faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
-import { set } from 'date-fns'
+// import { ListGroup } from 'react-bootstrap'
+// import { faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
+// import { set } from 'date-fns'
 const cx = classNames.bind(styles)
 function Upgrade() {
   const [packageData, setPackageData] = useState([])
@@ -27,6 +27,7 @@ function Upgrade() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
   const [value, setValue] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [valueUsd, setValueUsd] = useState('')
   var d = new Date()
 
@@ -81,7 +82,6 @@ function Upgrade() {
     setValueUsd((value / 23630).toFixed(2))
   }, [value])
 
-  // console.log(packageData)
   const [amount, setAmount] = useState('10.00')
   const pressValue = (price, index, moth, cart) => {
     var a = new Date()
@@ -103,7 +103,7 @@ function Upgrade() {
     // Cập nhật giá trị số tiền khi người dùng thay đổi
     setAmount(event.target.value)
   }
-  console.log(cart)
+
   const method = packageData.map((item, index) => {
     return (
       <label
@@ -165,7 +165,7 @@ function Upgrade() {
         msgBody: 'Thanh toán thành công',
         msgError: false,
       })
-      console.log(cart, 'aloo')
+
       UpgradeServices.completedUpgrede(cart)
     }, 500)
     const timerLoading = setTimeout(() => {
@@ -182,7 +182,7 @@ function Upgrade() {
           {loading ? <Message message={message} /> : <></>}
           <div className={cx('content-upgrade')}>
             <p>HUTA MP3</p>
-            <span>PREMIUM</span>
+            <span>VIP</span>
           </div>
           <div className={cx('container')}>
             <div className={cx('container-left')}>
@@ -352,7 +352,7 @@ function Upgrade() {
                         'client-id':
                           'AQj4hWJh4I4BlberLgbdxysNBinX2F77M0ATvr9ziJOB7IBJ7K_yWlKYVAfHXvnx8gPcxOjejD7rjHJY',
                         components: 'buttons',
-                        currency: 'USD',
+                        currency: 'VND',
                       }}
                     >
                       <PayPalButtons
@@ -364,8 +364,8 @@ function Upgrade() {
                           height: 32,
                           // label: 'paypal',
                         }}
+                        forceReRender={[amount]}
                         createOrder={(data, actions) => {
-                          console.log(amount)
                           return actions.order.create({
                             purchase_units: [
                               {
@@ -397,7 +397,7 @@ function Upgrade() {
           <div className={cx('perimum-content', 'bg', 'active')}>
             <h5>
               Tài khoản của bạn là <p>HUTA MP3</p>
-              <span> premium </span>
+              <span> VIP </span>
             </h5>
 
             <h5>

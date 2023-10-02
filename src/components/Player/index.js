@@ -16,10 +16,11 @@ import {
   faPlayCircle,
   faRepeat,
   faPauseCircle,
-  faList,
+
 } from '@fortawesome/free-solid-svg-icons'
 import styles from './Player.module.scss'
 import classNames from 'classnames/bind'
+import { RiPlayListLine } from 'react-icons/ri'
 const cx = classNames.bind(styles)
 
 const Player = ({
@@ -64,8 +65,6 @@ const Player = ({
   }, [])
 
   useEffect(() => {
-    // Đợi cho trang web được tải xong
-
     if (playerState === 1) {
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
       audioRef.current.play()
@@ -73,6 +72,7 @@ const Player = ({
     } else if (playerState === 0) {
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 0 })
       audioRef.current.pause()
+      audioRef.current.onMusicPlay = null
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, songplay])
@@ -110,7 +110,13 @@ const Player = ({
     }
   }
   //
-
+  useEffect(() => {
+    if (playerState === 1) {
+      audioRef.current.play()
+    } else {
+      audioRef.current.pause()
+    }
+  }, [playerState])
   const handleTimeSliderChange = ({ e }) => {
     const input = document.getElementById('play-position')
     audioRef.current.currentTime = Number(input?.value)
@@ -293,15 +299,7 @@ const Player = ({
               setRepeat(!repeat)
             }}
           >
-            <svg
-              role="img"
-              height="24"
-              width="24"
-              viewBox="0 0 16 16"
-              className=""
-            >
-              <FontAwesomeIcon icon={faRepeat} className={cx('reicon')} />
-            </svg>
+            <FontAwesomeIcon icon={faRepeat} className={cx('reicon')} />
           </div>
 
           <audio
@@ -358,10 +356,7 @@ const Player = ({
           className={cx(turn === false ? 'btn-turn' : 'btn-turn-active')}
           onClick={pressTurn}
         >
-          <FontAwesomeIcon
-            className={cx('icon-turn')}
-            icon={faList}
-          ></FontAwesomeIcon>
+          <RiPlayListLine className={cx('icon-turn')} />
         </button>
       </div>
     </div>

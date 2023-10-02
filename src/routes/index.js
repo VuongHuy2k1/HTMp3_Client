@@ -14,6 +14,7 @@ import PlayList from '../pages/PlayList'
 import Infor from '../pages/Infor'
 import Edit from '../pages/Edit'
 import ChangePass from '../pages/Change'
+import History from '../pages/History'
 
 import Login from '../pages/Login'
 import Register from '../pages/Register'
@@ -52,6 +53,11 @@ const PrivateRoutes = [
     path: config.upgrade,
     component: Upgrade,
     layout: DefaultUpgradeLayout,
+  },
+  {
+    path: config.history,
+    component: History,
+    layout: DefaultAccountLayout,
   },
 ]
 

@@ -74,24 +74,48 @@ export const updateInfo = async (params) => {
 }
 export const changePass = async (params) => {
   const tokenUser = Cookies.get('access_token')
+
   try {
     const res = await httpRequests
       .put(`api/user/change-password/${tokenUser}`, params)
-      .then((mess) => {
-        return mess
+      .then((res) => {
+        return res.data
       })
 
-    return res.item
+    return res
   } catch (error) {
     console.log(error)
   }
 }
 export const sentMail = (user) => {
   return httpRequests
+    .post('api/user/forgot-password', user)
+    .then((response) => {
+      if (response.status !== 401) {
+        return response
+      } else {
+        return {
+          user: { username: '' },
+          message: { msgBody: 'Error', msgError: true },
+        }
+      }
+    })
+    .catch((err) => {
+      return {
+        message: {
+          msgBody: 'Sai tai khoan hoac email',
+          msgError: true,
+        },
+        err,
+      }
+    })
+}
+export const forgotPass = (user) => {
+  return httpRequests
     .get('api/user/forgot-password', user)
     .then((response) => {
       if (response.status !== 401) {
-        return response.data
+        return response
       } else {
         return {
           user: { username: '' },

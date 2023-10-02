@@ -10,7 +10,6 @@ export const getUpgredePackage = async () => {
 }
 
 export const completedUpgrede = async (bill) => {
-  console.log(bill, 'bill')
   try {
     const response = await httpRequests.post(`api/bill/new`, bill)
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import * as UserService from '../../service/userService'
 
 const cx = classNames.bind(styles)
-function InforLayout() {
+function HistoryLayout() {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -95,14 +95,9 @@ function InforLayout() {
             </tr>
           </tbody>
         </table>
-        {/* <div className={cx('move')}>
-          <Link className={cx('btn-move')} to="/account/edit">
-            Chỉnh sửa hồ sơ
-          </Link>
-        </div> */}
       </div>
     </div>
   )
 }
 
-export default InforLayout
+export default HistoryLayout

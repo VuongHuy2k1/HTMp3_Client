@@ -264,3 +264,14 @@
   padding-block: 0.875rem;
   padding-inline: 2rem;
 }
+.out{position: relative;}
+.show-pass{
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  bottom: 0;
+  background-color: initial;
+  svg{
+    font-size: 18px;
+  }
+}
