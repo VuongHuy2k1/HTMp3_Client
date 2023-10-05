@@ -5,6 +5,7 @@ import { sentMail } from '../../service/userService'
 import Message from '../Message'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { PacmanLoader } from 'react-spinners'
 const cx = classNames.bind(styles)
 const SentmailComponent = ({ close, name, mail }) => {
   const [loading, setLoading] = useState(false)
@@ -13,6 +14,7 @@ const SentmailComponent = ({ close, name, mail }) => {
     username: name,
     userEmail: mail,
   })
+
   const [nameButton, setNameButton] = useState('')
   const onChange = (e) => {
     e.preventDefault()
@@ -21,11 +23,10 @@ const SentmailComponent = ({ close, name, mail }) => {
 
   const submit = (e) => {
     e.preventDefault()
+    setLoading(true)
     if (nameButton === 'sentmail') {
       sentMail(user).then((data) => {
         if (data.isSuccess === true) {
-          setLoading(true)
-
           const timerRelod = setTimeout(() => {
             clearTimeout(timerRelod)
             setMessage({ msgBody: 'Gửi mã thành công', msgError: false })
@@ -36,10 +37,18 @@ const SentmailComponent = ({ close, name, mail }) => {
             setLoading(false)
           }, 3000)
         } else {
-          setMessage({
-            msgBody: 'Email hoặc tên tài khoản không đúng',
-            msgError: true,
-          })
+          const timerLoading = setTimeout(() => {
+            clearTimeout(timerLoading)
+          }, 2000)
+
+          const time = setTimeout(() => {
+            clearTimeout(time)
+            setMessage({
+              msgBody: data.errors.message,
+              msgError: true,
+            })
+            setLoading(false)
+          }, 3000)
         }
       })
     }
@@ -107,7 +116,11 @@ const SentmailComponent = ({ close, name, mail }) => {
                     onClick={(e) => setNameButton('sentmail')}
                     className={cx('btn-submit-title')}
                   >
-                    Lấy mã
+                    {loading ? (
+                      <PacmanLoader color={'#FFF'} size={10} />
+                    ) : (
+                      ' Lấy mã'
+                    )}
                   </button>
                 </div>
               </form>

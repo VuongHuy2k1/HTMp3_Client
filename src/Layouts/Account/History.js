@@ -6,96 +6,81 @@ import * as UserService from '../../service/userService'
 
 const cx = classNames.bind(styles)
 function HistoryLayout() {
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    img: '',
-    gender: '',
-    dateOfBirth: '',
-    nation: '',
-  })
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserService.isAuthen()
-      const dateObject = new Date(res.dateOfBirth)
+      const fetchApi = async () => {
+        const resd = await UserService.getBill(res._id)
+        console.log(resd)
+        setData(resd)
+      }
 
-      setUser({
-        name: res.username,
-        email: res.email,
-        img: res.img,
-        gender: res.gender,
-        dateOfBirth: `${dateObject.getDate()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`,
-        nation: res.nation,
-      })
+      fetchApi()
     }
     fetchApi()
   }, [])
+  function addMonths(date, months) {
+    date.setMonth(date.getMonth() + months)
+    return date
+  }
 
+  const bill = data.map((item, index) => {
+    const dateObject = new Date(item.paymentDate)
+    const start = `${dateObject.getDate()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`
+    const end = `${dateObject.getDate()}/${addMonths(
+      dateObject,
+      item.duration + 1,
+    ).getMonth()}/${dateObject.getFullYear()}`
+    return (
+      <div className={cx('bill-table')} key={index}>
+        <nav className={cx('group-tag')}>
+          <div className={cx('tag', 'left')}>
+            <div className={cx('td')}>Tên gói</div>
+            {item.packageName === undefined ? (
+              <div className={cx('td-1')}></div>
+            ) : (
+              <>
+                <div className={cx('td-1')}>{item.packageName}</div>
+              </>
+            )}
+          </div>
+          <div className={cx('tag', 'center')}>
+            <div className={cx('td')}>Ngày mua</div>
+            {start === undefined ? (
+              <div className={cx('td-1')}></div>
+            ) : (
+              <>
+                <div className={cx('td-1')}>{start}</div>
+              </>
+            )}
+          </div>
+          <div className={cx('tag', 'right')}>
+            <div className={cx('td')}>Ngày hết hạn</div>
+            {end === undefined ? (
+              <div className={cx('td-1')}> </div>
+            ) : (
+              <>
+                <div className={cx('td-1')}>{end}</div>
+              </>
+            )}
+          </div>
+        </nav>
+
+        <div className={cx('bill-text')}>
+          Bạn đã chi trả:<p> {parseFloat(item.amount).toLocaleString()}</p> VNĐ
+          cho <p>{item.duration ? item.duration : ''}</p> tháng sử dụng
+        </div>
+      </div>
+    )
+  })
   return (
     <div className={cx('wrapper')}>
       <div className={cx('title')}>
-        <h1>Tổng quan về tài khoản</h1>
-        <span>Hồ sơ</span>
+        <h1>Lịch sử nâng cấp </h1>
       </div>
-      <div className={cx('content')}>
-        <table className={cx('info-table')}>
-          <tbody>
-            <tr>
-              <td className={cx('td')}>Tên người dùng</td>
-              {user.name === undefined ? (
-                <td className={cx('td-1')}></td>
-              ) : (
-                <>
-                  <td className={cx('td-1')}>{user.name}</td>
-                </>
-              )}
-            </tr>
-
-            <tr>
-              <td className={cx('td')}>Ngày sinh</td>
-              {user.dateOfBirth === undefined ? (
-                <td className={cx('td-1')}></td>
-              ) : (
-                <>
-                  <td className={cx('td-1')}>{user.dateOfBirth}</td>
-                </>
-              )}
-            </tr>
-            <tr>
-              <td className={cx('td')}>Giới tính</td>
-              {user.gender === undefined ? (
-                <td className={cx('td-1')}> </td>
-              ) : (
-                <>
-                  <td className={cx('td-1')}>{user.gender}</td>
-                </>
-              )}
-            </tr>
-            <tr>
-              <td className={cx('td')}>Email</td>
-              {user.email === undefined ? (
-                <td className={cx('td-1')}></td>
-              ) : (
-                <>
-                  <td className={cx('td-1')}>{user.email}</td>
-                </>
-              )}
-            </tr>
-
-            <tr>
-              <td className={cx('td')}>Quốc gia</td>
-              {user.nation === undefined ? (
-                <td className={cx('td-1')}>Bạn chưa cập nhật </td>
-              ) : (
-                <>
-                  <td className={cx('td-1')}>{user.nation}</td>
-                </>
-              )}
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div className={cx('content-bill')}>{bill}</div>
     </div>
   )
 }

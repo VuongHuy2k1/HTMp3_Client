@@ -20,7 +20,7 @@ function Upgrade() {
     amount: '',
     duration: '',
   })
-  const url = 'http://localhost:8989/img/'
+
   const urlImg =
     'https://i.scdn.co/image/ab6761610000e5ebc02d416c309a68b04dc94576'
   const [img, setImg] = useState()
@@ -78,9 +78,6 @@ function Upgrade() {
     fetchApi()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  useEffect(() => {
-    setValueUsd((value / 23630).toFixed(2))
-  }, [value])
 
   const [amount, setAmount] = useState('10.00')
   const pressValue = (price, index, moth, cart) => {
@@ -100,8 +97,9 @@ function Upgrade() {
     setEndDate(`${day.getDate()}/${day.getMonth()}/${day.getFullYear()}`)
   }
   const handleValue = (event) => {
-    // Cập nhật giá trị số tiền khi người dùng thay đổi
-    setAmount(event.target.value)
+    const monney = (event.target.value / 23000).toFixed(2)
+
+    setAmount(monney)
   }
 
   const method = packageData.map((item, index) => {
@@ -170,14 +168,14 @@ function Upgrade() {
     }, 500)
     const timerLoading = setTimeout(() => {
       clearTimeout(timerLoading)
-
+      window.location.reload()
       setLoading(false)
     }, 2000)
   }
 
   return (
     <div className={cx('wrapper')}>
-      {user?.userPriority === 'basic' ? (
+      {user?.userPriority !== 'vip' ? (
         <>
           {loading ? <Message message={message} /> : <></>}
           <div className={cx('content-upgrade')}>
@@ -322,7 +320,7 @@ function Upgrade() {
                   <img
                     className={cx('user-img')}
                     alt=""
-                    src={img !== undefined ? url + img : urlImg}
+                    src={img !== undefined ? img : urlImg}
                   ></img>
                   <p className={cx('user-name')}>{user.username}</p>
                 </div>
@@ -352,7 +350,7 @@ function Upgrade() {
                         'client-id':
                           'AQj4hWJh4I4BlberLgbdxysNBinX2F77M0ATvr9ziJOB7IBJ7K_yWlKYVAfHXvnx8gPcxOjejD7rjHJY',
                         components: 'buttons',
-                        currency: 'VND',
+                        currency: 'USD',
                       }}
                     >
                       <PayPalButtons

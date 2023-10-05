@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import * as UserService from '../../service/userService'
 import Message from '../../components/Message'
+import { RiXingLine } from 'react-icons/ri'
+import { da } from 'date-fns/locale'
 const cx = classNames.bind(styles)
 function EditLayout() {
   const [user, setUser] = useState({
@@ -19,14 +21,14 @@ function EditLayout() {
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserService.isAuthen()
-
+      console.log(res)
       setUser({
-        name: res.name,
+        name: res.username,
         email: res.email,
-
         gender: res.gender,
         dateOfBirth: res.dateOfBirth,
         nation: res.nation,
+        image: res.img,
       })
     }
     fetchApi()
@@ -48,32 +50,39 @@ function EditLayout() {
   }
   const onSubmit = (e) => {
     e.preventDefault()
+
     const variable = {
-      name: user.name,
-      email: user.email,
       gender: user.gender,
       dateOfBirth: user.dateOfBirth,
       nation: user.nation,
+      fileLink: user.image,
+      name: user.name,
     }
-    const formdata = new FormData()
-    formdata.append('image', user.image)
 
-    UserService.updateInfo(formdata)
-    UserService.updateInfo(variable)
-    setMessage({
-      msgBody: 'Cập nhật thành công',
-      msgError: false,
+    UserService.updateInfo(variable).then((data) => {
+      if (data.isSuccess === true) {
+        setMessage({
+          msgBody: 'Cập nhật thành công',
+          msgError: false,
+        })
+        const timerReload = setTimeout(() => {
+          clearTimeout(timerLoading)
+
+          window.location.reload()
+        }, 2001)
+        const timerLoading = setTimeout(() => {
+          clearTimeout(timerLoading)
+          navigate('/account/infor')
+        }, 2000)
+      } else {
+        setMessage({
+          msgBody: data.errors.message,
+          msgError: true,
+        })
+      }
     })
-    // eslint-disable-next-line no-unused-vars
-    const timerReload = setTimeout(() => {
-      clearTimeout(timerLoading)
 
-      window.location.reload()
-    }, 2001)
-    const timerLoading = setTimeout(() => {
-      clearTimeout(timerLoading)
-      navigate('/account/infor')
-    }, 2000)
+    // eslint-disable-next-line no-unused-vars
   }
 
   return (
@@ -90,36 +99,6 @@ function EditLayout() {
           noValidate="noValidate"
         >
           <div className={cx('main-form')}>
-            {/* <div className={cx('group-main')}>
-              <div className={cx('title-group')}>
-                <label htmlFor="name" className={cx('label-title')}>
-                  <span>Tên</span>
-                </label>
-              </div>
-              <input
-                id="name"
-                className={cx('input-value')}
-                type="text"
-                name="name"
-                value={user.name}
-                onChange={onChange}
-              ></input>
-            </div> */}
-            <div className={cx('group-main')}>
-              <div className={cx('title-group')}>
-                <label htmlFor="email" className={cx('label-title')}>
-                  <span>Email</span>
-                </label>
-              </div>
-              <input
-                id="email"
-                className={cx('input-value')}
-                type="email"
-                name="email"
-                value={user.email}
-                onChange={onChange}
-              ></input>
-            </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
                 <label htmlFor="sex" className={cx('label-title')} type="text">
@@ -151,7 +130,7 @@ function EditLayout() {
                 >
                   <path d="M.47 4.97a.75.75 0 011.06 0L8 11.44l6.47-6.47a.75.75 0 111.06 1.06L8 13.56.47 6.03a.75.75 0 010-1.06z"></path>
                 </svg>
-              </div>{' '}
+              </div>
             </div>
             <div className={cx('group-main')}>
               <div className={cx('title-group')}>
@@ -201,10 +180,10 @@ function EditLayout() {
               <input
                 id="img"
                 className={cx('input-value')}
-                type="file"
+                type="text"
                 name="image"
-                onChange={handleChangeFile}
-                required
+                value={user.image}
+                onChange={onChange}
               ></input>
             </div>
           </div>

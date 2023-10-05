@@ -62,15 +62,27 @@ export const isLog = () => {
 
 export const updateInfo = async (params) => {
   const tokenUser = Cookies.get('access_token')
-  try {
-    const res = await httpRequests.put(
-      `api/user/update-user/${tokenUser}`,
-      params,
-    )
-    return res.item
-  } catch (error) {
-    console.log(error)
-  }
+  return httpRequests
+    .put(`api/user/update-user/${tokenUser}`, params)
+    .then((response) => {
+      if (response.status !== 401) {
+        return response.data
+      } else {
+        return {
+          user: { username: '' },
+          message: { msgBody: 'Error', msgError: true },
+        }
+      }
+    })
+    .catch((err) => {
+      return {
+        message: {
+          msgBody: 'Sai thông tin',
+          msgError: true,
+        },
+        err,
+      }
+    })
 }
 export const changePass = async (params) => {
   const tokenUser = Cookies.get('access_token')
@@ -92,7 +104,7 @@ export const sentMail = (user) => {
     .post('api/user/forgot-password', user)
     .then((response) => {
       if (response.status !== 401) {
-        return response
+        return response.data
       } else {
         return {
           user: { username: '' },
@@ -112,10 +124,10 @@ export const sentMail = (user) => {
 }
 export const forgotPass = (user) => {
   return httpRequests
-    .get('api/user/forgot-password', user)
+    .post('api/user/verify-reset-password', user)
     .then((response) => {
       if (response.status !== 401) {
-        return response
+        return response.data
       } else {
         return {
           user: { username: '' },
@@ -132,4 +144,13 @@ export const forgotPass = (user) => {
         err,
       }
     })
+}
+export const getBill = (id) => {
+  return httpRequests.get(`api/bill/${id}`).then((res) => {
+    if (res.status !== 401) {
+      return res.item
+    } else {
+      return { user: { username: '' } }
+    }
+  })
 }

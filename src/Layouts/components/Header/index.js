@@ -23,7 +23,7 @@ function Header() {
   })
 
   // eslint-disable-next-line no-unused-vars
-  const url = 'http://localhost:8989/'
+
   const navigate = useNavigate()
 
   useEffect(() => {

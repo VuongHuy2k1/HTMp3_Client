@@ -13,12 +13,15 @@ function InforLayout() {
     gender: '',
     dateOfBirth: '',
     nation: '',
+    priority: '',
+    endPay: '',
   })
 
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserService.isAuthen()
       const dateObject = new Date(res.dateOfBirth)
+      const dateEnd = new Date(res.endPay)
 
       setUser({
         name: res.username,
@@ -27,6 +30,8 @@ function InforLayout() {
         gender: res.gender,
         dateOfBirth: `${dateObject.getDate()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`,
         nation: res.nation,
+        priority: res.priority,
+        endPay: `${dateEnd.getDate()}/${dateEnd.getMonth()}/${dateEnd.getFullYear()}`,
       })
     }
     fetchApi()
@@ -36,7 +41,6 @@ function InforLayout() {
     <div className={cx('wrapper')}>
       <div className={cx('title')}>
         <h1>Tổng quan về tài khoản</h1>
-        <span>Hồ sơ</span>
       </div>
       <div className={cx('content')}>
         <table className={cx('info-table')}>
@@ -65,7 +69,7 @@ function InforLayout() {
             <tr>
               <td className={cx('td')}>Giới tính</td>
               {user.gender === undefined ? (
-                <td className={cx('td-1')}> </td>
+                <td className={cx('td-1')}>Bạn chưa cập nhật </td>
               ) : (
                 <>
                   <td className={cx('td-1')}>{user.gender}</td>
@@ -91,6 +95,30 @@ function InforLayout() {
                 <>
                   <td className={cx('td-1')}>{user.nation}</td>
                 </>
+              )}
+            </tr>
+            <tr className={cx('td-two')}>
+              <td className={cx('td')}>Loại tài khoản</td>
+              {user.nation === undefined ? (
+                <td className={cx('td-1')}>Bạn chưa cập nhật </td>
+              ) : (
+                <>
+                  <td className={cx('td-1')}>{user.priority}</td>
+                </>
+              )}
+              {user.priority === 'vip' ? (
+                <>
+                  <td className={cx('td')}>Ngày hết hạn</td>
+                  {user.nation === undefined ? (
+                    <td className={cx('td-1')}>Bạn chưa cập nhật </td>
+                  ) : (
+                    <>
+                      <td className={cx('td-1')}>{user.endPay}</td>
+                    </>
+                  )}
+                </>
+              ) : (
+                <></>
               )}
             </tr>
           </tbody>

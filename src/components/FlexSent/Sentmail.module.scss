@@ -255,8 +255,16 @@
       color: var(--color-1);
       border-radius: 0.4rem;
       font-size: inherit;
+      display: flex;
       padding-block: 0.4rem;
       padding-inline: 2rem;
+      width: 10rem;
+      height: 2rem;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
     }
     .login-more{
       display: flex;

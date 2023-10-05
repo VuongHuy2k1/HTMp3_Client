@@ -25,10 +25,12 @@ function PlayListLayout({
   const [playList, setPlayList] = useState([])
   const { playlist_id } = useParams()
   const [loading, setLoading] = useState(false)
+  const [loadingMusic, setLoadingMusic] = useState(false)
   const debouncedValue = useDebounce(playlist_id, 30)
 
   useEffect(() => {
     setLoading(true)
+    setLoadingMusic(true)
     if (!debouncedValue.trim()) {
       setSongsList([])
       return
@@ -44,6 +46,7 @@ function PlayListLayout({
 
       setTimeout(function () {
         setLoading(false)
+        setLoadingMusic(false)
       }, 1000)
     }
     fetchApi()
@@ -69,7 +72,7 @@ function PlayListLayout({
 
   useEffect(() => {
     const fetchApi = async () => {
-      setLoading(loadingState)
+      setLoadingMusic(loadingState)
     }
     fetchApi()
   }, [loadingState])
@@ -125,7 +128,7 @@ function PlayListLayout({
           ) : (
             <>
               <SongListHeader />
-              {loading ? (
+              {loadingMusic ? (
                 <SkeletonSong
                   num={selectedUserList.length}
                   className={cx('skeleton')}

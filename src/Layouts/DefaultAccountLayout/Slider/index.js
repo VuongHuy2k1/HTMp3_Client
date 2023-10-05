@@ -12,7 +12,6 @@ import {
 } from 'react-icons/fa'
 const cx = classNames.bind(styles)
 function UserSlider() {
-  const url = 'http://localhost:8989/img/'
   const [img, setImg] = useState()
   const [num, setNum] = useState(1)
 
@@ -76,11 +75,7 @@ function UserSlider() {
             <center>
               {img !== undefined ? (
                 <>
-                  <img
-                    className="img-circle autofit2"
-                    src={url + img}
-                    alt="imag"
-                  />
+                  <img className="img-circle autofit2" src={img} alt="imag" />
                 </>
               ) : (
                 <>

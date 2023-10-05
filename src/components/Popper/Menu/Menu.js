@@ -26,7 +26,7 @@ function Menu({ selectSong, role, selectSongByAlbum }) {
   const [user, setUser] = useState({
     username: '',
   })
-  const url = 'http://localhost:8989/img/'
+
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserServices.isAuthen()
@@ -57,7 +57,7 @@ function Menu({ selectSong, role, selectSongByAlbum }) {
     fetchData()
   }, [])
   const onLogout = () => {
-    selectSong(0)
+    // selectSong(0)
 
     Cookies.remove('access_token')
     Cookies.remove('userId')
@@ -69,7 +69,6 @@ function Menu({ selectSong, role, selectSongByAlbum }) {
     }, 1000)
     const timerRelod = setTimeout(() => {
       clearTimeout(timerRelod)
-
       window.location.reload()
     }, 1001)
     const timerLoading = setTimeout(() => {
@@ -85,7 +84,7 @@ function Menu({ selectSong, role, selectSongByAlbum }) {
             <div className={cx('avatar')}>
               {img !== undefined ? (
                 <>
-                  <img className={cx('user-avatar')} src={url + img} alt="" />
+                  <img className={cx('user-avatar')} src={img} alt="" />
                 </>
               ) : (
                 <>
@@ -141,7 +140,7 @@ function Menu({ selectSong, role, selectSongByAlbum }) {
       return setShowList(false)
     }
   }
-
+  console.log(img)
   return (
     <Tippy
       interactive
@@ -154,7 +153,7 @@ function Menu({ selectSong, role, selectSongByAlbum }) {
         <center onClick={oneClick} onBlur={() => setShowList(false)}>
           {img !== undefined ? (
             <>
-              <img className={cx('img-avatar')} src={url + img} alt="" />
+              <img className={cx('img-avatar')} src={img} alt="" />
             </>
           ) : (
             <>

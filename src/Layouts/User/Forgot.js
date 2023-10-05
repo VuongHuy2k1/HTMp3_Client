@@ -35,24 +35,27 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
+    const variable = {
+      username: user.username,
+      userEmail: user.userEmail,
+      password: user.password,
+      rePassword: user.rePassword,
+      code: user.code,
+    }
     if (nameButton === 'forgot') {
-      forgotPass(user).then((data) => {
+      forgotPass(variable).then((data) => {
+        console.log(data)
         if (data.isSuccess === true) {
-          setLoading(true)
+          setMessage({ msgBody: 'Khôi phục thành công', msgError: false })
 
-          const timerId = setTimeout(() => {
-            clearTimeout(timerId)
-
-            setMessage({ msgBody: 'Khôi phục thành công', msgError: false })
-          }, 2000)
           const timerRelod = setTimeout(() => {
             clearTimeout(timerRelod)
+            setLoading(true)
           }, 2001)
 
           const timerLoading = setTimeout(() => {
             clearTimeout(timerLoading)
-            // navigate('/login', { replace: true })
+            navigate('/user/login', { replace: true })
             setLoading(false)
           }, 3000)
         } else {
@@ -146,10 +149,10 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
                     id="repass"
                     className={cx('input-value')}
                     type="password"
-                    name="repassword"
+                    name="rePassword"
                     placeholder="Nhập lại mật khẩu"
                     onChange={onChange}
-                    value={user.repassword}
+                    value={user.rePassword}
                   ></input>
                 </div>
                 <div className={cx('group-main')}>
