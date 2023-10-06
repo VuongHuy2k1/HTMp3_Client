@@ -69,7 +69,7 @@ function HistoryLayout() {
         </nav>
 
         <div className={cx('bill-text')}>
-          Bạn đã chi trả:<p> {parseFloat(item.amount).toLocaleString()}</p> VNĐ
+          Bạn đã chi trả<p> {parseFloat(item.amount).toLocaleString()}</p> VNĐ
           cho <p>{item.duration ? item.duration : ''}</p> tháng sử dụng
         </div>
       </div>

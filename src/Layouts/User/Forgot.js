@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import React from 'react'
-import { forgotPass, login } from '../../service/userService'
+import { forgotPass } from '../../service/userService'
 
 import Popup from 'reactjs-popup'
 import { selectSong, selectSongByAlbum } from '../../actions'
@@ -44,7 +44,6 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
     }
     if (nameButton === 'forgot') {
       forgotPass(variable).then((data) => {
-        console.log(data)
         if (data.isSuccess === true) {
           setMessage({ msgBody: 'Khôi phục thành công', msgError: false })
 

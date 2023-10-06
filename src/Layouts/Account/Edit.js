@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import * as UserService from '../../service/userService'
 import Message from '../../components/Message'
-import { RiXingLine } from 'react-icons/ri'
-import { da } from 'date-fns/locale'
+
 const cx = classNames.bind(styles)
 function EditLayout() {
   const [user, setUser] = useState({
@@ -36,12 +35,6 @@ function EditLayout() {
 
   const navigate = useNavigate()
 
-  const handleChangeFile = (e) => {
-    const file = e.target.files[0]
-
-    file.preview = URL.createObjectURL(file)
-    setUser({ image: file })
-  }
   const onChange = (e) => {
     e.preventDefault()
     const newUser = { ...user }
@@ -66,7 +59,7 @@ function EditLayout() {
           msgError: false,
         })
         const timerReload = setTimeout(() => {
-          clearTimeout(timerLoading)
+          clearTimeout(timerReload)
 
           window.location.reload()
         }, 2001)

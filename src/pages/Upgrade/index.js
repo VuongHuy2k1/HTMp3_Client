@@ -28,7 +28,7 @@ function Upgrade() {
   const [message, setMessage] = useState(false)
   const [value, setValue] = useState('')
   // eslint-disable-next-line no-unused-vars
-  const [valueUsd, setValueUsd] = useState('')
+
   var d = new Date()
 
   const date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
@@ -150,10 +150,6 @@ function Upgrade() {
       </label>
     )
   })
-
-  useEffect(() => {
-    setValueUsd((value / 23630).toFixed(2))
-  }, [value])
 
   const checkout = async () => {
     const timerId = setTimeout(() => {

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import * as songsService from '../../service/songsService'
 
@@ -23,6 +22,7 @@ import {
 import { HashLoader } from 'react-spinners'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
+import { setHours } from 'date-fns'
 
 const cx = classNames.bind(styles)
 
@@ -46,6 +46,7 @@ const ChartLayout = () => {
   const [labels, setLabels] = useState([])
 
   const [currentHour, setCurrentHour] = useState('')
+  const [hour, setHour] = useState(0)
 
   //---- label----
 
@@ -61,7 +62,9 @@ const ChartLayout = () => {
       const pastHours = (nowTime) => {
         return nowTime.getHours().toString().padStart(2, '0')
       }
-
+      const pastHourss = (nowTime) => {
+        return nowTime.getHours().toString().padStart(2)
+      }
       const newLabels = []
       for (let i = 0; i < 24; i++) {
         newLabels.push(`${pastHours(reducedHours(currentTime, i))}:00`)
@@ -71,6 +74,8 @@ const ChartLayout = () => {
       setLabels(newLabels)
 
       setCurrentHour(pastHours(reducedHours(currentTime, 23)))
+
+      setHour(pastHourss(reducedHours(currentTime, 23)))
     }
     interval()
     // const update = setInterval(interval, 60 * 60 * 1000)
@@ -144,12 +149,20 @@ const ChartLayout = () => {
         }
       }
 
-      const customSort = (arr, pivotIndex) => {
-        const n = arr.length
-        reverseArray(arr, 0, pivotIndex - 1)
-        reverseArray(arr, pivotIndex, n - 1)
-        reverseArray(arr, 0, n - 1)
-        return arr
+      const customSort = (arr) => {
+        const num = hour
+
+        if (num === 0) {
+          console.log('yes')
+          return arr
+        } else {
+          const n = arr.length
+          reverseArray(arr, 0, num - 1)
+          reverseArray(arr, num, n - 1)
+          reverseArray(arr, 0, n - 1)
+
+          return arr
+        }
       }
       const sumPoint = Array.from(
         { length: 24 },
@@ -166,6 +179,7 @@ const ChartLayout = () => {
       const line1 = calculateLine(point1, sumPoint)
       const line2 = calculateLine(point2, sumPoint)
       const line3 = calculateLine(point3, sumPoint)
+      console.log(customSort([...line1]))
       if (
         line1.length > 0 &&
         line2.length > 0 &&
@@ -176,14 +190,14 @@ const ChartLayout = () => {
         const series = [
           {
             name: top1,
-            data: customSort([...line1], currentHour),
+            data: customSort([...line1]),
             color: 'rgb(74, 144, 226)',
             image:
               'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
           },
           {
             name: top2,
-            data: customSort([...line2], currentHour),
+            data: customSort([...line2]),
             color: '#27BB9A',
             image:
               'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
@@ -191,7 +205,7 @@ const ChartLayout = () => {
 
           {
             name: top3,
-            data: customSort([...line3], currentHour),
+            data: customSort([...line3]),
             color: '#D74D4D',
             image:
               'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
@@ -294,6 +308,7 @@ const ChartLayout = () => {
       }
     }
     fetchApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [labels, currentHour, point1, point2, point3])
 
   return (
