@@ -25,6 +25,7 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
     rePassword: '',
     code: '',
   })
+  const [isPopupOpen, setPopupOpen] = useState(false)
   const [nameButton, setNameButton] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
@@ -170,21 +171,24 @@ function ForgotLayout({ props, selectSong, selectSongByAlbum }) {
                       onChange={onChange}
                       value={user.code}
                     ></input>
-
+                    <button
+                      className={cx('btn-code', 'btt')}
+                      onClick={() => setPopupOpen(true)}
+                    >
+                      <div className={cx('btn-code-title')}>Lấy mã</div>
+                    </button>
                     <Popup
                       modal
                       overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
-                      trigger={
-                        <button className={cx('btn-code', 'btt')}>
-                          <div className={cx('btn-code-title')}>Lấy mã</div>
-                        </button>
-                      }
+                      open={isPopupOpen}
+                      onClose={() => setPopupOpen(false)}
                     >
                       {(close) => (
                         <SentmailComponent
                           close={close}
                           name={user.username}
                           mail={user.userEmail}
+                          onClose={() => setPopupOpen(false)}
                         />
                       )}
                     </Popup>

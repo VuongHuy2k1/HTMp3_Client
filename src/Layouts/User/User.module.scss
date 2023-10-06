@@ -104,23 +104,29 @@
   touch-action: manipulation;
   transition-duration: 33ms;
   transition-property: background-color, border-color, color, box-shadow, filter,
-    transform;
+  transform;
   user-select: none;
   vertical-align: middle;
   transform: translate3d(0rem, 0rem, 0rem);
-  color: #6a6a6a;
+  color: #000000;
   min-inline-size: 0rem;
   padding-block: 1rem;
   padding-inline: 0.2rem;
+  cursor: pointer;
+  margin-left: 0.2rem;
 
+ 
+}
+.btn-remove:hover{
 
-  :hover {
-    transform: scale(1.04);
-  }
+    transform: scale(1.04) !important;
+    color: var(--color-3) !important;
+    opacity: 0.9;
+ 
 }
 .btn-submit {
   box-sizing: border-box;
- width: 100%;
+  width: 100%;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 700;
@@ -154,11 +160,15 @@
   font-size: inherit;
   padding-block: 0.875rem;
   padding-inline: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .login-more{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 0.3rem;
 }
 .btn-code{
   font-weight: 700;

@@ -1,11 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import React from 'react'
 import { register } from '../../service/userService'
-
+import Popup from 'reactjs-popup'
+import VerifyComponent from '../../components/FlexVerify'
 import classNames from 'classnames/bind'
 import styles from './User.module.scss'
 import Message from '../../components/Message'
+import { PacmanLoader } from 'react-spinners'
 const cx = classNames.bind(styles)
 
 function RegisterLayout(props) {
@@ -18,16 +20,19 @@ function RegisterLayout(props) {
     dayOfBirth: '',
     nation: '',
   })
+  const [isPopupOpen, setPopupOpen] = useState(false)
   const [message, setMessage] = useState(false)
+  const [loading, setLoading] = useState(false)
   const onChange = (e) => {
     e.preventDefault()
     const newUser = { ...user }
     newUser[e.target.name] = e.target.value
     setUser(newUser)
   }
-  const navigate = useNavigate()
+
   const onSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     const variable = {
       username: user.username,
       password: user.password,
@@ -41,17 +46,21 @@ function RegisterLayout(props) {
     if (user.password === user.passwordConfirmation) {
       register(variable).then((data) => {
         if (data.isSuccess === true) {
-          setMessage({ msgBody: 'Đăng ký thành công', msgError: false })
-
           setTimeout(() => {
-            navigate('/user/login')
+            setMessage({ msgBody: 'Đăng ký thành công', msgError: false })
           }, 2000)
+          setTimeout(() => {
+            setPopupOpen(true)
+            setLoading(false)
+          }, 4000)
         } else {
           setMessage({ msgBody: data.errors.message, msgError: true })
+          setLoading(false)
         }
       })
     } else {
       setMessage({ msgBody: 'Mat khau khong khop', msgError: true })
+      setLoading(false)
     }
   }
 
@@ -155,16 +164,6 @@ function RegisterLayout(props) {
                 <option value="FEMALE">Nữ</option>
                 <option value="MALE">Nam</option>
               </select>
-              {/* <svg
-                role="img"
-                height="16"
-                width="16"
-                aria-hidden="true"
-                className="Svg-sc-1bi12j5-0 EQkJl SelectArrow-sc-12qvh0d-0 igsFfm"
-                viewBox="0 0 16 16"
-              >
-                <path d="M.47 4.97a.75.75 0 011.06 0L8 11.44l6.47-6.47a.75.75 0 111.06 1.06L8 13.56.47 6.03a.75.75 0 010-1.06z"></path>
-              </svg> */}
             </div>
           </div>
           <div className={cx('group-main')}>
@@ -206,10 +205,25 @@ function RegisterLayout(props) {
               onChange={onChange}
             ></input>
           </div>
+          <Popup
+            modal
+            overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
+            open={isPopupOpen}
+            onClose={() => setPopupOpen(false)}
+          >
+            <VerifyComponent
+              name={user.username}
+              mail={user.userEmail}
+              reg={true}
+              onClose={() => setPopupOpen(false)}
+            />
+          </Popup>
         </div>
         <div className={cx('btn-form')}>
           <button type="submit" className={cx('btn-submit')}>
-            <div className={cx('btn-submit-title')}>Đăng ký</div>
+            <div className={cx('btn-submit-title')}>
+              {loading ? <PacmanLoader color={'#FFF'} size={10} /> : 'Đăng ký'}
+            </div>
           </button>
           <span>
             Bạn đã có tài khoản?

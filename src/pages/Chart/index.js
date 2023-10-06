@@ -22,7 +22,6 @@ import {
 import { HashLoader } from 'react-spinners'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
-import { setHours } from 'date-fns'
 
 const cx = classNames.bind(styles)
 
@@ -190,14 +189,14 @@ const ChartLayout = () => {
         const series = [
           {
             name: top1,
-            data: customSort([...line1]),
+            data: [...line1],
             color: 'rgb(74, 144, 226)',
             image:
               'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
           },
           {
             name: top2,
-            data: customSort([...line2]),
+            data: [...line2],
             color: '#27BB9A',
             image:
               'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',
@@ -205,7 +204,7 @@ const ChartLayout = () => {
 
           {
             name: top3,
-            data: customSort([...line3]),
+            data: [...line3],
             color: '#D74D4D',
             image:
               'https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif',

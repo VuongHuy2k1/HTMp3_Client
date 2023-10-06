@@ -3,10 +3,13 @@ import Cookies from 'js-cookie'
 
 export const register = (user) => {
   return httpRequests.post('api/user/signup', user).then((response) => {
-    if (response.data.isSuccess === true) {
-      return response.item.data
-    } else {
+    if (response.status !== 401) {
       return response.data
+    } else {
+      return {
+        user: { username: '' },
+        message: { msgBody: 'Error', msgError: true },
+      }
     }
   })
 }
@@ -153,4 +156,27 @@ export const getBill = (id) => {
       return { user: { username: '' } }
     }
   })
+}
+export const sentVerify = (user) => {
+  return httpRequests
+    .post('api/user/verify-mail', user)
+    .then((response) => {
+      if (response.status !== 401) {
+        return response.data
+      } else {
+        return {
+          user: { username: '' },
+          message: { msgBody: 'Error', msgError: true },
+        }
+      }
+    })
+    .catch((err) => {
+      return {
+        message: {
+          msgBody: 'Sai tai khoan hoac email',
+          msgError: true,
+        },
+        err,
+      }
+    })
 }

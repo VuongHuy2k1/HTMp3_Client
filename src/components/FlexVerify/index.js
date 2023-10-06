@@ -1,20 +1,22 @@
 import classNames from 'classnames/bind'
 import styles from './Sentmail.module.scss'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { sentMail } from '../../service/userService'
+import { sentVerify } from '../../service/userService'
 import Message from '../Message'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { PacmanLoader } from 'react-spinners'
 const cx = classNames.bind(styles)
-const SentmailComponent = ({ close, name, mail, onClose }) => {
+const VerifyComponent = ({ close, name, mail, code, onClose, reg }) => {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState(false)
   const [user, setUser] = useState({
     username: name,
     userEmail: mail,
+    code: code,
   })
-
+  const navigate = useNavigate()
   const [nameButton, setNameButton] = useState('')
   const onChange = (e) => {
     e.preventDefault()
@@ -23,33 +25,39 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
 
   const submit = (e) => {
     e.preventDefault()
+    console.log(reg)
     setLoading(true)
-
     if (nameButton === 'sentmail') {
-      sentMail(user).then((data) => {
+      sentVerify(user).then((data) => {
         if (data.isSuccess === true) {
-          const time = setTimeout(() => {
-            clearTimeout(time)
-            setMessage({ msgBody: 'Gửi mã thành công', msgError: false })
-          }, 3000)
-
-          const timerLoading = setTimeout(() => {
-            clearTimeout(timerLoading)
-            setLoading(false)
-            onClose()
-          }, 5000)
+          setMessage({ msgBody: 'Xác nhận thành công', msgError: false })
+          if (reg === true) {
+            const timerLoading = setTimeout(() => {
+              clearTimeout(timerLoading)
+              setLoading(false)
+              onClose()
+              navigate('/user/login', { replace: true })
+            }, 3000)
+          } else {
+            const timerLoading = setTimeout(() => {
+              clearTimeout(timerLoading)
+              setLoading(false)
+              onClose()
+            }, 3000)
+          }
         } else {
           const timerLoading = setTimeout(() => {
             clearTimeout(timerLoading)
-            setMessage({
-              msgBody: data.errors.message,
-              msgError: true,
-            })
-          }, 3000)
+          }, 2000)
+
           const time = setTimeout(() => {
             clearTimeout(time)
+            setMessage({
+              msgBody: 'Xác nhận thất bại',
+              msgError: true,
+            })
             setLoading(false)
-          }, 5000)
+          }, 3000)
         }
       })
     }
@@ -66,7 +74,7 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
           <div className={cx('wrapper')}>
             <>
               <div className={cx('title')}>
-                <h2>Nhận mã bảo vệ</h2>
+                <h2>Xác nhận tài khoản</h2>
               </div>
               {loading ? <Message message={message} /> : null}
               <form
@@ -110,6 +118,22 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
                       value={user.userEmail}
                     ></input>
                   </div>
+                  <div className={cx('group-main')}>
+                    <div className={cx('title-group')}>
+                      <label htmlFor="code" className={cx('label-title')}>
+                        <span>Mã xác nhận</span>
+                      </label>
+                    </div>
+                    <input
+                      id="email"
+                      className={cx('input-value')}
+                      type="text"
+                      name="code"
+                      placeholder="Nhập mã xác nhận"
+                      onChange={onChange}
+                      value={user.code}
+                    ></input>
+                  </div>
                 </div>
                 <div className={cx('btn-form')}>
                   <button
@@ -120,7 +144,7 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
                     {loading ? (
                       <PacmanLoader color={'#FFF'} size={10} />
                     ) : (
-                      ' Lấy mã'
+                      'Xác nhận'
                     )}
                   </button>
                 </div>
@@ -133,4 +157,4 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
   )
 }
 
-export default SentmailComponent
+export default VerifyComponent
