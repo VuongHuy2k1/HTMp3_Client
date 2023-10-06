@@ -63,7 +63,6 @@ function ChangePassLayout() {
         setLoading(false)
       }, 1500)
     }
-
   }
 
   return (
@@ -77,7 +76,6 @@ function ChangePassLayout() {
           className={cx('post-edit')}
           onSubmit={onSubmit}
           name="sentMessage"
-          noValidate="noValidate"
         >
           <div className={cx('main-form')}>
             <div className={cx('group-main')}>
@@ -94,6 +92,7 @@ function ChangePassLayout() {
                   name="oldpassword"
                   value={user.oldpassword}
                   onChange={onChange}
+                  required
                 ></input>
                 <button
                   className={cx('show-pass')}
@@ -118,6 +117,7 @@ function ChangePassLayout() {
                   name="newpassword"
                   value={user.newpassword}
                   onChange={onChange}
+                  required
                 ></input>
                 <button
                   className={cx('show-pass')}
@@ -142,6 +142,7 @@ function ChangePassLayout() {
                   name="renewpassword"
                   value={user.renewpassword}
                   onChange={onChange}
+                  required
                 ></input>
                 <button
                   className={cx('show-pass')}

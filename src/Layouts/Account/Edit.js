@@ -89,7 +89,6 @@ function EditLayout() {
           className={cx('post-edit')}
           onSubmit={onSubmit}
           name="sentMessage"
-          noValidate="noValidate"
         >
           <div className={cx('main-form')}>
             <div className={cx('group-main')}>
@@ -105,6 +104,7 @@ function EditLayout() {
                   name="gender"
                   value={user.gender}
                   onChange={onChange}
+                  required
                 >
                   <option disabled="" value="không chọn">
                     - không chọn -
@@ -137,7 +137,7 @@ function EditLayout() {
                     Date
                   </label>
                   <input
-                    required=""
+                    required
                     type="date"
                     id="dob-date"
                     disabled=""
@@ -177,6 +177,7 @@ function EditLayout() {
                 name="image"
                 value={user.image}
                 onChange={onChange}
+                required
               ></input>
             </div>
           </div>

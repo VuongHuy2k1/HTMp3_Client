@@ -77,12 +77,7 @@ const VerifyComponent = ({ close, name, mail, code, onClose, reg }) => {
                 <h2>Xác nhận tài khoản</h2>
               </div>
               {loading ? <Message message={message} /> : null}
-              <form
-                id="forgot"
-                className={cx('post-form')}
-                noValidate="noValidate"
-                onSubmit={submit}
-              >
+              <form id="forgot" className={cx('post-form')} onSubmit={submit}>
                 <div className={cx('main-form')}>
                   <div className={cx('group-main')}>
                     <div className={cx('title-group')}>
@@ -99,6 +94,7 @@ const VerifyComponent = ({ close, name, mail, code, onClose, reg }) => {
                       autoFocus={true}
                       value={user.username}
                       onChange={onChange}
+                      required
                     ></input>
                   </div>
 
@@ -116,6 +112,7 @@ const VerifyComponent = ({ close, name, mail, code, onClose, reg }) => {
                       placeholder="Nhập email"
                       onChange={onChange}
                       value={user.userEmail}
+                      required
                     ></input>
                   </div>
                   <div className={cx('group-main')}>
@@ -132,6 +129,7 @@ const VerifyComponent = ({ close, name, mail, code, onClose, reg }) => {
                       placeholder="Nhập mã xác nhận"
                       onChange={onChange}
                       value={user.code}
+                      required
                     ></input>
                   </div>
                 </div>

@@ -33,15 +33,16 @@ function Search() {
       setSearchResultAlbum([])
       return
     }
+    if (debouncedValue !== '') {
+      const fetchApi = async () => {
+        const result = await searchApi.search(debouncedValue)
 
-    const fetchApi = async () => {
-      const result = await searchApi.search(debouncedValue)
+        setSearchResultSong(result.songs.slice(0, 4))
+        setSearchResultAlbum(result.albums.slice(0, 4))
+      }
 
-      setSearchResultSong(result.songs.slice(0, 4))
-      setSearchResultAlbum(result.albums.slice(0, 4))
+      fetchApi()
     }
-
-    fetchApi()
   }, [debouncedValue])
 
   const handlInput = () => {
@@ -93,6 +94,7 @@ function Search() {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           onFocus={() => setShowResult(true)}
+          required
         ></input>
 
         {!!searchValue && (
@@ -102,9 +104,13 @@ function Search() {
         )}
 
         <button className={cx('search-btn')} onClick={handleOut}>
-          <Link to={`/search/${searchValue}`}>
+          {searchValue !== '' ? (
+            <Link to={`/search/${searchValue}`}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </Link>
+          ) : (
             <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </Link>
+          )}
         </button>
       </div>
     </HeadlessTippy>

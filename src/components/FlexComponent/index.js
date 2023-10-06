@@ -172,7 +172,6 @@ const FlexComponet = ({
                   <form
                     className={cx('post-form')}
                     name="crete_playlist"
-                    noValidate="noValidate"
                     onSubmit={onSubmit}
                   >
                     <div className={cx('group-main')}>
@@ -194,6 +193,7 @@ const FlexComponet = ({
                           value={playList.name}
                           onChange={onChange}
                           id="name"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -258,7 +258,6 @@ const FlexComponet = ({
                   <form
                     className={cx('post-form')}
                     name="crete_playlist"
-                    noValidate="noValidate"
                     onSubmit={onChangeSubmit}
                   >
                     <div className={cx('group-main')}>
@@ -283,6 +282,7 @@ const FlexComponet = ({
                               : playList.name
                           }
                           onChange={onChange}
+                          required
                         ></input>
                       </div>
                     </div>

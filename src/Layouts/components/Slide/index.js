@@ -20,7 +20,7 @@ function Slides() {
           type[i] = response[i].img
         }
       }
-      setAlbumsList([...type.slice(0, 6)])
+      setAlbumsList([...type.slice(0, 10)])
       setTimeout(function () {
         setLoading(false)
       }, 1500)
@@ -59,6 +59,18 @@ function Slides() {
           </div>
           <div className="slide">
             <img src={albumsList[5]} alt="" className={cx('img')}></img>
+          </div>
+          <div className="slide">
+            <img src={albumsList[6]} alt="" className={cx('img')}></img>
+          </div>
+          <div className="slide">
+            <img src={albumsList[7]} alt="" className={cx('img')}></img>
+          </div>
+          <div className="slide">
+            <img src={albumsList[8]} alt="" className={cx('img')}></img>
+          </div>
+          <div className="slide">
+            <img src={albumsList[9]} alt="" className={cx('img')}></img>
           </div>
         </Slide>
       )}

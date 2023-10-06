@@ -38,7 +38,7 @@ function AlbumLayout() {
 
   return (
     <React.Fragment>
-      <div className={cx('main-view-container')}>
+      <div className={cx('main-view-container', 'scroll')}>
         <div className={cx('pad-top')}></div>
         <div className={cx('main-view-top')}>
           <div className={cx('view-left')}>
@@ -54,7 +54,7 @@ function AlbumLayout() {
               />
             )}
           </div>
-          <div className={cx('view-right', 'scroll')}>
+          <div className={cx('view-right')}>
             <SongListHeader />
             {loading ? (
               <SkeletonSong num={16} />

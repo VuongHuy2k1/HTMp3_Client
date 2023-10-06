@@ -69,12 +69,7 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
                 <h2>Nhận mã bảo vệ</h2>
               </div>
               {loading ? <Message message={message} /> : null}
-              <form
-                id="forgot"
-                className={cx('post-form')}
-                noValidate="noValidate"
-                onSubmit={submit}
-              >
+              <form id="forgot" className={cx('post-form')} onSubmit={submit}>
                 <div className={cx('main-form')}>
                   <div className={cx('group-main')}>
                     <div className={cx('title-group')}>
@@ -91,6 +86,7 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
                       autoFocus={true}
                       value={user.username}
                       onChange={onChange}
+                      required
                     ></input>
                   </div>
 
@@ -108,6 +104,7 @@ const SentmailComponent = ({ close, name, mail, onClose }) => {
                       placeholder="Nhập email"
                       onChange={onChange}
                       value={user.userEmail}
+                      required
                     ></input>
                   </div>
                 </div>

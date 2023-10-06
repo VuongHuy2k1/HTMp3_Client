@@ -256,7 +256,7 @@ function Upgrade() {
                         ></path>
                       </svg>
                     </i>
-                    Nghe nhạc không quảng cáo
+                    Kho nhạc Premium độc quyền
                   </li>
                   <li className={cx('content-benefit')}>
                     <i className="b">
@@ -290,24 +290,7 @@ function Upgrade() {
                         ></path>
                       </svg>
                     </i>
-                    Nghe nhạc không quảng cáo
-                  </li>
-                  <li className={cx('content-benefit')}>
-                    <i className="b">
-                      <svg
-                        width="24"
-                        height="24"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M20.695 5.282a1 1 0 01.023 1.414L9.532 18.25a1 1 0 01-1.41.026l-4.815-4.622a1 1 0 011.386-1.443l4.095 3.932 10.494-10.84a1 1 0 011.413-.022z"
-                        ></path>
-                      </svg>
-                    </i>
-                    Nghe nhạc không quảng cáo
+                    Tính năng nghe nhạc nâng cao
                   </li>
                 </ul>
               </div>

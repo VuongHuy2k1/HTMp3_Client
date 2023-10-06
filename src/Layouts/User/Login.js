@@ -51,7 +51,6 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
     const response = await LastPlay.getLastPlay()
 
     if (response !== undefined && response !== null) {
-      console.log(userPriority)
       if (userPriority === 'vip') {
         selectSongByAlbum(response.songList)
         selectSong(response.song)
@@ -76,15 +75,14 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
 
     if (nameButton === 'login') {
       login(user).then((data) => {
-        console.log(data.item.role)
-        if (data.item.role !== 'unknow') {
-          Cookies.set('userId', data.userId, {
-            path: '/',
-          })
-          Cookies.set('access_token', data.access_token, {
-            path: '/',
-          })
-          if (data.isSuccess === true) {
+        Cookies.set('userId', data.userId, {
+          path: '/',
+        })
+        Cookies.set('access_token', data.access_token, {
+          path: '/',
+        })
+        if (data.isSuccess === true) {
+          if (data.item.role !== 'unknow') {
             setLoading(true)
 
             Cookies.set('userId', data.item.userId, {
@@ -111,13 +109,13 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
             }, 3000)
           } else {
             setMessage({
-              msgBody: 'Mật khẩu hoặc tên tài khoản không đúng',
+              msgBody: 'Tài khoản của bạn chưa xác thực',
               msgError: true,
             })
           }
         } else {
           setMessage({
-            msgBody: 'Tài khoản của bạn chưa xác thực',
+            msgBody: 'Mật khẩu hoặc tên tài khoản không đúng',
             msgError: true,
           })
         }
@@ -138,12 +136,7 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
               <h1>Đăng nhập và trải nghiệm</h1>
             </div>
             {message ? <Message message={message} /> : null}
-            <form
-              id="login"
-              className={cx('post-form')}
-              noValidate="noValidate"
-              onSubmit={onSubmit}
-            >
+            <form id="login" className={cx('post-form')} onSubmit={onSubmit}>
               <div className={cx('main-form')}>
                 <div className={cx('group-main')}>
                   <div className={cx('title-group')}>
@@ -160,6 +153,7 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                     autoFocus={true}
                     value={user.username}
                     onChange={onChange}
+                    required
                   ></input>
                 </div>
 
@@ -178,6 +172,7 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                       placeholder="Nhập mật khẩu"
                       onChange={onChange}
                       value={user.password}
+                      required
                     ></input>
                     <button
                       className={cx('show-pass')}
@@ -220,14 +215,10 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                       Xác nhận tài khoản
                     </div>
                     <Popup
+                      modal
                       overlayStyle={{ background: 'rgba(0, 0, 0, 0.5)' }}
                       open={isPopupOpen}
                       onClose={() => setPopupOpen(false)}
-                      // trigger={
-                      //   <div className={cx('btn-remove')} onClick={() => setPopupOpen(true)}>
-                      //     Xác nhận tài khoản
-                      //   </div>
-                      // }
                     >
                       {(close) => (
                         <VerifyComponent
@@ -235,7 +226,6 @@ function LoginLayout({ props, selectSong, selectSongByAlbum }) {
                           name={user.username}
                           mail={user.userEmail}
                           onClose={() => setPopupOpen(false)}
-                          sub={() => console.log('Data submitted!')}
                         />
                       )}
                     </Popup>

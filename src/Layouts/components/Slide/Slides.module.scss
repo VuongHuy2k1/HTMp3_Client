@@ -3,15 +3,15 @@
 }
 
 .img{
-  height: 13rem;
+  height: 16rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   background-size: cover;
-  width: 22rem;
+  width: 90%;
   margin: 2rem 1rem 0 1rem;
   border-radius: var(--card-image-border-radius);
-  object-fit: fill;
+  object-fit: cover;
 }
 .loading{
   height: 13rem;
