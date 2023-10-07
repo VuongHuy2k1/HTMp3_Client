@@ -16,7 +16,6 @@ import {
   faPlayCircle,
   faRepeat,
   faPauseCircle,
-
 } from '@fortawesome/free-solid-svg-icons'
 import styles from './Player.module.scss'
 import classNames from 'classnames/bind'
@@ -121,7 +120,6 @@ const Player = ({
     const input = document.getElementById('play-position')
     audioRef.current.currentTime = Number(input?.value)
 
-    // setTime(Number(input?.value))
     if (!playerState) {
       dispatch({ type: 'PLAYER_STATE_SELECTED', payload: 1 })
       audioRef.current.play()

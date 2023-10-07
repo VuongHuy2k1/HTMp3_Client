@@ -16,13 +16,13 @@ function InforLayout() {
     priority: '',
     endPay: '',
   })
-
+  console.log(user)
   useEffect(() => {
     const fetchApi = async () => {
       const res = await UserService.isAuthen()
       const dateObject = new Date(res.dateOfBirth)
       const dateEnd = new Date(res.endPay)
-
+      console.log(res)
       setUser({
         name: res.username,
         email: res.email,
@@ -99,7 +99,7 @@ function InforLayout() {
             </tr>
             <tr className={cx('td-two')}>
               <td className={cx('td')}>Loại tài khoản</td>
-              {user.nation === undefined ? (
+              {user.priority === undefined ? (
                 <td className={cx('td-1')}>Bạn chưa cập nhật </td>
               ) : (
                 <>

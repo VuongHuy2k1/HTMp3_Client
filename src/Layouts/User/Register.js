@@ -20,6 +20,7 @@ function RegisterLayout(props) {
     dayOfBirth: '',
     nation: '',
   })
+  const [nameButton, setNameButton] = useState('')
   const [isPopupOpen, setPopupOpen] = useState(false)
   const [message, setMessage] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -32,35 +33,37 @@ function RegisterLayout(props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    setLoading(true)
-    const variable = {
-      username: user.username,
-      password: user.password,
-      rePassword: user.passwordConfirmation,
-      email: user.email,
-      gender: user.gender,
-      dayOfBirth: user.birth,
-      nation: user.countrty,
-    }
+    if (nameButton === 're') {
+      setLoading(true)
+      const variable = {
+        username: user.username,
+        password: user.password,
+        rePassword: user.passwordConfirmation,
+        email: user.email,
+        gender: user.gender,
+        dayOfBirth: user.birth,
+        nation: user.countrty,
+      }
 
-    if (user.password === user.passwordConfirmation) {
-      register(variable).then((data) => {
-        if (data.isSuccess === true) {
-          setTimeout(() => {
-            setMessage({ msgBody: 'Đăng ký thành công', msgError: false })
-          }, 2000)
-          setTimeout(() => {
-            setPopupOpen(true)
+      if (user.password === user.passwordConfirmation) {
+        register(variable).then((data) => {
+          if (data.isSuccess === true) {
+            setTimeout(() => {
+              setMessage({ msgBody: 'Đăng ký thành công', msgError: false })
+            }, 2000)
+            setTimeout(() => {
+              setPopupOpen(true)
+              setLoading(false)
+            }, 4000)
+          } else {
+            setMessage({ msgBody: data.errors.message, msgError: true })
             setLoading(false)
-          }, 4000)
-        } else {
-          setMessage({ msgBody: data.errors.message, msgError: true })
-          setLoading(false)
-        }
-      })
-    } else {
-      setMessage({ msgBody: 'Mat khau khong khop', msgError: true })
-      setLoading(false)
+          }
+        })
+      } else {
+        setMessage({ msgBody: 'Mat khau khong khop', msgError: true })
+        setLoading(false)
+      }
     }
   }
 
@@ -220,7 +223,11 @@ function RegisterLayout(props) {
           </Popup>
         </div>
         <div className={cx('btn-form')}>
-          <button type="submit" className={cx('btn-submit')}>
+          <button
+            type="submit"
+            className={cx('btn-submit')}
+            onClick={(e) => setNameButton('re')}
+          >
             <div className={cx('btn-submit-title')}>
               {loading ? <PacmanLoader color={'#FFF'} size={10} /> : 'Đăng ký'}
             </div>
