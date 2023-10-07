@@ -73,12 +73,7 @@ function RegisterLayout(props) {
         <h1>Đăng ký và trải nghiệm</h1>
       </div>
       {message ? <Message message={message} /> : null}
-      <form
-        className={cx('post-form')}
-        name="sentMessage"
-        noValidate="noValidate"
-        onSubmit={onSubmit}
-      >
+      <form className={cx('post-form')} name="sentMessage" onSubmit={onSubmit}>
         <div className={cx('main-form')}>
           <div className={cx('group-main')}>
             <div className={cx('title-group')}>
@@ -95,6 +90,7 @@ function RegisterLayout(props) {
               autoFocus={true}
               value={user.username}
               onChange={onChange}
+              required
             ></input>
           </div>
 
@@ -112,6 +108,7 @@ function RegisterLayout(props) {
               placeholder="Tối thiểu nhất 6 ký tự"
               onChange={onChange}
               value={user.password}
+              required
             ></input>
           </div>
           <div className={cx('group-main')}>
@@ -128,6 +125,7 @@ function RegisterLayout(props) {
               placeholder="Nhập lại mật khẩu"
               value={user.passwordConfirmation}
               onChange={onChange}
+              required
             ></input>
           </div>
           <div className={cx('group-main')}>
@@ -144,6 +142,7 @@ function RegisterLayout(props) {
               placeholder="Email của bạn"
               value={user.email}
               onChange={onChange}
+              required
             ></input>
           </div>
           <div className={cx('group-main')}>
@@ -159,6 +158,7 @@ function RegisterLayout(props) {
                 name="gender"
                 value={user.gender}
                 onChange={onChange}
+                required
               >
                 <option disabled="" value="NOT_SET">
                   - không chọn -
@@ -181,7 +181,7 @@ function RegisterLayout(props) {
                   Date
                 </label>
                 <input
-                  required=""
+                  required
                   type="date"
                   id="dob-date"
                   disabled=""
@@ -206,6 +206,7 @@ function RegisterLayout(props) {
               name="country"
               value={user.country}
               onChange={onChange}
+              required
             ></input>
           </div>
           <Popup
